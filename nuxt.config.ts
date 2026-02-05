@@ -6,7 +6,8 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/tailwindcss',
     'shadcn-nuxt',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    '@prisma/nuxt'
   ],
   shadcn: {
     /**
