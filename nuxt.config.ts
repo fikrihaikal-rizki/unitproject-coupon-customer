@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     'shadcn-nuxt',
     '@pinia/nuxt',
-    '@prisma/nuxt'
+    '@prisma/nuxt',
+    '@nuxtjs/supabase'
   ],
   shadcn: {
     /**
@@ -22,5 +23,9 @@ export default defineNuxtConfig({
      * @default "@/components/ui"
      */
     componentDir: '@/components/ui'
+  },
+  supabase: {
+    url: process.env.SUPABASE_URL,
+    key: process.env.SUPABASE_KEY
   }
 })
