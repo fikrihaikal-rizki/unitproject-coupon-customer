@@ -4,6 +4,9 @@ CREATE TYPE "StepType" AS ENUM ('claim_seat', 'questionnaire');
 -- CreateEnum
 CREATE TYPE "InputType" AS ENUM ('text', 'number', 'phone', 'email', 'select', 'multiple-select', 'file');
 
+-- CreateEnum
+CREATE TYPE "ClaimSeatInputType" AS ENUM ('text', 'number', 'phone', 'email', 'select');
+
 -- CreateTable
 CREATE TABLE "customers" (
     "id" UUID NOT NULL,
@@ -36,6 +39,8 @@ CREATE TABLE "events" (
     "title" VARCHAR(255) NOT NULL,
     "description" TEXT,
     "banner_path" TEXT,
+    "start_at" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    "end_at" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     "is_active" BOOLEAN DEFAULT true,
     "created_at" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
 
@@ -80,7 +85,7 @@ CREATE TABLE "claim_seat_configs" (
     "step_id" INTEGER,
     "label" VARCHAR(100) NOT NULL,
     "question_text" TEXT NOT NULL,
-    "input_type" "InputType",
+    "claim_seat_input_type" "ClaimSeatInputType",
     "options" JSONB,
     "placeholder" VARCHAR(255),
     "created_at" TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
