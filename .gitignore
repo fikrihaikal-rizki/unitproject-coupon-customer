@@ -26,5 +26,5 @@ logs
 /app/generated/prisma
 
 # AGENTS
-.agents
+.agents/
 
