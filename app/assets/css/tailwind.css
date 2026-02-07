@@ -111,7 +111,7 @@
   --shadow-2xl: 0px 0px 0px 0px hsl(0 0% 0% / 0.00);
 }
 
-/* @theme inline {
+@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -175,7 +175,7 @@ body {
   letter-spacing: var(--tracking-normal);
 }
 
-@layer base {
+/* @layer base {
   * {
     @apply border-border outline-ring/50;
   }
@@ -183,7 +183,9 @@ body {
     @apply bg-background text-foreground;
   }
 }
-@theme inline {
+
+*/
+/* @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -298,5 +300,4 @@ body {
     @apply bg-background text-foreground;
   }
 }
-
-*/
+ */

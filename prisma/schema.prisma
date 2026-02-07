@@ -105,7 +105,7 @@ model QuestionnaireQuestion {
   id            Int        @id @default(autoincrement())
   stepId        Int?       @map("step_id")
   label         String     @db.VarChar(100)
-  description   String     @map("question_text")
+  description   String     @map("description")
   inputType     InputType? @map("input_type")
   options       Json?
   isRequired    Boolean?   @default(true) @map("is_required")
@@ -124,8 +124,8 @@ model ClaimSeatConfig {
   id          Int                 @id @default(autoincrement())
   stepId      Int?                @map("step_id")
   label       String              @db.VarChar(100)
-  description String              @map("question_text")
-  inputType   ClaimSeatInputType? @map("claim_seat_input_type")
+  description String              @map("description")
+  inputType   ClaimSeatInputType? @map("input_type")
   options     Json?
   placeholder String?             @db.VarChar(255)
   createdAt   DateTime?           @default(now()) @map("created_at") @db.Timestamptz

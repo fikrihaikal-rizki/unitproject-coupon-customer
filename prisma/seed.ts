@@ -7,7 +7,6 @@ const prisma = new PrismaClient({ adapter })
 
 async function main() {
 
-    
     const group = await prisma.eventGroup.create({
         data: {
             groupName: 'Sahur Bareng Ramadhan 1447H',
