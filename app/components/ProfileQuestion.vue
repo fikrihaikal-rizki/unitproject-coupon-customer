@@ -43,6 +43,15 @@ const createSchema = () => {
         fieldSchema = zod
           .array(zod.string())
           .min(1, `${input.label} is required`);
+      } else if (input.inputType === 'file') {
+        fieldSchema = zod
+          .any()
+          .refine((val) => val instanceof File, `${input.label} is required`)
+          .refine((file) => file?.size <= 2 * 1024 * 1024, `Max file size is 2MB`)
+          .refine(
+            (file) => ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'].includes(file?.type),
+            `Only .jpg, .png, and .pdf files are accepted`
+          );
       } else {
         fieldSchema = zod.string().min(1, `${input.label} is required`);
       }

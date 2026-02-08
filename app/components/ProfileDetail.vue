@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useForm } from "vee-validate";
 import * as zod from "zod";
+import { toast } from "vue-sonner";
 
 interface Props {
   initialData: {
@@ -62,8 +63,7 @@ const onSubmit = handleSubmit(async (values) => {
     emit("next", values);
   } catch (err: any) {
     console.error(err);
-    // Use proper toast or alert
-    alert(err.message || "An error occurred");
+    toast.error(err.message || "An error occurred");
   }
 });
 </script>
