@@ -43,6 +43,10 @@ export type EventMinAggregateOutputType = {
   bannerPath: string | null
   startAt: Date | null
   endAt: Date | null
+  successGreeting: string | null
+  successDescription: string | null
+  successPrimaryBtnText: string | null
+  successPrimaryBtnUrl: string | null
   isActive: boolean | null
   createdAt: Date | null
 }
@@ -56,6 +60,10 @@ export type EventMaxAggregateOutputType = {
   bannerPath: string | null
   startAt: Date | null
   endAt: Date | null
+  successGreeting: string | null
+  successDescription: string | null
+  successPrimaryBtnText: string | null
+  successPrimaryBtnUrl: string | null
   isActive: boolean | null
   createdAt: Date | null
 }
@@ -69,6 +77,10 @@ export type EventCountAggregateOutputType = {
   bannerPath: number
   startAt: number
   endAt: number
+  successGreeting: number
+  successDescription: number
+  successPrimaryBtnText: number
+  successPrimaryBtnUrl: number
   isActive: number
   createdAt: number
   _all: number
@@ -92,6 +104,10 @@ export type EventMinAggregateInputType = {
   bannerPath?: true
   startAt?: true
   endAt?: true
+  successGreeting?: true
+  successDescription?: true
+  successPrimaryBtnText?: true
+  successPrimaryBtnUrl?: true
   isActive?: true
   createdAt?: true
 }
@@ -105,6 +121,10 @@ export type EventMaxAggregateInputType = {
   bannerPath?: true
   startAt?: true
   endAt?: true
+  successGreeting?: true
+  successDescription?: true
+  successPrimaryBtnText?: true
+  successPrimaryBtnUrl?: true
   isActive?: true
   createdAt?: true
 }
@@ -118,6 +138,10 @@ export type EventCountAggregateInputType = {
   bannerPath?: true
   startAt?: true
   endAt?: true
+  successGreeting?: true
+  successDescription?: true
+  successPrimaryBtnText?: true
+  successPrimaryBtnUrl?: true
   isActive?: true
   createdAt?: true
   _all?: true
@@ -218,6 +242,10 @@ export type EventGroupByOutputType = {
   bannerPath: string | null
   startAt: Date | null
   endAt: Date | null
+  successGreeting: string | null
+  successDescription: string | null
+  successPrimaryBtnText: string | null
+  successPrimaryBtnUrl: string | null
   isActive: boolean | null
   createdAt: Date | null
   _count: EventCountAggregateOutputType | null
@@ -254,6 +282,10 @@ export type EventWhereInput = {
   bannerPath?: Prisma.StringNullableFilter<"Event"> | string | null
   startAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   endAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
+  successGreeting?: Prisma.StringNullableFilter<"Event"> | string | null
+  successDescription?: Prisma.StringNullableFilter<"Event"> | string | null
+  successPrimaryBtnText?: Prisma.StringNullableFilter<"Event"> | string | null
+  successPrimaryBtnUrl?: Prisma.StringNullableFilter<"Event"> | string | null
   isActive?: Prisma.BoolNullableFilter<"Event"> | boolean | null
   createdAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   group?: Prisma.XOR<Prisma.EventGroupNullableScalarRelationFilter, Prisma.EventGroupWhereInput> | null
@@ -270,6 +302,10 @@ export type EventOrderByWithRelationInput = {
   bannerPath?: Prisma.SortOrderInput | Prisma.SortOrder
   startAt?: Prisma.SortOrderInput | Prisma.SortOrder
   endAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  successGreeting?: Prisma.SortOrderInput | Prisma.SortOrder
+  successDescription?: Prisma.SortOrderInput | Prisma.SortOrder
+  successPrimaryBtnText?: Prisma.SortOrderInput | Prisma.SortOrder
+  successPrimaryBtnUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrderInput | Prisma.SortOrder
   group?: Prisma.EventGroupOrderByWithRelationInput
@@ -289,6 +325,10 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   bannerPath?: Prisma.StringNullableFilter<"Event"> | string | null
   startAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   endAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
+  successGreeting?: Prisma.StringNullableFilter<"Event"> | string | null
+  successDescription?: Prisma.StringNullableFilter<"Event"> | string | null
+  successPrimaryBtnText?: Prisma.StringNullableFilter<"Event"> | string | null
+  successPrimaryBtnUrl?: Prisma.StringNullableFilter<"Event"> | string | null
   isActive?: Prisma.BoolNullableFilter<"Event"> | boolean | null
   createdAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   group?: Prisma.XOR<Prisma.EventGroupNullableScalarRelationFilter, Prisma.EventGroupWhereInput> | null
@@ -305,6 +345,10 @@ export type EventOrderByWithAggregationInput = {
   bannerPath?: Prisma.SortOrderInput | Prisma.SortOrder
   startAt?: Prisma.SortOrderInput | Prisma.SortOrder
   endAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  successGreeting?: Prisma.SortOrderInput | Prisma.SortOrder
+  successDescription?: Prisma.SortOrderInput | Prisma.SortOrder
+  successPrimaryBtnText?: Prisma.SortOrderInput | Prisma.SortOrder
+  successPrimaryBtnUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EventCountOrderByAggregateInput
@@ -326,6 +370,10 @@ export type EventScalarWhereWithAggregatesInput = {
   bannerPath?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   startAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Event"> | Date | string | null
   endAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Event"> | Date | string | null
+  successGreeting?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
+  successDescription?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
+  successPrimaryBtnText?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
+  successPrimaryBtnUrl?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   isActive?: Prisma.BoolNullableWithAggregatesFilter<"Event"> | boolean | null
   createdAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Event"> | Date | string | null
 }
@@ -338,6 +386,10 @@ export type EventCreateInput = {
   bannerPath?: string | null
   startAt?: Date | string | null
   endAt?: Date | string | null
+  successGreeting?: string | null
+  successDescription?: string | null
+  successPrimaryBtnText?: string | null
+  successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
   group?: Prisma.EventGroupCreateNestedOneWithoutEventsInput
@@ -354,6 +406,10 @@ export type EventUncheckedCreateInput = {
   bannerPath?: string | null
   startAt?: Date | string | null
   endAt?: Date | string | null
+  successGreeting?: string | null
+  successDescription?: string | null
+  successPrimaryBtnText?: string | null
+  successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
   steps?: Prisma.RegistrationStepUncheckedCreateNestedManyWithoutEventInput
@@ -368,6 +424,10 @@ export type EventUpdateInput = {
   bannerPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  successGreeting?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   group?: Prisma.EventGroupUpdateOneWithoutEventsNestedInput
@@ -384,6 +444,10 @@ export type EventUncheckedUpdateInput = {
   bannerPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  successGreeting?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   steps?: Prisma.RegistrationStepUncheckedUpdateManyWithoutEventNestedInput
@@ -399,6 +463,10 @@ export type EventCreateManyInput = {
   bannerPath?: string | null
   startAt?: Date | string | null
   endAt?: Date | string | null
+  successGreeting?: string | null
+  successDescription?: string | null
+  successPrimaryBtnText?: string | null
+  successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
 }
@@ -411,6 +479,10 @@ export type EventUpdateManyMutationInput = {
   bannerPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  successGreeting?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -424,6 +496,10 @@ export type EventUncheckedUpdateManyInput = {
   bannerPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  successGreeting?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -447,6 +523,10 @@ export type EventCountOrderByAggregateInput = {
   bannerPath?: Prisma.SortOrder
   startAt?: Prisma.SortOrder
   endAt?: Prisma.SortOrder
+  successGreeting?: Prisma.SortOrder
+  successDescription?: Prisma.SortOrder
+  successPrimaryBtnText?: Prisma.SortOrder
+  successPrimaryBtnUrl?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -464,6 +544,10 @@ export type EventMaxOrderByAggregateInput = {
   bannerPath?: Prisma.SortOrder
   startAt?: Prisma.SortOrder
   endAt?: Prisma.SortOrder
+  successGreeting?: Prisma.SortOrder
+  successDescription?: Prisma.SortOrder
+  successPrimaryBtnText?: Prisma.SortOrder
+  successPrimaryBtnUrl?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -477,6 +561,10 @@ export type EventMinOrderByAggregateInput = {
   bannerPath?: Prisma.SortOrder
   startAt?: Prisma.SortOrder
   endAt?: Prisma.SortOrder
+  successGreeting?: Prisma.SortOrder
+  successDescription?: Prisma.SortOrder
+  successPrimaryBtnText?: Prisma.SortOrder
+  successPrimaryBtnUrl?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -580,6 +668,10 @@ export type EventCreateWithoutGroupInput = {
   bannerPath?: string | null
   startAt?: Date | string | null
   endAt?: Date | string | null
+  successGreeting?: string | null
+  successDescription?: string | null
+  successPrimaryBtnText?: string | null
+  successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
   steps?: Prisma.RegistrationStepCreateNestedManyWithoutEventInput
@@ -594,6 +686,10 @@ export type EventUncheckedCreateWithoutGroupInput = {
   bannerPath?: string | null
   startAt?: Date | string | null
   endAt?: Date | string | null
+  successGreeting?: string | null
+  successDescription?: string | null
+  successPrimaryBtnText?: string | null
+  successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
   steps?: Prisma.RegistrationStepUncheckedCreateNestedManyWithoutEventInput
@@ -638,6 +734,10 @@ export type EventScalarWhereInput = {
   bannerPath?: Prisma.StringNullableFilter<"Event"> | string | null
   startAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   endAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
+  successGreeting?: Prisma.StringNullableFilter<"Event"> | string | null
+  successDescription?: Prisma.StringNullableFilter<"Event"> | string | null
+  successPrimaryBtnText?: Prisma.StringNullableFilter<"Event"> | string | null
+  successPrimaryBtnUrl?: Prisma.StringNullableFilter<"Event"> | string | null
   isActive?: Prisma.BoolNullableFilter<"Event"> | boolean | null
   createdAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
 }
@@ -650,6 +750,10 @@ export type EventCreateWithoutStepsInput = {
   bannerPath?: string | null
   startAt?: Date | string | null
   endAt?: Date | string | null
+  successGreeting?: string | null
+  successDescription?: string | null
+  successPrimaryBtnText?: string | null
+  successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
   group?: Prisma.EventGroupCreateNestedOneWithoutEventsInput
@@ -665,6 +769,10 @@ export type EventUncheckedCreateWithoutStepsInput = {
   bannerPath?: string | null
   startAt?: Date | string | null
   endAt?: Date | string | null
+  successGreeting?: string | null
+  successDescription?: string | null
+  successPrimaryBtnText?: string | null
+  successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
   registrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutEventInput
@@ -694,6 +802,10 @@ export type EventUpdateWithoutStepsInput = {
   bannerPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  successGreeting?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   group?: Prisma.EventGroupUpdateOneWithoutEventsNestedInput
@@ -709,6 +821,10 @@ export type EventUncheckedUpdateWithoutStepsInput = {
   bannerPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  successGreeting?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   registrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutEventNestedInput
@@ -722,6 +838,10 @@ export type EventCreateWithoutRegistrationsInput = {
   bannerPath?: string | null
   startAt?: Date | string | null
   endAt?: Date | string | null
+  successGreeting?: string | null
+  successDescription?: string | null
+  successPrimaryBtnText?: string | null
+  successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
   group?: Prisma.EventGroupCreateNestedOneWithoutEventsInput
@@ -737,6 +857,10 @@ export type EventUncheckedCreateWithoutRegistrationsInput = {
   bannerPath?: string | null
   startAt?: Date | string | null
   endAt?: Date | string | null
+  successGreeting?: string | null
+  successDescription?: string | null
+  successPrimaryBtnText?: string | null
+  successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
   steps?: Prisma.RegistrationStepUncheckedCreateNestedManyWithoutEventInput
@@ -766,6 +890,10 @@ export type EventUpdateWithoutRegistrationsInput = {
   bannerPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  successGreeting?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   group?: Prisma.EventGroupUpdateOneWithoutEventsNestedInput
@@ -781,6 +909,10 @@ export type EventUncheckedUpdateWithoutRegistrationsInput = {
   bannerPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  successGreeting?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   steps?: Prisma.RegistrationStepUncheckedUpdateManyWithoutEventNestedInput
@@ -794,6 +926,10 @@ export type EventCreateManyGroupInput = {
   bannerPath?: string | null
   startAt?: Date | string | null
   endAt?: Date | string | null
+  successGreeting?: string | null
+  successDescription?: string | null
+  successPrimaryBtnText?: string | null
+  successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
 }
@@ -806,6 +942,10 @@ export type EventUpdateWithoutGroupInput = {
   bannerPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  successGreeting?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   steps?: Prisma.RegistrationStepUpdateManyWithoutEventNestedInput
@@ -820,6 +960,10 @@ export type EventUncheckedUpdateWithoutGroupInput = {
   bannerPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  successGreeting?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   steps?: Prisma.RegistrationStepUncheckedUpdateManyWithoutEventNestedInput
@@ -834,6 +978,10 @@ export type EventUncheckedUpdateManyWithoutGroupInput = {
   bannerPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   endAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  successGreeting?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -887,6 +1035,10 @@ export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   bannerPath?: boolean
   startAt?: boolean
   endAt?: boolean
+  successGreeting?: boolean
+  successDescription?: boolean
+  successPrimaryBtnText?: boolean
+  successPrimaryBtnUrl?: boolean
   isActive?: boolean
   createdAt?: boolean
   group?: boolean | Prisma.Event$groupArgs<ExtArgs>
@@ -904,6 +1056,10 @@ export type EventSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   bannerPath?: boolean
   startAt?: boolean
   endAt?: boolean
+  successGreeting?: boolean
+  successDescription?: boolean
+  successPrimaryBtnText?: boolean
+  successPrimaryBtnUrl?: boolean
   isActive?: boolean
   createdAt?: boolean
   group?: boolean | Prisma.Event$groupArgs<ExtArgs>
@@ -918,6 +1074,10 @@ export type EventSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   bannerPath?: boolean
   startAt?: boolean
   endAt?: boolean
+  successGreeting?: boolean
+  successDescription?: boolean
+  successPrimaryBtnText?: boolean
+  successPrimaryBtnUrl?: boolean
   isActive?: boolean
   createdAt?: boolean
   group?: boolean | Prisma.Event$groupArgs<ExtArgs>
@@ -932,11 +1092,15 @@ export type EventSelectScalar = {
   bannerPath?: boolean
   startAt?: boolean
   endAt?: boolean
+  successGreeting?: boolean
+  successDescription?: boolean
+  successPrimaryBtnText?: boolean
+  successPrimaryBtnUrl?: boolean
   isActive?: boolean
   createdAt?: boolean
 }
 
-export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "groupId" | "slug" | "title" | "description" | "bannerPath" | "startAt" | "endAt" | "isActive" | "createdAt", ExtArgs["result"]["event"]>
+export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "groupId" | "slug" | "title" | "description" | "bannerPath" | "startAt" | "endAt" | "successGreeting" | "successDescription" | "successPrimaryBtnText" | "successPrimaryBtnUrl" | "isActive" | "createdAt", ExtArgs["result"]["event"]>
 export type EventInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   group?: boolean | Prisma.Event$groupArgs<ExtArgs>
   steps?: boolean | Prisma.Event$stepsArgs<ExtArgs>
@@ -966,6 +1130,10 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     bannerPath: string | null
     startAt: Date | null
     endAt: Date | null
+    successGreeting: string | null
+    successDescription: string | null
+    successPrimaryBtnText: string | null
+    successPrimaryBtnUrl: string | null
     isActive: boolean | null
     createdAt: Date | null
   }, ExtArgs["result"]["event"]>
@@ -1402,6 +1570,10 @@ export interface EventFieldRefs {
   readonly bannerPath: Prisma.FieldRef<"Event", 'String'>
   readonly startAt: Prisma.FieldRef<"Event", 'DateTime'>
   readonly endAt: Prisma.FieldRef<"Event", 'DateTime'>
+  readonly successGreeting: Prisma.FieldRef<"Event", 'String'>
+  readonly successDescription: Prisma.FieldRef<"Event", 'String'>
+  readonly successPrimaryBtnText: Prisma.FieldRef<"Event", 'String'>
+  readonly successPrimaryBtnUrl: Prisma.FieldRef<"Event", 'String'>
   readonly isActive: Prisma.FieldRef<"Event", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Event", 'DateTime'>
 }

@@ -110,6 +110,10 @@ export const EventScalarFieldEnum = {
   bannerPath: 'bannerPath',
   startAt: 'startAt',
   endAt: 'endAt',
+  successGreeting: 'successGreeting',
+  successDescription: 'successDescription',
+  successPrimaryBtnText: 'successPrimaryBtnText',
+  successPrimaryBtnUrl: 'successPrimaryBtnUrl',
   isActive: 'isActive',
   createdAt: 'createdAt'
 } as const

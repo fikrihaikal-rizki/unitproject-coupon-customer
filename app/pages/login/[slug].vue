@@ -62,10 +62,10 @@ const syncUserAndRedirect = async () => {
 
       if (!status.isRegistered) {
         return navigateTo("/registration");
-      } else if (!status.isStarted) {
+      } else if (!status.isStarted && status.isRegistered) {
         return navigateTo("/registration-success");
       } else {
-        return navigateTo("/");
+        return navigateTo("/registration-success");
       }
     }
   } catch (err: any) {

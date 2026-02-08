@@ -12,6 +12,7 @@ export const useAuthStore = defineStore('auth', {
     customerId: useCookie<string | null>('auth_customer_id', { default: () => null }),
     eventSlug: useCookie<string | null>('auth_event_slug', { default: () => null }),
     customer: useCookie<any | null>('auth_customer', { default: () => null }),
+    currentEvent: useCookie<any | null>('auth_current_event', { default: () => null }),
   }),
 
   getters: {
@@ -45,11 +46,13 @@ export const useAuthStore = defineStore('auth', {
       customerId?: string | null;
       eventSlug?: string | null;
       customer?: any | null;
+      currentEvent?: any | null;
     }) {
       if (payload.eventId !== undefined) this.eventId = payload.eventId;
       if (payload.customerId !== undefined) this.customerId = payload.customerId;
       if (payload.eventSlug !== undefined) this.eventSlug = payload.eventSlug;
       if (payload.customer !== undefined) this.customer = payload.customer;
+      if (payload.currentEvent !== undefined) this.currentEvent = payload.currentEvent;
     },
 
     /**
@@ -60,6 +63,7 @@ export const useAuthStore = defineStore('auth', {
       this.customerId = null;
       this.eventSlug = null;
       this.customer = null;
+      this.currentEvent = null;
     },
   },
 })

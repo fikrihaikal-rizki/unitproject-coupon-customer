@@ -224,7 +224,7 @@ const joinEvent = (slug: string) => {
                   </div>
                 </div>
 
-                <p
+                <div
                   class="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-2"
                 >
                   <div
@@ -232,7 +232,7 @@ const joinEvent = (slug: string) => {
                     v-html="event.description"
                   ></div>
                   <div v-else>Upcoming exciting experience.</div>
-                </p>
+              </div>
               </div>
             </Card>
           </div>
