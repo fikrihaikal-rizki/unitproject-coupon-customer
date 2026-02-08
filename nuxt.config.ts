@@ -27,5 +27,17 @@ export default defineNuxtConfig({
     redirect: false,
     url: process.env.SUPABASE_URL,
     key: process.env.SUPABASE_KEY
+  },
+  image: {
+    imagekit: {
+      baseURL: process.env.IMAGEKIT_URL_ENDPOINT
+    }
+  },
+  runtimeConfig: {
+    imagekitPrivateKey: process.env.IMAGEKIT_PRIVATE_KEY, // Hanya tersedia di server
+    public: {
+      imagekitPublicKey: process.env.IMAGEKIT_PUBLIC_KEY,
+      imagekitUrlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT
+    }
   }
 })

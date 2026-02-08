@@ -22,48 +22,67 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  // 1. Create/Update Event Registration
-  // Generate a unique QR code data
-  const qrCodeData = randomBytes(16).toString('hex')
+  // 1. Transaction to ensure data consistency
+  const result = await prisma.$transaction(async (tx) => {
+    // Generate a unique QR code data if not exists (handled by DB default usually, but we do it here if needed)
+    // Actually we will upsert, so we need to be careful not to overwrite qrCodeData if it exists
 
-  const registration = await prisma.eventRegistration.upsert({
-    where: {
-      customerId_eventId: {
-        customerId: user.id,
-        eventId: eventId
+    // Find existing registration first to preserve QR code if it exists
+    const existing = await tx.eventRegistration.findUnique({
+      where: {
+        customerId_eventId: {
+          customerId: user.sub,
+          eventId: eventId
+        }
       }
-    },
-    update: {
-      claimSeatValue: claimSeatValue || '',
-      status: 'active'
-    },
-    create: {
-      customerId: user.id,
-      eventId: eventId,
-      claimSeatValue: claimSeatValue || '',
-      qrCodeData: qrCodeData,
-      status: 'active'
+    })
+
+    const qrCodeData = existing?.qrCodeData || randomBytes(16).toString('hex')
+
+    const registration = await tx.eventRegistration.upsert({
+      where: {
+        customerId_eventId: {
+          customerId: user.sub,
+          eventId: eventId
+        }
+      },
+      update: {
+        claimSeatValue: claimSeatValue || '',
+        status: 'active',
+        // Do NOT update qrCodeData
+      },
+      create: {
+        customerId: user.sub,
+        eventId: eventId,
+        claimSeatValue: claimSeatValue || '',
+        qrCodeData: qrCodeData,
+        status: 'active'
+      }
+    })
+
+    // 2. Handle Questionnaire Answers
+    if (questionnaireAnswers && Array.isArray(questionnaireAnswers)) {
+      // Delete existing answers for this registration
+      await tx.questionnaireAnswer.deleteMany({
+        where: { registrationId: registration.id }
+      })
+
+      if (questionnaireAnswers.length > 0) {
+        await tx.questionnaireAnswer.createMany({
+          data: questionnaireAnswers.map((ans: any) => ({
+            registrationId: registration.id,
+            questionId: ans.questionId,
+            answerValue: String(ans.answerValue)
+          }))
+        })
+      }
     }
+
+    return registration
   })
-
-  // 2. Bulk insert Questionnaire Answers if any
-  if (questionnaireAnswers && Array.isArray(questionnaireAnswers) && questionnaireAnswers.length > 0) {
-    // Delete existing answers for this registration if any to avoid duplicates on retry
-    await prisma.questionnaireAnswer.deleteMany({
-      where: { registrationId: registration.id }
-    })
-
-    await prisma.questionnaireAnswer.createMany({
-      data: questionnaireAnswers.map((ans: any) => ({
-        registrationId: registration.id,
-        questionId: ans.questionId,
-        answerValue: String(ans.answerValue)
-      }))
-    })
-  }
 
   return {
     success: true,
-    registration
+    registration: result
   }
 })

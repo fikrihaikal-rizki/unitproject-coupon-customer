@@ -1104,6 +1104,7 @@ export const QuestionnaireQuestionScalarFieldEnum = {
   description: 'description',
   inputType: 'inputType',
   options: 'options',
+  placeholder: 'placeholder',
   isRequired: 'isRequired',
   orderPriority: 'orderPriority',
   createdAt: 'createdAt',

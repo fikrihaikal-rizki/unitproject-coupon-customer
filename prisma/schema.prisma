@@ -108,6 +108,7 @@ model QuestionnaireQuestion {
   description   String     @map("description")
   inputType     InputType? @map("input_type")
   options       Json?
+  placeholder   String?    @db.VarChar(255)
   isRequired    Boolean?   @default(true) @map("is_required")
   orderPriority Int?       @default(0) @map("order_priority")
   createdAt     DateTime?  @default(now()) @map("created_at") @db.Timestamptz

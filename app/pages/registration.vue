@@ -1,47 +1,74 @@
 <script setup lang="ts">
+import { useRegistrationStore } from '~/stores/registration'
+import { Loader2 } from 'lucide-vue-next'
 
 definePageMeta({
   middleware: 'auth'
 })
 
 const authStore = useAuthStore()
-const user = useSupabaseUser()
+const registrationStore = useRegistrationStore()
 
-const currentStepIndex = ref(0)
-const answers = reactive<Record<number, any>>({})
-const profileData = ref({
-  fullName: authStore.customer?.fullName || '',
-  email: authStore.customer?.email || '',
-  phoneNumber: authStore.customer?.phoneNumber || ''
+if (authStore.customer) {
+  registrationStore.setProfileData({
+    fullName: authStore.customer.fullName,
+    email: authStore.customer.email,
+    phoneNumber: authStore.customer.phoneNumber
+  })
+}
+
+// Fetch Steps
+const { data: rawSteps, refresh } = await useFetch<any[]>(`/api/registration-steps/${authStore.eventId}`)
+
+// Initialize Store
+watchEffect(() => {
+  if (rawSteps.value) {
+    const stepsData = rawSteps.value.map((step: any) => ({
+      ...step,
+      inputs: step.stepType === 'claim_seat' ? step.seatConfigs : step.questions
+    }))
+    registrationStore.setSteps(stepsData)
+    registrationStore.setEventInfo(authStore.eventSlug || '', authStore.eventId || '')
+    
+    // Initialize profile data from auth store
+    if (authStore.customer) {
+      registrationStore.setProfileData({
+        fullName: authStore.customer.fullName,
+        email: authStore.customer.email,
+        phoneNumber: authStore.customer.phoneNumber
+      })
+    }
+  }
 })
 
-const { data: rawSteps } = await useFetch<any[]>(`/api/registration-steps/${authStore.eventId}`)
+// Computed for template
+const currentStepIndex = computed(() => registrationStore.currentStepIndex)
+const totalStepsCount = computed(() => registrationStore.totalStepsCount)
+const progressPercentage = computed(() => Math.round(((currentStepIndex.value + 1) / totalStepsCount.value) * 100))
 
-const steps = computed(() => {
-  if (!rawSteps.value) return []
-  return rawSteps.value.map((step: any) => ({
-    ...step,
-    inputs: step.stepType === 'claim_seat' ? step.seatConfigs : step.questions
-  }))
+const activeStep = computed(() => {
+  if (currentStepIndex.value === 0) return null
+  return registrationStore.steps[currentStepIndex.value - 1]
 })
-
-// Total steps = Profile Step (1) + Registration Steps
-const totalStepsCount = computed(() => (steps.value?.length || 0) + 1)
-
-const isFinalStep = computed(() => currentStepIndex.value === totalStepsCount.value - 1)
 
 const handleProfileNext = (data: any) => {
-  profileData.value = { ...profileData.value, ...data }
-  currentStepIndex.value++
+  registrationStore.setProfileData(data)
+  // Update auth store as well to keep in sync
+  if (authStore.customer) {
+    authStore.setAuthData({
+       customer: { ...authStore.customer, ...data }
+    })
+  }
+  registrationStore.nextStep()
 }
 
 const handleStepNext = (stepId: number, stepAnswers: any) => {
-  answers[stepId] = stepAnswers
+  registrationStore.setStepAnswer(stepId, stepAnswers)
   
-  if (isFinalStep.value) {
+  if (registrationStore.isFinalStep) {
     submitRegistration()
   } else {
-    currentStepIndex.value++
+    registrationStore.nextStep()
   }
 }
 
@@ -53,24 +80,28 @@ const submitRegistration = async () => {
     let claimSeatValue = ''
     const questionnaireAnswers: any[] = []
 
-    steps.value.forEach((step: any) => {
-      const stepAnswers = answers[step.id] || {}
+    registrationStore.steps.forEach((step: any) => {
+      const stepAnswers = registrationStore.answers[step.id] || {}
+      
       if (step.stepType === 'claim_seat') {
-        const values = Object.values(stepAnswers).filter(v => v !== undefined && v !== '')
+        const values = Object.values(stepAnswers).filter(v => v !== undefined && v !== '' && v !== null)
         claimSeatValue = values.join(', ')
       } else {
         Object.entries(stepAnswers).forEach(([key, val]) => {
+            // key is input_ID
           const questionId = parseInt(key.replace('input_', ''))
-          questionnaireAnswers.push({
-            questionId,
-            answerValue: val
-          })
+          if (!isNaN(questionId)) {
+             questionnaireAnswers.push({
+               questionId,
+               answerValue: val
+             })
+          }
         })
       }
     })
 
     const { error } = await useFetch('/api/events/register', {
-      method: 'POST' as any,
+      method: 'POST',
       body: {
         eventId: authStore.eventId,
         claimSeatValue,
@@ -84,11 +115,18 @@ const submitRegistration = async () => {
 
     navigateTo('/registration-success')
   } catch (err: any) {
+    // In a real app, use a Toast here
     alert(err.message || 'An error occurred during registration')
   } finally {
     isSubmitting.value = false
   }
 }
+
+// Cleanup on leave
+onUnmounted(() => {
+    // optional: registrationStore.reset() 
+    // kept comment out if we want to preserve state on accidental back navigation
+})
 </script>
 
 <template>
@@ -98,12 +136,12 @@ const submitRegistration = async () => {
       <div class="space-y-2">
         <div class="flex justify-between text-[10px] uppercase tracking-widest font-bold text-zinc-400">
           <span>Step {{ currentStepIndex + 1 }} of {{ totalStepsCount }}</span>
-          <span>{{ Math.round(((currentStepIndex + 1) / totalStepsCount) * 100) }}% Complete</span>
+          <span>{{ progressPercentage }}% Complete</span>
         </div>
         <div class="h-1.5 w-full bg-zinc-200 dark:bg-zinc-800 rounded-full overflow-hidden">
           <div 
             class="h-full bg-zinc-900 dark:bg-zinc-50 transition-all duration-500 ease-in-out"
-            :style="{ width: `${((currentStepIndex + 1) / totalStepsCount) * 100}%` }"
+            :style="{ width: `${progressPercentage}%` }"
           ></div>
         </div>
       </div>
@@ -113,36 +151,41 @@ const submitRegistration = async () => {
           <!-- Step 0: Profile Details -->
           <ProfileDetail
             v-if="currentStepIndex === 0"
-            :initial-data="profileData"
+            :initial-data="registrationStore.profileData"
             @next="handleProfileNext"
           />
 
+
           <!-- Dynamic Steps -->
           <template v-else>
-            <div v-for="(step, index) in steps" :key="step.id">
-              <ProfileQuestion
-                v-if="currentStepIndex === index + 1"
-                :step-info="step"
-                :inputs="step.inputs"
-                :initial-values="answers[step.id]"
-                @next="(data) => handleStepNext(step.id, data)"
-              >
-                <template #action>
-                  <Button type="submit" class="w-full" :disabled="isSubmitting">
-                    <span v-if="isSubmitting">Saving...</span>
-                    <span v-else-if="index + 1 === totalStepsCount - 1">Save and Claim</span>
-                    <span v-else>Next</span>
-                  </Button>
-                </template>
-              </ProfileQuestion>
-            </div>
+            <ProfileQuestion
+              v-if="activeStep"
+              :key="activeStep?.id"
+              :step-info="activeStep"
+              :inputs="activeStep?.inputs"
+              :initial-values="registrationStore.answers[activeStep?.id]"
+              @next="(data) => handleStepNext(activeStep!.id, data)"
+              @save="(data, stepId) => registrationStore.setStepAnswer(stepId, data)"
+            >
+              <template #action>
+                <Button type="submit" class="w-full" :disabled="isSubmitting">
+                  <span v-if="isSubmitting">
+                        <Loader2 class="w-4 h-4 mr-2 animate-spin" />
+                        Saving...
+                  </span>
+                  <span v-else-if="currentStepIndex === totalStepsCount - 1">Complete & Claim Coupon</span>
+                  <span v-else>Next Step</span>
+                </Button>
+              </template>
+            </ProfileQuestion>
           </template>
         </div>
 
         <div class="px-8 py-4 bg-zinc-50 dark:bg-zinc-800/50 border-t border-zinc-100 dark:border-zinc-800 flex justify-between items-center text-[10px] text-zinc-400">
           <button 
             v-if="currentStepIndex > 0"
-            @click="currentStepIndex--"
+            @click="registrationStore.prevStep()"
+            type="button"
             class="hover:text-zinc-600 dark:hover:text-zinc-200 font-bold uppercase transition-colors"
           >
             ← Back

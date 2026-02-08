@@ -102,19 +102,24 @@ watch(
       v-else-if="event"
       class="w-full max-w-md border-zinc-200 dark:border-zinc-800 shadow-xl overflow-hidden bg-white dark:bg-zinc-900"
     >
-      <div class="p-8 flex flex-col items-center text-center space-y-8">
+      <div class="p-8 flex flex-col items-center space-y-8">
         <!-- Event Logo / Banner -->
         <div
-          class="relative w-24 h-24 rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center border border-zinc-100 dark:border-zinc-800"
+          v-if="event.bannerPath"
+          class="relative w-full h-full flex items-center justify-center text-center"
         >
           <NuxtImg
-            v-if="event.bannerPath"
             :src="event.bannerPath"
             provider="imagekit"
             class="w-full h-full object-cover"
             alt="Event Logo"
           />
-          <div v-else class="text-zinc-400">
+        </div>
+        <div
+          v-else
+          class="relative w-24 h-24 rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-center border border-zinc-100 dark:border-zinc-800"
+        >
+          <div class="text-zinc-400">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="40"
@@ -139,16 +144,17 @@ watch(
 
         <div class="space-y-2">
           <h1
-            class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50"
+            class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 text-center"
           >
             {{ event.title }}
           </h1>
-          <p class="text-zinc-500 dark:text-zinc-400 text-sm">
+          <ExpandableText :content="event.description" />
+          <p class="text-zinc-500 dark:text-zinc-400 text-sm text-center">
             Sign in to claim your daily coupon and stay updated.
           </p>
         </div>
 
-        <div class="w-full space-y-4">
+        <div class="w-full space-y-4 text-center">
           <Button
             @click="loginWithGoogle"
             variant="outline"

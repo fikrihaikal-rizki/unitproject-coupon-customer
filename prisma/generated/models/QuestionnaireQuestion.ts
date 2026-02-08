@@ -44,6 +44,7 @@ export type QuestionnaireQuestionMinAggregateOutputType = {
   label: string | null
   description: string | null
   inputType: $Enums.InputType | null
+  placeholder: string | null
   isRequired: boolean | null
   orderPriority: number | null
   createdAt: Date | null
@@ -57,6 +58,7 @@ export type QuestionnaireQuestionMaxAggregateOutputType = {
   label: string | null
   description: string | null
   inputType: $Enums.InputType | null
+  placeholder: string | null
   isRequired: boolean | null
   orderPriority: number | null
   createdAt: Date | null
@@ -71,6 +73,7 @@ export type QuestionnaireQuestionCountAggregateOutputType = {
   description: number
   inputType: number
   options: number
+  placeholder: number
   isRequired: number
   orderPriority: number
   createdAt: number
@@ -98,6 +101,7 @@ export type QuestionnaireQuestionMinAggregateInputType = {
   label?: true
   description?: true
   inputType?: true
+  placeholder?: true
   isRequired?: true
   orderPriority?: true
   createdAt?: true
@@ -111,6 +115,7 @@ export type QuestionnaireQuestionMaxAggregateInputType = {
   label?: true
   description?: true
   inputType?: true
+  placeholder?: true
   isRequired?: true
   orderPriority?: true
   createdAt?: true
@@ -125,6 +130,7 @@ export type QuestionnaireQuestionCountAggregateInputType = {
   description?: true
   inputType?: true
   options?: true
+  placeholder?: true
   isRequired?: true
   orderPriority?: true
   createdAt?: true
@@ -226,6 +232,7 @@ export type QuestionnaireQuestionGroupByOutputType = {
   description: string
   inputType: $Enums.InputType | null
   options: runtime.JsonValue | null
+  placeholder: string | null
   isRequired: boolean | null
   orderPriority: number | null
   createdAt: Date | null
@@ -263,6 +270,7 @@ export type QuestionnaireQuestionWhereInput = {
   description?: Prisma.StringFilter<"QuestionnaireQuestion"> | string
   inputType?: Prisma.EnumInputTypeNullableFilter<"QuestionnaireQuestion"> | $Enums.InputType | null
   options?: Prisma.JsonNullableFilter<"QuestionnaireQuestion">
+  placeholder?: Prisma.StringNullableFilter<"QuestionnaireQuestion"> | string | null
   isRequired?: Prisma.BoolNullableFilter<"QuestionnaireQuestion"> | boolean | null
   orderPriority?: Prisma.IntNullableFilter<"QuestionnaireQuestion"> | number | null
   createdAt?: Prisma.DateTimeNullableFilter<"QuestionnaireQuestion"> | Date | string | null
@@ -279,6 +287,7 @@ export type QuestionnaireQuestionOrderByWithRelationInput = {
   description?: Prisma.SortOrder
   inputType?: Prisma.SortOrderInput | Prisma.SortOrder
   options?: Prisma.SortOrderInput | Prisma.SortOrder
+  placeholder?: Prisma.SortOrderInput | Prisma.SortOrder
   isRequired?: Prisma.SortOrderInput | Prisma.SortOrder
   orderPriority?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -298,6 +307,7 @@ export type QuestionnaireQuestionWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringFilter<"QuestionnaireQuestion"> | string
   inputType?: Prisma.EnumInputTypeNullableFilter<"QuestionnaireQuestion"> | $Enums.InputType | null
   options?: Prisma.JsonNullableFilter<"QuestionnaireQuestion">
+  placeholder?: Prisma.StringNullableFilter<"QuestionnaireQuestion"> | string | null
   isRequired?: Prisma.BoolNullableFilter<"QuestionnaireQuestion"> | boolean | null
   orderPriority?: Prisma.IntNullableFilter<"QuestionnaireQuestion"> | number | null
   createdAt?: Prisma.DateTimeNullableFilter<"QuestionnaireQuestion"> | Date | string | null
@@ -314,6 +324,7 @@ export type QuestionnaireQuestionOrderByWithAggregationInput = {
   description?: Prisma.SortOrder
   inputType?: Prisma.SortOrderInput | Prisma.SortOrder
   options?: Prisma.SortOrderInput | Prisma.SortOrder
+  placeholder?: Prisma.SortOrderInput | Prisma.SortOrder
   isRequired?: Prisma.SortOrderInput | Prisma.SortOrder
   orderPriority?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -336,6 +347,7 @@ export type QuestionnaireQuestionScalarWhereWithAggregatesInput = {
   description?: Prisma.StringWithAggregatesFilter<"QuestionnaireQuestion"> | string
   inputType?: Prisma.EnumInputTypeNullableWithAggregatesFilter<"QuestionnaireQuestion"> | $Enums.InputType | null
   options?: Prisma.JsonNullableWithAggregatesFilter<"QuestionnaireQuestion">
+  placeholder?: Prisma.StringNullableWithAggregatesFilter<"QuestionnaireQuestion"> | string | null
   isRequired?: Prisma.BoolNullableWithAggregatesFilter<"QuestionnaireQuestion"> | boolean | null
   orderPriority?: Prisma.IntNullableWithAggregatesFilter<"QuestionnaireQuestion"> | number | null
   createdAt?: Prisma.DateTimeNullableWithAggregatesFilter<"QuestionnaireQuestion"> | Date | string | null
@@ -348,6 +360,7 @@ export type QuestionnaireQuestionCreateInput = {
   description: string
   inputType?: $Enums.InputType | null
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placeholder?: string | null
   isRequired?: boolean | null
   orderPriority?: number | null
   createdAt?: Date | string | null
@@ -364,6 +377,7 @@ export type QuestionnaireQuestionUncheckedCreateInput = {
   description: string
   inputType?: $Enums.InputType | null
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placeholder?: string | null
   isRequired?: boolean | null
   orderPriority?: number | null
   createdAt?: Date | string | null
@@ -377,6 +391,7 @@ export type QuestionnaireQuestionUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   inputType?: Prisma.NullableEnumInputTypeFieldUpdateOperationsInput | $Enums.InputType | null
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placeholder?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   orderPriority?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -393,6 +408,7 @@ export type QuestionnaireQuestionUncheckedUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   inputType?: Prisma.NullableEnumInputTypeFieldUpdateOperationsInput | $Enums.InputType | null
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placeholder?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   orderPriority?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -408,6 +424,7 @@ export type QuestionnaireQuestionCreateManyInput = {
   description: string
   inputType?: $Enums.InputType | null
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placeholder?: string | null
   isRequired?: boolean | null
   orderPriority?: number | null
   createdAt?: Date | string | null
@@ -420,6 +437,7 @@ export type QuestionnaireQuestionUpdateManyMutationInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   inputType?: Prisma.NullableEnumInputTypeFieldUpdateOperationsInput | $Enums.InputType | null
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placeholder?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   orderPriority?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -434,6 +452,7 @@ export type QuestionnaireQuestionUncheckedUpdateManyInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   inputType?: Prisma.NullableEnumInputTypeFieldUpdateOperationsInput | $Enums.InputType | null
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placeholder?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   orderPriority?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -458,6 +477,7 @@ export type QuestionnaireQuestionCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   inputType?: Prisma.SortOrder
   options?: Prisma.SortOrder
+  placeholder?: Prisma.SortOrder
   isRequired?: Prisma.SortOrder
   orderPriority?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -477,6 +497,7 @@ export type QuestionnaireQuestionMaxOrderByAggregateInput = {
   label?: Prisma.SortOrder
   description?: Prisma.SortOrder
   inputType?: Prisma.SortOrder
+  placeholder?: Prisma.SortOrder
   isRequired?: Prisma.SortOrder
   orderPriority?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -490,6 +511,7 @@ export type QuestionnaireQuestionMinOrderByAggregateInput = {
   label?: Prisma.SortOrder
   description?: Prisma.SortOrder
   inputType?: Prisma.SortOrder
+  placeholder?: Prisma.SortOrder
   isRequired?: Prisma.SortOrder
   orderPriority?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -575,6 +597,7 @@ export type QuestionnaireQuestionCreateWithoutStepInput = {
   description: string
   inputType?: $Enums.InputType | null
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placeholder?: string | null
   isRequired?: boolean | null
   orderPriority?: number | null
   createdAt?: Date | string | null
@@ -589,6 +612,7 @@ export type QuestionnaireQuestionUncheckedCreateWithoutStepInput = {
   description: string
   inputType?: $Enums.InputType | null
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placeholder?: string | null
   isRequired?: boolean | null
   orderPriority?: number | null
   createdAt?: Date | string | null
@@ -633,6 +657,7 @@ export type QuestionnaireQuestionScalarWhereInput = {
   description?: Prisma.StringFilter<"QuestionnaireQuestion"> | string
   inputType?: Prisma.EnumInputTypeNullableFilter<"QuestionnaireQuestion"> | $Enums.InputType | null
   options?: Prisma.JsonNullableFilter<"QuestionnaireQuestion">
+  placeholder?: Prisma.StringNullableFilter<"QuestionnaireQuestion"> | string | null
   isRequired?: Prisma.BoolNullableFilter<"QuestionnaireQuestion"> | boolean | null
   orderPriority?: Prisma.IntNullableFilter<"QuestionnaireQuestion"> | number | null
   createdAt?: Prisma.DateTimeNullableFilter<"QuestionnaireQuestion"> | Date | string | null
@@ -645,6 +670,7 @@ export type QuestionnaireQuestionCreateWithoutAnswersInput = {
   description: string
   inputType?: $Enums.InputType | null
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placeholder?: string | null
   isRequired?: boolean | null
   orderPriority?: number | null
   createdAt?: Date | string | null
@@ -660,6 +686,7 @@ export type QuestionnaireQuestionUncheckedCreateWithoutAnswersInput = {
   description: string
   inputType?: $Enums.InputType | null
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placeholder?: string | null
   isRequired?: boolean | null
   orderPriority?: number | null
   createdAt?: Date | string | null
@@ -688,6 +715,7 @@ export type QuestionnaireQuestionUpdateWithoutAnswersInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   inputType?: Prisma.NullableEnumInputTypeFieldUpdateOperationsInput | $Enums.InputType | null
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placeholder?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   orderPriority?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -703,6 +731,7 @@ export type QuestionnaireQuestionUncheckedUpdateWithoutAnswersInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   inputType?: Prisma.NullableEnumInputTypeFieldUpdateOperationsInput | $Enums.InputType | null
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placeholder?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   orderPriority?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -716,6 +745,7 @@ export type QuestionnaireQuestionCreateManyStepInput = {
   description: string
   inputType?: $Enums.InputType | null
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placeholder?: string | null
   isRequired?: boolean | null
   orderPriority?: number | null
   createdAt?: Date | string | null
@@ -728,6 +758,7 @@ export type QuestionnaireQuestionUpdateWithoutStepInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   inputType?: Prisma.NullableEnumInputTypeFieldUpdateOperationsInput | $Enums.InputType | null
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placeholder?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   orderPriority?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -742,6 +773,7 @@ export type QuestionnaireQuestionUncheckedUpdateWithoutStepInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   inputType?: Prisma.NullableEnumInputTypeFieldUpdateOperationsInput | $Enums.InputType | null
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placeholder?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   orderPriority?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -756,6 +788,7 @@ export type QuestionnaireQuestionUncheckedUpdateManyWithoutStepInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   inputType?: Prisma.NullableEnumInputTypeFieldUpdateOperationsInput | $Enums.InputType | null
   options?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  placeholder?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isRequired?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   orderPriority?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -801,6 +834,7 @@ export type QuestionnaireQuestionSelect<ExtArgs extends runtime.Types.Extensions
   description?: boolean
   inputType?: boolean
   options?: boolean
+  placeholder?: boolean
   isRequired?: boolean
   orderPriority?: boolean
   createdAt?: boolean
@@ -818,6 +852,7 @@ export type QuestionnaireQuestionSelectCreateManyAndReturn<ExtArgs extends runti
   description?: boolean
   inputType?: boolean
   options?: boolean
+  placeholder?: boolean
   isRequired?: boolean
   orderPriority?: boolean
   createdAt?: boolean
@@ -833,6 +868,7 @@ export type QuestionnaireQuestionSelectUpdateManyAndReturn<ExtArgs extends runti
   description?: boolean
   inputType?: boolean
   options?: boolean
+  placeholder?: boolean
   isRequired?: boolean
   orderPriority?: boolean
   createdAt?: boolean
@@ -848,6 +884,7 @@ export type QuestionnaireQuestionSelectScalar = {
   description?: boolean
   inputType?: boolean
   options?: boolean
+  placeholder?: boolean
   isRequired?: boolean
   orderPriority?: boolean
   createdAt?: boolean
@@ -855,7 +892,7 @@ export type QuestionnaireQuestionSelectScalar = {
   deletedAt?: boolean
 }
 
-export type QuestionnaireQuestionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "stepId" | "label" | "description" | "inputType" | "options" | "isRequired" | "orderPriority" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["questionnaireQuestion"]>
+export type QuestionnaireQuestionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "stepId" | "label" | "description" | "inputType" | "options" | "placeholder" | "isRequired" | "orderPriority" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["questionnaireQuestion"]>
 export type QuestionnaireQuestionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   step?: boolean | Prisma.QuestionnaireQuestion$stepArgs<ExtArgs>
   answers?: boolean | Prisma.QuestionnaireQuestion$answersArgs<ExtArgs>
@@ -881,6 +918,7 @@ export type $QuestionnaireQuestionPayload<ExtArgs extends runtime.Types.Extensio
     description: string
     inputType: $Enums.InputType | null
     options: runtime.JsonValue | null
+    placeholder: string | null
     isRequired: boolean | null
     orderPriority: number | null
     createdAt: Date | null
@@ -1317,6 +1355,7 @@ export interface QuestionnaireQuestionFieldRefs {
   readonly description: Prisma.FieldRef<"QuestionnaireQuestion", 'String'>
   readonly inputType: Prisma.FieldRef<"QuestionnaireQuestion", 'InputType'>
   readonly options: Prisma.FieldRef<"QuestionnaireQuestion", 'Json'>
+  readonly placeholder: Prisma.FieldRef<"QuestionnaireQuestion", 'String'>
   readonly isRequired: Prisma.FieldRef<"QuestionnaireQuestion", 'Boolean'>
   readonly orderPriority: Prisma.FieldRef<"QuestionnaireQuestion", 'Int'>
   readonly createdAt: Prisma.FieldRef<"QuestionnaireQuestion", 'DateTime'>
