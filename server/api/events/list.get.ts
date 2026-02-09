@@ -15,6 +15,10 @@ export default defineEventHandler(async (event) => {
         bannerPath: true,
         startAt: true,
         endAt: true,
+        successGreeting: true,
+        successDescription: true,
+        successPrimaryBtnText: true,
+        successPrimaryBtnUrl: true,
       },
     })
 
