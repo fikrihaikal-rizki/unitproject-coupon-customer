@@ -392,7 +392,9 @@ export const ModelName = {
   ClaimSeatConfig: 'ClaimSeatConfig',
   EventRegistration: 'EventRegistration',
   QuestionnaireAnswer: 'QuestionnaireAnswer',
-  ClaimSeatError: 'ClaimSeatError'
+  ClaimSeatError: 'ClaimSeatError',
+  Administrator: 'Administrator',
+  EventAdministrator: 'EventAdministrator'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -408,7 +410,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "customer" | "eventGroup" | "event" | "registrationStep" | "questionnaireQuestion" | "claimSeatConfig" | "eventRegistration" | "questionnaireAnswer" | "claimSeatError"
+    modelProps: "customer" | "eventGroup" | "event" | "registrationStep" | "questionnaireQuestion" | "claimSeatConfig" | "eventRegistration" | "questionnaireAnswer" | "claimSeatError" | "administrator" | "eventAdministrator"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1078,6 +1080,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Administrator: {
+      payload: Prisma.$AdministratorPayload<ExtArgs>
+      fields: Prisma.AdministratorFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AdministratorFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdministratorPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AdministratorFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdministratorPayload>
+        }
+        findFirst: {
+          args: Prisma.AdministratorFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdministratorPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AdministratorFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdministratorPayload>
+        }
+        findMany: {
+          args: Prisma.AdministratorFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdministratorPayload>[]
+        }
+        create: {
+          args: Prisma.AdministratorCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdministratorPayload>
+        }
+        createMany: {
+          args: Prisma.AdministratorCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AdministratorCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdministratorPayload>[]
+        }
+        delete: {
+          args: Prisma.AdministratorDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdministratorPayload>
+        }
+        update: {
+          args: Prisma.AdministratorUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdministratorPayload>
+        }
+        deleteMany: {
+          args: Prisma.AdministratorDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AdministratorUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AdministratorUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdministratorPayload>[]
+        }
+        upsert: {
+          args: Prisma.AdministratorUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdministratorPayload>
+        }
+        aggregate: {
+          args: Prisma.AdministratorAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAdministrator>
+        }
+        groupBy: {
+          args: Prisma.AdministratorGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AdministratorGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AdministratorCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AdministratorCountAggregateOutputType> | number
+        }
+      }
+    }
+    EventAdministrator: {
+      payload: Prisma.$EventAdministratorPayload<ExtArgs>
+      fields: Prisma.EventAdministratorFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EventAdministratorFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventAdministratorPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EventAdministratorFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventAdministratorPayload>
+        }
+        findFirst: {
+          args: Prisma.EventAdministratorFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventAdministratorPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EventAdministratorFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventAdministratorPayload>
+        }
+        findMany: {
+          args: Prisma.EventAdministratorFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventAdministratorPayload>[]
+        }
+        create: {
+          args: Prisma.EventAdministratorCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventAdministratorPayload>
+        }
+        createMany: {
+          args: Prisma.EventAdministratorCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EventAdministratorCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventAdministratorPayload>[]
+        }
+        delete: {
+          args: Prisma.EventAdministratorDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventAdministratorPayload>
+        }
+        update: {
+          args: Prisma.EventAdministratorUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventAdministratorPayload>
+        }
+        deleteMany: {
+          args: Prisma.EventAdministratorDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EventAdministratorUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EventAdministratorUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventAdministratorPayload>[]
+        }
+        upsert: {
+          args: Prisma.EventAdministratorUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventAdministratorPayload>
+        }
+        aggregate: {
+          args: Prisma.EventAdministratorAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEventAdministrator>
+        }
+        groupBy: {
+          args: Prisma.EventAdministratorGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EventAdministratorGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EventAdministratorCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EventAdministratorCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1245,6 +1395,28 @@ export const ClaimSeatErrorScalarFieldEnum = {
 } as const
 
 export type ClaimSeatErrorScalarFieldEnum = (typeof ClaimSeatErrorScalarFieldEnum)[keyof typeof ClaimSeatErrorScalarFieldEnum]
+
+
+export const AdministratorScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  fullname: 'fullname',
+  password: 'password',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AdministratorScalarFieldEnum = (typeof AdministratorScalarFieldEnum)[keyof typeof AdministratorScalarFieldEnum]
+
+
+export const EventAdministratorScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  eventId: 'eventId'
+} as const
+
+export type EventAdministratorScalarFieldEnum = (typeof EventAdministratorScalarFieldEnum)[keyof typeof EventAdministratorScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1544,6 +1716,8 @@ export type GlobalOmitConfig = {
   eventRegistration?: Prisma.EventRegistrationOmit
   questionnaireAnswer?: Prisma.QuestionnaireAnswerOmit
   claimSeatError?: Prisma.ClaimSeatErrorOmit
+  administrator?: Prisma.AdministratorOmit
+  eventAdministrator?: Prisma.EventAdministratorOmit
 }
 
 /* Types for Logging */

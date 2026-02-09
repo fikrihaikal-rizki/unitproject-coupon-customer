@@ -59,7 +59,9 @@ export const ModelName = {
   ClaimSeatConfig: 'ClaimSeatConfig',
   EventRegistration: 'EventRegistration',
   QuestionnaireAnswer: 'QuestionnaireAnswer',
-  ClaimSeatError: 'ClaimSeatError'
+  ClaimSeatError: 'ClaimSeatError',
+  Administrator: 'Administrator',
+  EventAdministrator: 'EventAdministrator'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -206,6 +208,28 @@ export const ClaimSeatErrorScalarFieldEnum = {
 } as const
 
 export type ClaimSeatErrorScalarFieldEnum = (typeof ClaimSeatErrorScalarFieldEnum)[keyof typeof ClaimSeatErrorScalarFieldEnum]
+
+
+export const AdministratorScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  fullname: 'fullname',
+  password: 'password',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AdministratorScalarFieldEnum = (typeof AdministratorScalarFieldEnum)[keyof typeof AdministratorScalarFieldEnum]
+
+
+export const EventAdministratorScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  eventId: 'eventId'
+} as const
+
+export type EventAdministratorScalarFieldEnum = (typeof EventAdministratorScalarFieldEnum)[keyof typeof EventAdministratorScalarFieldEnum]
 
 
 export const SortOrder = {

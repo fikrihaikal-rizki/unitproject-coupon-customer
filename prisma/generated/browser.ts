@@ -62,3 +62,13 @@ export type QuestionnaireAnswer = Prisma.QuestionnaireAnswerModel
  * 
  */
 export type ClaimSeatError = Prisma.ClaimSeatErrorModel
+/**
+ * Model Administrator
+ * 
+ */
+export type Administrator = Prisma.AdministratorModel
+/**
+ * Model EventAdministrator
+ * 
+ */
+export type EventAdministrator = Prisma.EventAdministratorModel
