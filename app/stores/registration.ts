@@ -12,6 +12,7 @@ export const useRegistrationStore = defineStore('registration', {
     },
     eventSlug: null as string | null,
     eventId: null as string | null,
+    registrationId: null as number | null,
   }),
 
   getters: {
@@ -57,11 +58,16 @@ export const useRegistrationStore = defineStore('registration', {
         this.currentStepIndex--
       }
     },
+
+    setRegistrationId(id: number) {
+      this.registrationId = id
+    },
     
     reset() {
       this.currentStepIndex = 0
       this.answers = {}
       this.steps = []
+      this.registrationId = null
     }
   }
 })

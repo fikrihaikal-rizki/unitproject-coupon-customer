@@ -1,5 +1,4 @@
 import prisma from "~~/server/utils/prisma"
-import { randomBytes } from'crypto'
 
 import { serverSupabaseUser } from '#supabase/server'
 
@@ -13,7 +12,14 @@ export default defineEventHandler(async (event) => {
   }
 
   const body = await readBody(event)
-  const { eventId, claimSeatValue, questionnaireAnswers } = body
+  const { registrationId, eventId, questionnaireAnswers } = body
+
+  if (!registrationId) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Registration ID is required',
+    })
+  }
 
   if (!eventId) {
     throw createError({
@@ -22,45 +28,43 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  // 1. Transaction to ensure data consistency
+  // Transaction to ensure data consistency
   const result = await prisma.$transaction(async (tx) => {
-    // Generate a unique QR code data if not exists (handled by DB default usually, but we do it here if needed)
-    // Actually we will upsert, so we need to be careful not to overwrite qrCodeData if it exists
+    // Verify the registration exists and belongs to this user
+    const existingRegistration = await tx.eventRegistration.findUnique({
+      where: { id: registrationId }
+    })
 
-    // Find existing registration first to preserve QR code if it exists
-    const existing = await tx.eventRegistration.findUnique({
-      where: {
-        customerId_eventId: {
-          customerId: user.sub,
-          eventId: eventId
-        }
+    if (!existingRegistration) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: 'Registration not found',
+      })
+    }
+
+    if (existingRegistration.customerId !== user.sub) {
+      throw createError({
+        statusCode: 403,
+        statusMessage: 'You are not authorized to update this registration',
+      })
+    }
+
+    if (existingRegistration.eventId !== eventId) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Event ID mismatch',
+      })
+    }
+
+    // Update the registration status from 'pending' to 'completed'
+    const registration = await tx.eventRegistration.update({
+      where: { id: registrationId },
+      data: {
+        status: 'completed',
       }
     })
 
-    const qrCodeData = existing?.qrCodeData || randomBytes(16).toString('hex')
-
-    const registration = await tx.eventRegistration.upsert({
-      where: {
-        customerId_eventId: {
-          customerId: user.sub,
-          eventId: eventId
-        }
-      },
-      update: {
-        claimSeatValue: claimSeatValue || '',
-        status: 'active',
-        // Do NOT update qrCodeData
-      },
-      create: {
-        customerId: user.sub,
-        eventId: eventId,
-        claimSeatValue: claimSeatValue || '',
-        qrCodeData: qrCodeData,
-        status: 'active'
-      }
-    })
-
-    // 2. Handle Questionnaire Answers
+    // Handle Questionnaire Answers
     if (questionnaireAnswers && Array.isArray(questionnaireAnswers)) {
       // Delete existing answers for this registration
       await tx.questionnaireAnswer.deleteMany({

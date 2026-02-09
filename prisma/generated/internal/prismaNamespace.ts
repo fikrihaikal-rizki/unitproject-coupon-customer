@@ -1414,6 +1414,20 @@ export type ListEnumEventRegistrationStatusFieldRefInput<$PrismaModel> = FieldRe
 
 
 /**
+ * Reference to a field of type 'ClaimSeatErrorStatus'
+ */
+export type EnumClaimSeatErrorStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ClaimSeatErrorStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'ClaimSeatErrorStatus[]'
+ */
+export type ListEnumClaimSeatErrorStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ClaimSeatErrorStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>

@@ -350,6 +350,13 @@ export type EnumEventRegistrationStatusNullableWithAggregatesFilter<$PrismaModel
   _max?: Prisma.NestedEnumEventRegistrationStatusNullableFilter<$PrismaModel>
 }
 
+export type EnumClaimSeatErrorStatusNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.ClaimSeatErrorStatus | Prisma.EnumClaimSeatErrorStatusFieldRefInput<$PrismaModel> | null
+  in?: $Enums.ClaimSeatErrorStatus[] | Prisma.ListEnumClaimSeatErrorStatusFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.ClaimSeatErrorStatus[] | Prisma.ListEnumClaimSeatErrorStatusFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumClaimSeatErrorStatusNullableFilter<$PrismaModel> | $Enums.ClaimSeatErrorStatus | null
+}
+
 export type DateTimeFilter<$PrismaModel = never> = {
   equals?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
   in?: Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel>
@@ -359,6 +366,16 @@ export type DateTimeFilter<$PrismaModel = never> = {
   gt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
   gte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
   not?: Prisma.NestedDateTimeFilter<$PrismaModel> | Date | string
+}
+
+export type EnumClaimSeatErrorStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ClaimSeatErrorStatus | Prisma.EnumClaimSeatErrorStatusFieldRefInput<$PrismaModel> | null
+  in?: $Enums.ClaimSeatErrorStatus[] | Prisma.ListEnumClaimSeatErrorStatusFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.ClaimSeatErrorStatus[] | Prisma.ListEnumClaimSeatErrorStatusFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumClaimSeatErrorStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.ClaimSeatErrorStatus | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumClaimSeatErrorStatusNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumClaimSeatErrorStatusNullableFilter<$PrismaModel>
 }
 
 export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -693,6 +710,13 @@ export type NestedEnumEventRegistrationStatusNullableWithAggregatesFilter<$Prism
   _max?: Prisma.NestedEnumEventRegistrationStatusNullableFilter<$PrismaModel>
 }
 
+export type NestedEnumClaimSeatErrorStatusNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.ClaimSeatErrorStatus | Prisma.EnumClaimSeatErrorStatusFieldRefInput<$PrismaModel> | null
+  in?: $Enums.ClaimSeatErrorStatus[] | Prisma.ListEnumClaimSeatErrorStatusFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.ClaimSeatErrorStatus[] | Prisma.ListEnumClaimSeatErrorStatusFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumClaimSeatErrorStatusNullableFilter<$PrismaModel> | $Enums.ClaimSeatErrorStatus | null
+}
+
 export type NestedDateTimeFilter<$PrismaModel = never> = {
   equals?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
   in?: Date[] | string[] | Prisma.ListDateTimeFieldRefInput<$PrismaModel>
@@ -702,6 +726,16 @@ export type NestedDateTimeFilter<$PrismaModel = never> = {
   gt?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
   gte?: Date | string | Prisma.DateTimeFieldRefInput<$PrismaModel>
   not?: Prisma.NestedDateTimeFilter<$PrismaModel> | Date | string
+}
+
+export type NestedEnumClaimSeatErrorStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ClaimSeatErrorStatus | Prisma.EnumClaimSeatErrorStatusFieldRefInput<$PrismaModel> | null
+  in?: $Enums.ClaimSeatErrorStatus[] | Prisma.ListEnumClaimSeatErrorStatusFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.ClaimSeatErrorStatus[] | Prisma.ListEnumClaimSeatErrorStatusFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumClaimSeatErrorStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.ClaimSeatErrorStatus | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumClaimSeatErrorStatusNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumClaimSeatErrorStatusNullableFilter<$PrismaModel>
 }
 
 export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
