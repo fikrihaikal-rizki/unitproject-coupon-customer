@@ -6,6 +6,7 @@ import {
   ChevronRight,
   Ticket,
 } from "lucide-vue-next";
+import { toast } from "vue-sonner";
 
 // Fetch Event List
 const { data: events, pending } = await useFetch<any[]>("/api/events/list");
@@ -171,7 +172,7 @@ const joinEvent = (slug: string) => {
                     v-html="event.description"
                   ></div>
                   <div v-else>Upcoming exciting experience.</div>
-              </div>
+                </div>
 
                 <div
                   class="pt-2 flex items-center text-xs font-semibold text-zinc-900 dark:text-zinc-50 group-hover:translate-x-1 transition-transform"
@@ -232,7 +233,7 @@ const joinEvent = (slug: string) => {
                     v-html="event.description"
                   ></div>
                   <div v-else>Upcoming exciting experience.</div>
-              </div>
+                </div>
               </div>
             </Card>
           </div>

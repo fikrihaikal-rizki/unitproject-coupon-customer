@@ -58,7 +58,8 @@ export const ModelName = {
   QuestionnaireQuestion: 'QuestionnaireQuestion',
   ClaimSeatConfig: 'ClaimSeatConfig',
   EventRegistration: 'EventRegistration',
-  QuestionnaireAnswer: 'QuestionnaireAnswer'
+  QuestionnaireAnswer: 'QuestionnaireAnswer',
+  ClaimSeatError: 'ClaimSeatError'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -192,6 +193,19 @@ export const QuestionnaireAnswerScalarFieldEnum = {
 } as const
 
 export type QuestionnaireAnswerScalarFieldEnum = (typeof QuestionnaireAnswerScalarFieldEnum)[keyof typeof QuestionnaireAnswerScalarFieldEnum]
+
+
+export const ClaimSeatErrorScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  customerId: 'customerId',
+  triedValue: 'triedValue',
+  errorMessage: 'errorMessage',
+  status: 'status',
+  createdAt: 'createdAt'
+} as const
+
+export type ClaimSeatErrorScalarFieldEnum = (typeof ClaimSeatErrorScalarFieldEnum)[keyof typeof ClaimSeatErrorScalarFieldEnum]
 
 
 export const SortOrder = {

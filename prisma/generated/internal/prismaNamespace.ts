@@ -391,7 +391,8 @@ export const ModelName = {
   QuestionnaireQuestion: 'QuestionnaireQuestion',
   ClaimSeatConfig: 'ClaimSeatConfig',
   EventRegistration: 'EventRegistration',
-  QuestionnaireAnswer: 'QuestionnaireAnswer'
+  QuestionnaireAnswer: 'QuestionnaireAnswer',
+  ClaimSeatError: 'ClaimSeatError'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -407,7 +408,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "customer" | "eventGroup" | "event" | "registrationStep" | "questionnaireQuestion" | "claimSeatConfig" | "eventRegistration" | "questionnaireAnswer"
+    modelProps: "customer" | "eventGroup" | "event" | "registrationStep" | "questionnaireQuestion" | "claimSeatConfig" | "eventRegistration" | "questionnaireAnswer" | "claimSeatError"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1003,6 +1004,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ClaimSeatError: {
+      payload: Prisma.$ClaimSeatErrorPayload<ExtArgs>
+      fields: Prisma.ClaimSeatErrorFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ClaimSeatErrorFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClaimSeatErrorPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ClaimSeatErrorFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClaimSeatErrorPayload>
+        }
+        findFirst: {
+          args: Prisma.ClaimSeatErrorFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClaimSeatErrorPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ClaimSeatErrorFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClaimSeatErrorPayload>
+        }
+        findMany: {
+          args: Prisma.ClaimSeatErrorFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClaimSeatErrorPayload>[]
+        }
+        create: {
+          args: Prisma.ClaimSeatErrorCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClaimSeatErrorPayload>
+        }
+        createMany: {
+          args: Prisma.ClaimSeatErrorCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ClaimSeatErrorCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClaimSeatErrorPayload>[]
+        }
+        delete: {
+          args: Prisma.ClaimSeatErrorDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClaimSeatErrorPayload>
+        }
+        update: {
+          args: Prisma.ClaimSeatErrorUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClaimSeatErrorPayload>
+        }
+        deleteMany: {
+          args: Prisma.ClaimSeatErrorDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ClaimSeatErrorUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ClaimSeatErrorUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClaimSeatErrorPayload>[]
+        }
+        upsert: {
+          args: Prisma.ClaimSeatErrorUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClaimSeatErrorPayload>
+        }
+        aggregate: {
+          args: Prisma.ClaimSeatErrorAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateClaimSeatError>
+        }
+        groupBy: {
+          args: Prisma.ClaimSeatErrorGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClaimSeatErrorGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ClaimSeatErrorCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClaimSeatErrorCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1159,6 +1234,19 @@ export const QuestionnaireAnswerScalarFieldEnum = {
 export type QuestionnaireAnswerScalarFieldEnum = (typeof QuestionnaireAnswerScalarFieldEnum)[keyof typeof QuestionnaireAnswerScalarFieldEnum]
 
 
+export const ClaimSeatErrorScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  customerId: 'customerId',
+  triedValue: 'triedValue',
+  errorMessage: 'errorMessage',
+  status: 'status',
+  createdAt: 'createdAt'
+} as const
+
+export type ClaimSeatErrorScalarFieldEnum = (typeof ClaimSeatErrorScalarFieldEnum)[keyof typeof ClaimSeatErrorScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1312,6 +1400,20 @@ export type ListEnumClaimSeatInputTypeFieldRefInput<$PrismaModel> = FieldRefInpu
 
 
 /**
+ * Reference to a field of type 'EventRegistrationStatus'
+ */
+export type EnumEventRegistrationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventRegistrationStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'EventRegistrationStatus[]'
+ */
+export type ListEnumEventRegistrationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EventRegistrationStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -1427,6 +1529,7 @@ export type GlobalOmitConfig = {
   claimSeatConfig?: Prisma.ClaimSeatConfigOmit
   eventRegistration?: Prisma.EventRegistrationOmit
   questionnaireAnswer?: Prisma.QuestionnaireAnswerOmit
+  claimSeatError?: Prisma.ClaimSeatErrorOmit
 }
 
 /* Types for Logging */

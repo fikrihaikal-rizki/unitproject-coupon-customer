@@ -291,6 +291,7 @@ export type EventWhereInput = {
   group?: Prisma.XOR<Prisma.EventGroupNullableScalarRelationFilter, Prisma.EventGroupWhereInput> | null
   steps?: Prisma.RegistrationStepListRelationFilter
   registrations?: Prisma.EventRegistrationListRelationFilter
+  claimSeatErrors?: Prisma.ClaimSeatErrorListRelationFilter
 }
 
 export type EventOrderByWithRelationInput = {
@@ -311,6 +312,7 @@ export type EventOrderByWithRelationInput = {
   group?: Prisma.EventGroupOrderByWithRelationInput
   steps?: Prisma.RegistrationStepOrderByRelationAggregateInput
   registrations?: Prisma.EventRegistrationOrderByRelationAggregateInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorOrderByRelationAggregateInput
 }
 
 export type EventWhereUniqueInput = Prisma.AtLeast<{
@@ -334,6 +336,7 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   group?: Prisma.XOR<Prisma.EventGroupNullableScalarRelationFilter, Prisma.EventGroupWhereInput> | null
   steps?: Prisma.RegistrationStepListRelationFilter
   registrations?: Prisma.EventRegistrationListRelationFilter
+  claimSeatErrors?: Prisma.ClaimSeatErrorListRelationFilter
 }, "id" | "slug">
 
 export type EventOrderByWithAggregationInput = {
@@ -395,6 +398,7 @@ export type EventCreateInput = {
   group?: Prisma.EventGroupCreateNestedOneWithoutEventsInput
   steps?: Prisma.RegistrationStepCreateNestedManyWithoutEventInput
   registrations?: Prisma.EventRegistrationCreateNestedManyWithoutEventInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateInput = {
@@ -414,6 +418,7 @@ export type EventUncheckedCreateInput = {
   createdAt?: Date | string | null
   steps?: Prisma.RegistrationStepUncheckedCreateNestedManyWithoutEventInput
   registrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutEventInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventUpdateInput = {
@@ -433,6 +438,7 @@ export type EventUpdateInput = {
   group?: Prisma.EventGroupUpdateOneWithoutEventsNestedInput
   steps?: Prisma.RegistrationStepUpdateManyWithoutEventNestedInput
   registrations?: Prisma.EventRegistrationUpdateManyWithoutEventNestedInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateInput = {
@@ -452,6 +458,7 @@ export type EventUncheckedUpdateInput = {
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   steps?: Prisma.RegistrationStepUncheckedUpdateManyWithoutEventNestedInput
   registrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutEventNestedInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventCreateManyInput = {
@@ -660,6 +667,22 @@ export type EventUpdateOneWithoutRegistrationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EventUpdateToOneWithWhereWithoutRegistrationsInput, Prisma.EventUpdateWithoutRegistrationsInput>, Prisma.EventUncheckedUpdateWithoutRegistrationsInput>
 }
 
+export type EventCreateNestedOneWithoutClaimSeatErrorsInput = {
+  create?: Prisma.XOR<Prisma.EventCreateWithoutClaimSeatErrorsInput, Prisma.EventUncheckedCreateWithoutClaimSeatErrorsInput>
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutClaimSeatErrorsInput
+  connect?: Prisma.EventWhereUniqueInput
+}
+
+export type EventUpdateOneWithoutClaimSeatErrorsNestedInput = {
+  create?: Prisma.XOR<Prisma.EventCreateWithoutClaimSeatErrorsInput, Prisma.EventUncheckedCreateWithoutClaimSeatErrorsInput>
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutClaimSeatErrorsInput
+  upsert?: Prisma.EventUpsertWithoutClaimSeatErrorsInput
+  disconnect?: Prisma.EventWhereInput | boolean
+  delete?: Prisma.EventWhereInput | boolean
+  connect?: Prisma.EventWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EventUpdateToOneWithWhereWithoutClaimSeatErrorsInput, Prisma.EventUpdateWithoutClaimSeatErrorsInput>, Prisma.EventUncheckedUpdateWithoutClaimSeatErrorsInput>
+}
+
 export type EventCreateWithoutGroupInput = {
   id?: string
   slug: string
@@ -676,6 +699,7 @@ export type EventCreateWithoutGroupInput = {
   createdAt?: Date | string | null
   steps?: Prisma.RegistrationStepCreateNestedManyWithoutEventInput
   registrations?: Prisma.EventRegistrationCreateNestedManyWithoutEventInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateWithoutGroupInput = {
@@ -694,6 +718,7 @@ export type EventUncheckedCreateWithoutGroupInput = {
   createdAt?: Date | string | null
   steps?: Prisma.RegistrationStepUncheckedCreateNestedManyWithoutEventInput
   registrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutEventInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutGroupInput = {
@@ -758,6 +783,7 @@ export type EventCreateWithoutStepsInput = {
   createdAt?: Date | string | null
   group?: Prisma.EventGroupCreateNestedOneWithoutEventsInput
   registrations?: Prisma.EventRegistrationCreateNestedManyWithoutEventInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateWithoutStepsInput = {
@@ -776,6 +802,7 @@ export type EventUncheckedCreateWithoutStepsInput = {
   isActive?: boolean | null
   createdAt?: Date | string | null
   registrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutEventInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutStepsInput = {
@@ -810,6 +837,7 @@ export type EventUpdateWithoutStepsInput = {
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   group?: Prisma.EventGroupUpdateOneWithoutEventsNestedInput
   registrations?: Prisma.EventRegistrationUpdateManyWithoutEventNestedInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutStepsInput = {
@@ -828,6 +856,7 @@ export type EventUncheckedUpdateWithoutStepsInput = {
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   registrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutEventNestedInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventCreateWithoutRegistrationsInput = {
@@ -846,6 +875,7 @@ export type EventCreateWithoutRegistrationsInput = {
   createdAt?: Date | string | null
   group?: Prisma.EventGroupCreateNestedOneWithoutEventsInput
   steps?: Prisma.RegistrationStepCreateNestedManyWithoutEventInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateWithoutRegistrationsInput = {
@@ -864,6 +894,7 @@ export type EventUncheckedCreateWithoutRegistrationsInput = {
   isActive?: boolean | null
   createdAt?: Date | string | null
   steps?: Prisma.RegistrationStepUncheckedCreateNestedManyWithoutEventInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutRegistrationsInput = {
@@ -898,6 +929,7 @@ export type EventUpdateWithoutRegistrationsInput = {
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   group?: Prisma.EventGroupUpdateOneWithoutEventsNestedInput
   steps?: Prisma.RegistrationStepUpdateManyWithoutEventNestedInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutRegistrationsInput = {
@@ -916,6 +948,99 @@ export type EventUncheckedUpdateWithoutRegistrationsInput = {
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   steps?: Prisma.RegistrationStepUncheckedUpdateManyWithoutEventNestedInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedUpdateManyWithoutEventNestedInput
+}
+
+export type EventCreateWithoutClaimSeatErrorsInput = {
+  id?: string
+  slug: string
+  title: string
+  description?: string | null
+  bannerPath?: string | null
+  startAt?: Date | string | null
+  endAt?: Date | string | null
+  successGreeting?: string | null
+  successDescription?: string | null
+  successPrimaryBtnText?: string | null
+  successPrimaryBtnUrl?: string | null
+  isActive?: boolean | null
+  createdAt?: Date | string | null
+  group?: Prisma.EventGroupCreateNestedOneWithoutEventsInput
+  steps?: Prisma.RegistrationStepCreateNestedManyWithoutEventInput
+  registrations?: Prisma.EventRegistrationCreateNestedManyWithoutEventInput
+}
+
+export type EventUncheckedCreateWithoutClaimSeatErrorsInput = {
+  id?: string
+  groupId?: number | null
+  slug: string
+  title: string
+  description?: string | null
+  bannerPath?: string | null
+  startAt?: Date | string | null
+  endAt?: Date | string | null
+  successGreeting?: string | null
+  successDescription?: string | null
+  successPrimaryBtnText?: string | null
+  successPrimaryBtnUrl?: string | null
+  isActive?: boolean | null
+  createdAt?: Date | string | null
+  steps?: Prisma.RegistrationStepUncheckedCreateNestedManyWithoutEventInput
+  registrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutEventInput
+}
+
+export type EventCreateOrConnectWithoutClaimSeatErrorsInput = {
+  where: Prisma.EventWhereUniqueInput
+  create: Prisma.XOR<Prisma.EventCreateWithoutClaimSeatErrorsInput, Prisma.EventUncheckedCreateWithoutClaimSeatErrorsInput>
+}
+
+export type EventUpsertWithoutClaimSeatErrorsInput = {
+  update: Prisma.XOR<Prisma.EventUpdateWithoutClaimSeatErrorsInput, Prisma.EventUncheckedUpdateWithoutClaimSeatErrorsInput>
+  create: Prisma.XOR<Prisma.EventCreateWithoutClaimSeatErrorsInput, Prisma.EventUncheckedCreateWithoutClaimSeatErrorsInput>
+  where?: Prisma.EventWhereInput
+}
+
+export type EventUpdateToOneWithWhereWithoutClaimSeatErrorsInput = {
+  where?: Prisma.EventWhereInput
+  data: Prisma.XOR<Prisma.EventUpdateWithoutClaimSeatErrorsInput, Prisma.EventUncheckedUpdateWithoutClaimSeatErrorsInput>
+}
+
+export type EventUpdateWithoutClaimSeatErrorsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bannerPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  successGreeting?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  group?: Prisma.EventGroupUpdateOneWithoutEventsNestedInput
+  steps?: Prisma.RegistrationStepUpdateManyWithoutEventNestedInput
+  registrations?: Prisma.EventRegistrationUpdateManyWithoutEventNestedInput
+}
+
+export type EventUncheckedUpdateWithoutClaimSeatErrorsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  groupId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bannerPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  successGreeting?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  steps?: Prisma.RegistrationStepUncheckedUpdateManyWithoutEventNestedInput
+  registrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventCreateManyGroupInput = {
@@ -950,6 +1075,7 @@ export type EventUpdateWithoutGroupInput = {
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   steps?: Prisma.RegistrationStepUpdateManyWithoutEventNestedInput
   registrations?: Prisma.EventRegistrationUpdateManyWithoutEventNestedInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutGroupInput = {
@@ -968,6 +1094,7 @@ export type EventUncheckedUpdateWithoutGroupInput = {
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   steps?: Prisma.RegistrationStepUncheckedUpdateManyWithoutEventNestedInput
   registrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutEventNestedInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateManyWithoutGroupInput = {
@@ -994,11 +1121,13 @@ export type EventUncheckedUpdateManyWithoutGroupInput = {
 export type EventCountOutputType = {
   steps: number
   registrations: number
+  claimSeatErrors: number
 }
 
 export type EventCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   steps?: boolean | EventCountOutputTypeCountStepsArgs
   registrations?: boolean | EventCountOutputTypeCountRegistrationsArgs
+  claimSeatErrors?: boolean | EventCountOutputTypeCountClaimSeatErrorsArgs
 }
 
 /**
@@ -1025,6 +1154,13 @@ export type EventCountOutputTypeCountRegistrationsArgs<ExtArgs extends runtime.T
   where?: Prisma.EventRegistrationWhereInput
 }
 
+/**
+ * EventCountOutputType without action
+ */
+export type EventCountOutputTypeCountClaimSeatErrorsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ClaimSeatErrorWhereInput
+}
+
 
 export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1044,6 +1180,7 @@ export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   group?: boolean | Prisma.Event$groupArgs<ExtArgs>
   steps?: boolean | Prisma.Event$stepsArgs<ExtArgs>
   registrations?: boolean | Prisma.Event$registrationsArgs<ExtArgs>
+  claimSeatErrors?: boolean | Prisma.Event$claimSeatErrorsArgs<ExtArgs>
   _count?: boolean | Prisma.EventCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["event"]>
 
@@ -1105,6 +1242,7 @@ export type EventInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   group?: boolean | Prisma.Event$groupArgs<ExtArgs>
   steps?: boolean | Prisma.Event$stepsArgs<ExtArgs>
   registrations?: boolean | Prisma.Event$registrationsArgs<ExtArgs>
+  claimSeatErrors?: boolean | Prisma.Event$claimSeatErrorsArgs<ExtArgs>
   _count?: boolean | Prisma.EventCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EventIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1120,6 +1258,7 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     group: Prisma.$EventGroupPayload<ExtArgs> | null
     steps: Prisma.$RegistrationStepPayload<ExtArgs>[]
     registrations: Prisma.$EventRegistrationPayload<ExtArgs>[]
+    claimSeatErrors: Prisma.$ClaimSeatErrorPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1533,6 +1672,7 @@ export interface Prisma__EventClient<T, Null = never, ExtArgs extends runtime.Ty
   group<T extends Prisma.Event$groupArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$groupArgs<ExtArgs>>): Prisma.Prisma__EventGroupClient<runtime.Types.Result.GetResult<Prisma.$EventGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   steps<T extends Prisma.Event$stepsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$stepsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RegistrationStepPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   registrations<T extends Prisma.Event$registrationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$registrationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  claimSeatErrors<T extends Prisma.Event$claimSeatErrorsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$claimSeatErrorsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClaimSeatErrorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2036,6 +2176,30 @@ export type Event$registrationsArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.EventRegistrationScalarFieldEnum | Prisma.EventRegistrationScalarFieldEnum[]
+}
+
+/**
+ * Event.claimSeatErrors
+ */
+export type Event$claimSeatErrorsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ClaimSeatError
+   */
+  select?: Prisma.ClaimSeatErrorSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ClaimSeatError
+   */
+  omit?: Prisma.ClaimSeatErrorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClaimSeatErrorInclude<ExtArgs> | null
+  where?: Prisma.ClaimSeatErrorWhereInput
+  orderBy?: Prisma.ClaimSeatErrorOrderByWithRelationInput | Prisma.ClaimSeatErrorOrderByWithRelationInput[]
+  cursor?: Prisma.ClaimSeatErrorWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ClaimSeatErrorScalarFieldEnum | Prisma.ClaimSeatErrorScalarFieldEnum[]
 }
 
 /**

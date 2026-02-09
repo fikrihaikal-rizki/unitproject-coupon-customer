@@ -57,3 +57,8 @@ export type EventRegistration = Prisma.EventRegistrationModel
  * 
  */
 export type QuestionnaireAnswer = Prisma.QuestionnaireAnswerModel
+/**
+ * Model ClaimSeatError
+ * 
+ */
+export type ClaimSeatError = Prisma.ClaimSeatErrorModel

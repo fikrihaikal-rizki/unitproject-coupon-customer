@@ -39,3 +39,21 @@ export const ClaimSeatInputType = {
 } as const
 
 export type ClaimSeatInputType = (typeof ClaimSeatInputType)[keyof typeof ClaimSeatInputType]
+
+
+export const EventRegistrationStatus = {
+  active: 'active',
+  pending: 'pending',
+  completed: 'completed',
+  cancelled: 'cancelled'
+} as const
+
+export type EventRegistrationStatus = (typeof EventRegistrationStatus)[keyof typeof EventRegistrationStatus]
+
+
+export const ClaimSeatErrorStatus = {
+  open: 'open',
+  resolved: 'resolved'
+} as const
+
+export type ClaimSeatErrorStatus = (typeof ClaimSeatErrorStatus)[keyof typeof ClaimSeatErrorStatus]

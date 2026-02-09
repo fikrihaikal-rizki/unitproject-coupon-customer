@@ -199,6 +199,7 @@ export type CustomerWhereInput = {
   createdAt?: Prisma.DateTimeNullableFilter<"Customer"> | Date | string | null
   updatedAt?: Prisma.DateTimeNullableFilter<"Customer"> | Date | string | null
   registrations?: Prisma.EventRegistrationListRelationFilter
+  claimSeatErrors?: Prisma.ClaimSeatErrorListRelationFilter
 }
 
 export type CustomerOrderByWithRelationInput = {
@@ -210,6 +211,7 @@ export type CustomerOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrderInput | Prisma.SortOrder
   updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   registrations?: Prisma.EventRegistrationOrderByRelationAggregateInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorOrderByRelationAggregateInput
 }
 
 export type CustomerWhereUniqueInput = Prisma.AtLeast<{
@@ -224,6 +226,7 @@ export type CustomerWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeNullableFilter<"Customer"> | Date | string | null
   updatedAt?: Prisma.DateTimeNullableFilter<"Customer"> | Date | string | null
   registrations?: Prisma.EventRegistrationListRelationFilter
+  claimSeatErrors?: Prisma.ClaimSeatErrorListRelationFilter
 }, "id" | "email">
 
 export type CustomerOrderByWithAggregationInput = {
@@ -261,6 +264,7 @@ export type CustomerCreateInput = {
   createdAt?: Date | string | null
   updatedAt?: Date | string | null
   registrations?: Prisma.EventRegistrationCreateNestedManyWithoutCustomerInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorCreateNestedManyWithoutCustomerInput
 }
 
 export type CustomerUncheckedCreateInput = {
@@ -272,6 +276,7 @@ export type CustomerUncheckedCreateInput = {
   createdAt?: Date | string | null
   updatedAt?: Date | string | null
   registrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutCustomerInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedCreateNestedManyWithoutCustomerInput
 }
 
 export type CustomerUpdateInput = {
@@ -283,6 +288,7 @@ export type CustomerUpdateInput = {
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   registrations?: Prisma.EventRegistrationUpdateManyWithoutCustomerNestedInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorUpdateManyWithoutCustomerNestedInput
 }
 
 export type CustomerUncheckedUpdateInput = {
@@ -294,6 +300,7 @@ export type CustomerUncheckedUpdateInput = {
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   registrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutCustomerNestedInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedUpdateManyWithoutCustomerNestedInput
 }
 
 export type CustomerCreateManyInput = {
@@ -389,6 +396,22 @@ export type CustomerUpdateOneWithoutRegistrationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CustomerUpdateToOneWithWhereWithoutRegistrationsInput, Prisma.CustomerUpdateWithoutRegistrationsInput>, Prisma.CustomerUncheckedUpdateWithoutRegistrationsInput>
 }
 
+export type CustomerCreateNestedOneWithoutClaimSeatErrorsInput = {
+  create?: Prisma.XOR<Prisma.CustomerCreateWithoutClaimSeatErrorsInput, Prisma.CustomerUncheckedCreateWithoutClaimSeatErrorsInput>
+  connectOrCreate?: Prisma.CustomerCreateOrConnectWithoutClaimSeatErrorsInput
+  connect?: Prisma.CustomerWhereUniqueInput
+}
+
+export type CustomerUpdateOneWithoutClaimSeatErrorsNestedInput = {
+  create?: Prisma.XOR<Prisma.CustomerCreateWithoutClaimSeatErrorsInput, Prisma.CustomerUncheckedCreateWithoutClaimSeatErrorsInput>
+  connectOrCreate?: Prisma.CustomerCreateOrConnectWithoutClaimSeatErrorsInput
+  upsert?: Prisma.CustomerUpsertWithoutClaimSeatErrorsInput
+  disconnect?: Prisma.CustomerWhereInput | boolean
+  delete?: Prisma.CustomerWhereInput | boolean
+  connect?: Prisma.CustomerWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CustomerUpdateToOneWithWhereWithoutClaimSeatErrorsInput, Prisma.CustomerUpdateWithoutClaimSeatErrorsInput>, Prisma.CustomerUncheckedUpdateWithoutClaimSeatErrorsInput>
+}
+
 export type CustomerCreateWithoutRegistrationsInput = {
   id: string
   email: string
@@ -397,6 +420,7 @@ export type CustomerCreateWithoutRegistrationsInput = {
   blacklistedUntil?: Date | string | null
   createdAt?: Date | string | null
   updatedAt?: Date | string | null
+  claimSeatErrors?: Prisma.ClaimSeatErrorCreateNestedManyWithoutCustomerInput
 }
 
 export type CustomerUncheckedCreateWithoutRegistrationsInput = {
@@ -407,6 +431,7 @@ export type CustomerUncheckedCreateWithoutRegistrationsInput = {
   blacklistedUntil?: Date | string | null
   createdAt?: Date | string | null
   updatedAt?: Date | string | null
+  claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedCreateNestedManyWithoutCustomerInput
 }
 
 export type CustomerCreateOrConnectWithoutRegistrationsInput = {
@@ -433,6 +458,7 @@ export type CustomerUpdateWithoutRegistrationsInput = {
   blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  claimSeatErrors?: Prisma.ClaimSeatErrorUpdateManyWithoutCustomerNestedInput
 }
 
 export type CustomerUncheckedUpdateWithoutRegistrationsInput = {
@@ -443,6 +469,67 @@ export type CustomerUncheckedUpdateWithoutRegistrationsInput = {
   blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedUpdateManyWithoutCustomerNestedInput
+}
+
+export type CustomerCreateWithoutClaimSeatErrorsInput = {
+  id: string
+  email: string
+  fullName?: string | null
+  phoneNumber?: string | null
+  blacklistedUntil?: Date | string | null
+  createdAt?: Date | string | null
+  updatedAt?: Date | string | null
+  registrations?: Prisma.EventRegistrationCreateNestedManyWithoutCustomerInput
+}
+
+export type CustomerUncheckedCreateWithoutClaimSeatErrorsInput = {
+  id: string
+  email: string
+  fullName?: string | null
+  phoneNumber?: string | null
+  blacklistedUntil?: Date | string | null
+  createdAt?: Date | string | null
+  updatedAt?: Date | string | null
+  registrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutCustomerInput
+}
+
+export type CustomerCreateOrConnectWithoutClaimSeatErrorsInput = {
+  where: Prisma.CustomerWhereUniqueInput
+  create: Prisma.XOR<Prisma.CustomerCreateWithoutClaimSeatErrorsInput, Prisma.CustomerUncheckedCreateWithoutClaimSeatErrorsInput>
+}
+
+export type CustomerUpsertWithoutClaimSeatErrorsInput = {
+  update: Prisma.XOR<Prisma.CustomerUpdateWithoutClaimSeatErrorsInput, Prisma.CustomerUncheckedUpdateWithoutClaimSeatErrorsInput>
+  create: Prisma.XOR<Prisma.CustomerCreateWithoutClaimSeatErrorsInput, Prisma.CustomerUncheckedCreateWithoutClaimSeatErrorsInput>
+  where?: Prisma.CustomerWhereInput
+}
+
+export type CustomerUpdateToOneWithWhereWithoutClaimSeatErrorsInput = {
+  where?: Prisma.CustomerWhereInput
+  data: Prisma.XOR<Prisma.CustomerUpdateWithoutClaimSeatErrorsInput, Prisma.CustomerUncheckedUpdateWithoutClaimSeatErrorsInput>
+}
+
+export type CustomerUpdateWithoutClaimSeatErrorsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  registrations?: Prisma.EventRegistrationUpdateManyWithoutCustomerNestedInput
+}
+
+export type CustomerUncheckedUpdateWithoutClaimSeatErrorsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  registrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutCustomerNestedInput
 }
 
 
@@ -452,10 +539,12 @@ export type CustomerUncheckedUpdateWithoutRegistrationsInput = {
 
 export type CustomerCountOutputType = {
   registrations: number
+  claimSeatErrors: number
 }
 
 export type CustomerCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   registrations?: boolean | CustomerCountOutputTypeCountRegistrationsArgs
+  claimSeatErrors?: boolean | CustomerCountOutputTypeCountClaimSeatErrorsArgs
 }
 
 /**
@@ -475,6 +564,13 @@ export type CustomerCountOutputTypeCountRegistrationsArgs<ExtArgs extends runtim
   where?: Prisma.EventRegistrationWhereInput
 }
 
+/**
+ * CustomerCountOutputType without action
+ */
+export type CustomerCountOutputTypeCountClaimSeatErrorsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ClaimSeatErrorWhereInput
+}
+
 
 export type CustomerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -485,6 +581,7 @@ export type CustomerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   createdAt?: boolean
   updatedAt?: boolean
   registrations?: boolean | Prisma.Customer$registrationsArgs<ExtArgs>
+  claimSeatErrors?: boolean | Prisma.Customer$claimSeatErrorsArgs<ExtArgs>
   _count?: boolean | Prisma.CustomerCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["customer"]>
 
@@ -521,6 +618,7 @@ export type CustomerSelectScalar = {
 export type CustomerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "fullName" | "phoneNumber" | "blacklistedUntil" | "createdAt" | "updatedAt", ExtArgs["result"]["customer"]>
 export type CustomerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   registrations?: boolean | Prisma.Customer$registrationsArgs<ExtArgs>
+  claimSeatErrors?: boolean | Prisma.Customer$claimSeatErrorsArgs<ExtArgs>
   _count?: boolean | Prisma.CustomerCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CustomerIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -530,6 +628,7 @@ export type $CustomerPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   name: "Customer"
   objects: {
     registrations: Prisma.$EventRegistrationPayload<ExtArgs>[]
+    claimSeatErrors: Prisma.$ClaimSeatErrorPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -934,6 +1033,7 @@ readonly fields: CustomerFieldRefs;
 export interface Prisma__CustomerClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   registrations<T extends Prisma.Customer$registrationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$registrationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  claimSeatErrors<T extends Prisma.Customer$claimSeatErrorsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Customer$claimSeatErrorsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClaimSeatErrorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1379,6 +1479,30 @@ export type Customer$registrationsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.EventRegistrationScalarFieldEnum | Prisma.EventRegistrationScalarFieldEnum[]
+}
+
+/**
+ * Customer.claimSeatErrors
+ */
+export type Customer$claimSeatErrorsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ClaimSeatError
+   */
+  select?: Prisma.ClaimSeatErrorSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ClaimSeatError
+   */
+  omit?: Prisma.ClaimSeatErrorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClaimSeatErrorInclude<ExtArgs> | null
+  where?: Prisma.ClaimSeatErrorWhereInput
+  orderBy?: Prisma.ClaimSeatErrorOrderByWithRelationInput | Prisma.ClaimSeatErrorOrderByWithRelationInput[]
+  cursor?: Prisma.ClaimSeatErrorWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ClaimSeatErrorScalarFieldEnum | Prisma.ClaimSeatErrorScalarFieldEnum[]
 }
 
 /**
