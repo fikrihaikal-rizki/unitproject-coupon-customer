@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     'shadcn-nuxt',
     '@pinia/nuxt',
-    '@nuxtjs/supabase'
+    '@nuxtjs/supabase',
+    'pinia-plugin-persistedstate/nuxt',
   ],
   shadcn: {
     /**
@@ -39,5 +40,5 @@ export default defineNuxtConfig({
       imagekitPublicKey: process.env.IMAGEKIT_PUBLIC_KEY,
       imagekitUrlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT
     }
-  }
+  },
 })

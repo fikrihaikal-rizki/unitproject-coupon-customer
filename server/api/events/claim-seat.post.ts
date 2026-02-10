@@ -15,6 +15,7 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event);
   const { eventId, claimSeatValue } = body;
 
+
   // Validate inputs
   if (!eventId) {
     throw createError({
@@ -35,10 +36,61 @@ export default defineEventHandler(async (event) => {
     const qrCodeData = randomBytes(16).toString("hex");
 
     // Attempt to create the registration with PENDING status
-    const registration = await prisma.eventRegistration.create({
-      data: {
-        customerId: user.sub,
+    const findClaimSeat = await prisma.eventRegistration.findFirst({
+      where: {
         eventId: eventId,
+        customerId: { not: user.sub },
+        claimSeatValue: claimSeatValue,
+      },
+    });
+
+    if (findClaimSeat) {
+      await prisma.claimSeatError.create({
+        data: {
+          eventId: eventId,
+          customerId: user.sub,
+          triedValue: claimSeatValue,
+          errorMessage: "Seat/ID already taken - duplicate entry attempted",
+          status: "open",
+        },
+      });
+
+      throw createError({
+        statusCode: 409,
+        statusMessage: "Seat/ID already taken - duplicate entry attempted",
+      });
+    }
+
+    const findRegistration = await prisma.eventRegistration.findFirst({
+      where: {
+        eventId: eventId,
+        customerId: user.sub,
+      },
+    });
+
+    if (!findRegistration) {
+      let registration = await prisma.eventRegistration.create({
+        data: {
+          eventId: eventId,
+          customerId: user.sub,
+          claimSeatValue: claimSeatValue,
+          qrCodeData: qrCodeData,
+          status: "pending",
+        },
+      });
+
+      return {
+        success: true,
+        registrationId: registration.id,
+        message: "Seat claimed successfully",
+      };
+    }
+
+    let registration = await prisma.eventRegistration.update({
+      where: {
+        id: findRegistration.id,
+      },
+      data: {
         claimSeatValue: claimSeatValue,
         qrCodeData: qrCodeData,
         status: "pending",
@@ -51,31 +103,15 @@ export default defineEventHandler(async (event) => {
       message: "Seat claimed successfully",
     };
   } catch (error: any) {
-    // Check if it's a Prisma unique constraint violation (P2002)
-    if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (error.code === "P2002") {
-        // Log the duplicate attempt to ClaimSeatError table
-        try {
-          await prisma.claimSeatError.create({
-            data: {
-              eventId: eventId,
-              customerId: user.sub,
-              triedValue: claimSeatValue,
-              errorMessage: "Seat/ID already taken - duplicate entry attempted",
-              status: "open",
-            },
-          });
-        } catch (logError) {
-          console.error("Failed to log claim seat error:", logError);
-        }
-
-        // Return 409 Conflict with user-friendly message
-        throw createError({
-          statusCode: 409,
-          statusMessage: "This seat/ID is already taken. Please choose a different one.",
-        });
-      }
-    }
+    await prisma.claimSeatError.create({
+      data: {
+        eventId: eventId,
+        customerId: user.sub,
+        triedValue: claimSeatValue,
+        errorMessage: error.message,
+        status: "open",
+      },
+    });
 
     // Log unexpected errors
     console.error("Unexpected error in claim-seat:", error);

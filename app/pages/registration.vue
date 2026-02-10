@@ -77,7 +77,7 @@ const handleStepNext = async (stepId: number, stepAnswers: any) => {
 
   // Check if this is a claim_seat step
   const currentStep = registrationStore.steps.find((s: any) => s.id === stepId);
-  
+
   if (currentStep?.stepType === "claim_seat") {
     // Process claim seat
     isSubmitting.value = true;
@@ -101,10 +101,12 @@ const handleStepNext = async (stepId: number, stepAnswers: any) => {
       if (error.value) {
         // Handle 409 conflict (duplicate entry)
         if (error.value.statusCode === 409) {
-          toast.error(error.value.statusMessage || "This seat/ID is already taken");
+          toast.error(
+            error.value.statusMessage || "This seat/ID is already taken",
+          );
           return; // Don't proceed to next step
         }
-        
+
         // Handle other errors
         throw new Error(error.value.statusMessage || "Failed to claim seat");
       }
@@ -137,7 +139,9 @@ const handleStepNext = async (stepId: number, stepAnswers: any) => {
 };
 
 const isSubmitting = ref(false);
-const loadingPhase = ref<"validating" | "compressing" | "uploading" | "saving" | "">("");
+const loadingPhase = ref<
+  "validating" | "compressing" | "uploading" | "saving" | ""
+>("");
 const loadingMessage = ref("");
 const submitRegistration = async () => {
   isSubmitting.value = true;
@@ -151,8 +155,9 @@ const submitRegistration = async () => {
     // Manual validation is already done by vee-validate on submit
 
     // PHASE 2: Compression
-    const filesToProcess: { stepId: number; inputId: string; file: File }[] = [];
-    
+    const filesToProcess: { stepId: number; inputId: string; file: File }[] =
+      [];
+
     registrationStore.steps.forEach((step: any) => {
       const stepAnswers = registrationStore.answers[step.id] || {};
       Object.entries(stepAnswers).forEach(([key, val]) => {
@@ -165,20 +170,20 @@ const submitRegistration = async () => {
     if (filesToProcess.length > 0) {
       loadingPhase.value = "compressing";
       loadingMessage.value = "Compressing images (Saving your data)...";
-      
+
       // Compress all files
       const compressedFiles = await Promise.all(
         filesToProcess.map(async (item) => {
           loadingMessage.value = `Optimizing ${item.file.name}...`;
           const compressed = await compressImage(item.file);
           return { ...item, file: compressed };
-        })
+        }),
       );
 
       // PHASE 3: Upload
       loadingPhase.value = "uploading";
       loadingMessage.value = `Uploading ${compressedFiles.length} file(s) to server...`;
-      
+
       const uploadResults = await Promise.all(
         compressedFiles.map(async (item) => {
           const formData = new FormData();
@@ -200,9 +205,9 @@ const submitRegistration = async () => {
           } catch (e) {
             throw new Error(`Failed to upload ${item.file.name}`);
           }
-        })
+        }),
       );
-      
+
       // Update store with URLs
       uploadResults.forEach((res) => {
         const currentAnswers = { ...registrationStore.answers[res.stepId] };
@@ -214,7 +219,7 @@ const submitRegistration = async () => {
     // PHASE 4: Database submission
     loadingPhase.value = "saving";
     loadingMessage.value = "Saving your registration...";
-    
+
     const questionnaireAnswers: any[] = [];
 
     // Only collect questionnaire answers (skip claim_seat)
@@ -315,9 +320,12 @@ onUnmounted(() => {
             >
               <template #action>
                 <Button type="submit" class="w-full" :disabled="isSubmitting">
-                  <span v-if="isSubmitting" class="flex items-center justify-center">
+                  <span
+                    v-if="isSubmitting"
+                    class="flex items-center justify-center"
+                  >
                     <Loader2 class="w-4 h-4 mr-2 animate-spin" />
-                    {{ loadingMessage || 'Processing...' }}
+                    {{ loadingMessage || "Processing..." }}
                   </span>
                   <span v-else-if="currentStepIndex === totalStepsCount - 1"
                     >Complete & Claim Coupon</span

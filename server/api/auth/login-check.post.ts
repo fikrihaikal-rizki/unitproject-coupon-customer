@@ -50,6 +50,14 @@ export default defineEventHandler(async (event) => {
     },
   })
 
+  let isRegistered = false;
+  if (registration) {
+    isRegistered = true;
+    if (registration.status == 'pending') {
+      isRegistered = false;
+    }
+  }
+
   const now = new Date()
   const isStarted = eventDetails.startAt ? now >= new Date(eventDetails.startAt) : true
   const isEnded = eventDetails.endAt ? now > new Date(eventDetails.endAt) : false
@@ -59,7 +67,7 @@ export default defineEventHandler(async (event) => {
     customer,
     event: eventDetails,
     registrationStatus: {
-      isRegistered: !!registration,
+      isRegistered: isRegistered,
       isStarted,
       isEnded,
       isActive,

@@ -65,7 +65,7 @@ const joinEvent = (slug: string) => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-zinc-50 dark:bg-zinc-950 flex flex-col">
+  <div class="min-h-screen bg-zinc-50 dark:bg-zinc-950 flex flex-col overflow-y-scroll no-scrollbar">
     <!-- <SiteHeader /> -->
 
     <main class="flex-1 max-w-7xl mx-auto w-full px-6 py-12 space-y-12">
@@ -268,7 +268,7 @@ const joinEvent = (slug: string) => {
     <!-- Event Detail Modal -->
     <Dialog v-model:open="isModalOpen">
       <DialogContent
-        class="sm:max-w-[425px] p-0 overflow-y-scroll max-h-screen border-none bg-white dark:bg-zinc-900 shadow-2xl"
+        class="sm:max-w-[425px] p-0 overflow-y-scroll no-scrollbar max-h-screen border-none bg-white dark:bg-zinc-900 shadow-2xl"
       >
         <div v-if="selectedEvent" class="flex flex-col">
           <!-- Banner/Header -->

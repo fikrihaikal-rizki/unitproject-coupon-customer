@@ -8,7 +8,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     return navigateTo('/')
   }
 
-  if (!authStore.eventSlug) {
+  if (!authStore.currentEventSlug) {
     return navigateTo('/')
   }
 })
