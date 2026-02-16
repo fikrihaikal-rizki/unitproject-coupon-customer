@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { toast } from "vue-sonner";
+
 const route = useRoute();
 const slug = route.params.slug as string;
 const supabase = useSupabaseClient();
@@ -11,6 +13,10 @@ const { data: event, error: eventError } = await useFetch(
 
 const loading = ref(false);
 const errorMsg = ref("");
+const isGroupLockWarningOpen = ref(false);
+
+const conflictingEventName = ref("");
+const conflictingEventSlug = ref("");
 
 // Handle Google Login
 const loginWithGoogle = async () => {
@@ -36,43 +42,89 @@ const syncUserAndRedirect = async () => {
 
   loading.value = true;
   try {
-    const { data, error } = await useFetch("/api/auth/login-check", {
-      method: "POST",
-      body: {
-        slug,
-        email: user.value.email,
-        fullName: user.value.user_metadata?.full_name,
-        customerId: user.value.sub,
+    const { data: loginCheck, error: loginError } = await useFetch(
+      "/api/auth/login-check",
+      {
+        method: "POST",
+        body: {
+          slug,
+          email: user.value.email,
+          fullName: user.value.user_metadata?.full_name,
+          customerId: user.value.sub,
+        },
       },
-    });
+    );
 
-    if (error.value) {
-      throw new Error(error.value.statusMessage || "Failed to sync user data");
+    if (loginError.value) {
+      throw new Error(
+        loginError.value.statusMessage || "Failed to sync user data",
+      );
     }
 
-    if (data.value) {
-      authStore.setAuthData({
-        eventId: data.value.event.id,
-        customerId: data.value.customer.id,
-        eventSlug: slug,
-        customer: data.value.customer,
-      });
+    if (!loginCheck.value) {
+      throw new Error("Data not found, Failed to sync user data");
+    }
 
-      const status = data.value.registrationStatus;
+    const loginCheckResult = loginCheck.value as any;
 
-      if (!status.isRegistered) {
-        return navigateTo("/registration");
-      } else if (!status.isStarted && status.isRegistered) {
-        return navigateTo("/registration-success");
-      } else {
-        return navigateTo("/registration-success");
+    const { data: checkLock, error: checkError } = await useFetch(
+      "/api/customer/events/check-lock",
+      {
+        params: { eventId: loginCheckResult.event.id },
+      },
+    );
+
+    if (checkError.value) {
+      throw new Error(
+        checkError.value.statusMessage || "Failed to sync user data",
+      );
+    }
+
+    if (checkLock.value) {
+      const checkLockResult = checkLock.value as any;
+
+      if (checkLockResult.status == "conflict") {
+        conflictingEventName.value = checkLockResult.registeredEventName;
+        conflictingEventSlug.value = checkLockResult.registeredEventSlug;
+        isGroupLockWarningOpen.value = true;
+
+        loading.value = false;
+        return;
       }
     }
+
+    authStore.setAuthData({
+      eventId: loginCheckResult.event.id,
+      customerId: loginCheckResult.customer.id,
+      eventSlug: slug,
+      customer: loginCheckResult.customer,
+    });
+
+    const status = loginCheckResult.registrationStatus;
+
+    if (!status.isRegistered) {
+      return navigateTo("/registration");
+    } else if (!status.isStarted && status.isRegistered) {
+      return navigateTo("/registration-success");
+    } else {
+      return navigateTo("/registration-success");
+    }
   } catch (err: any) {
+    toast.error(err.message || "An error occurred during synchronization");
     errorMsg.value = err.message || "An error occurred during synchronization";
   } finally {
     loading.value = false;
   }
+};
+
+const handleRedirectToRegisteredEvent = () => {
+  loading.value = true;
+
+  if (conflictingEventSlug.value) {
+    navigateTo(`/login/${conflictingEventSlug.value}`);
+  }
+
+  loading.value = false;
 };
 
 // Watch for user changes (after redirect from OAuth)
@@ -237,5 +289,11 @@ watch(
         <div class="h-4 w-32 bg-zinc-200 dark:bg-zinc-800 rounded"></div>
       </div>
     </div>
+    <GroupLockWarningModal
+      v-model:open="isGroupLockWarningOpen"
+      :dismissable="false"
+      :registeredEventName="conflictingEventName"
+      @continue="handleRedirectToRegisteredEvent"
+    />
   </div>
 </template>

@@ -7,14 +7,27 @@ import {
   Ticket,
 } from "lucide-vue-next";
 import { toast } from "vue-sonner";
+import AccountConfirmationModal from "~/components/AccountConfirmationModal.vue";
+import GroupLockWarningModal from "~/components/GroupLockWarningModal.vue";
 
 // Fetch Event List
 const { data: events, pending } = await useFetch<any[]>("/api/events/list");
 
 const authStore = useAuthStore();
+const user = useSupabaseUser();
+const supabase = useSupabaseClient();
+const loading = ref(false);
+
 const searchQuery = ref("");
 const selectedEvent = ref<any>(null);
-const isModalOpen = ref(false);
+
+// Modal State
+const isEventDetailOpen = ref(false);
+const isAccountConfirmationOpen = ref(false);
+const isGroupLockWarningOpen = ref(false);
+
+const conflictingEventName = ref("");
+const conflictingEventSlug = ref("");
 
 // Native Date grouping logic
 const groupedEvents = computed(() => {
@@ -38,34 +51,98 @@ const groupedEvents = computed(() => {
   };
 });
 
-const formatDate = (dateStr: string) => {
-  if (!dateStr) return "";
-  return new Date(dateStr).toLocaleDateString("en-US", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
+const setEventAuthData = (event: any) => {
+  if (event) {
+    authStore.setAuthData({
+      eventId: event.id,
+      eventSlug: event.slug,
+    });
+  }
 };
 
 const openEventDetail = (event: any) => {
   selectedEvent.value = event;
-  isModalOpen.value = true;
+  isEventDetailOpen.value = true;
 };
 
 const joinEvent = (slug: string) => {
-  // Pre-populate store if possible (though middleware also validates)
-  if (selectedEvent.value) {
-    authStore.setAuthData({
-      eventId: selectedEvent.value.id,
-      eventSlug: selectedEvent.value.slug,
-    });
+  isEventDetailOpen.value = false;
+
+  if (user.value) {
+    isAccountConfirmationOpen.value = true;
+  } else {
+    setEventAuthData(selectedEvent.value);
+    navigateTo(`/login/${slug}`);
   }
-  navigateTo(`/login/${slug}`);
+};
+
+const handleAccountConfirm = async () => {
+  if (!selectedEvent.value || !user.value) return;
+
+  loading.value = true;
+  try {
+    const { data: checkResult, error } = await useFetch(
+      "/api/customer/events/check-lock",
+      {
+        params: { eventId: selectedEvent.value.id },
+      },
+    );
+
+    if (error.value) throw error.value;
+
+    const result = checkResult.value as any;
+
+    if (result.status === "conflict") {
+      conflictingEventName.value = result.registeredEventName;
+      conflictingEventSlug.value = result.registeredEventSlug;
+      isAccountConfirmationOpen.value = false;
+      isGroupLockWarningOpen.value = true;
+    } else {
+      isAccountConfirmationOpen.value = false;
+      setEventAuthData(selectedEvent.value);
+
+      navigateTo(`/login/${selectedEvent.value.slug}`);
+    }
+  } catch (err: any) {
+    toast.error("Failed to verify event eligibility", {
+      description: err.message,
+    });
+  } finally {
+    loading.value = false;
+  }
+};
+
+const handleSwitchAccount = async () => {
+  loading.value = true;
+
+  await supabase.auth.signOut();
+  authStore.clearAuth();
+  isAccountConfirmationOpen.value = false;
+  setEventAuthData(selectedEvent.value);
+
+  if (selectedEvent.value) {
+    navigateTo(`/login/${selectedEvent.value.slug}`);
+  }
+
+  loading.value = false;
+};
+
+const handleRedirectToRegisteredEvent = () => {
+  loading.value = true;
+
+  setEventAuthData(selectedEvent.value);
+  if (conflictingEventSlug.value) {
+    navigateTo(`/login/${conflictingEventSlug.value}`);
+  }
+
+  loading.value = false;
 };
 </script>
 
 <template>
-  <div class="min-h-screen bg-zinc-50 dark:bg-zinc-950 flex flex-col overflow-y-scroll no-scrollbar">
+  <div
+    class="min-h-screen bg-zinc-50 dark:bg-zinc-950 flex flex-col overflow-y-scroll no-scrollbar"
+  >
     <!-- <SiteHeader /> -->
 
     <main class="flex-1 max-w-7xl mx-auto w-full px-6 py-12 space-y-12">
@@ -157,10 +234,12 @@ const joinEvent = (slug: string) => {
                   </h3>
                   <div class="flex items-center gap-2 text-xs text-zinc-500">
                     <Calendar class="w-3 h-3" />
-                    <span
-                      >{{ formatDate(event.startAt) }} -
-                      {{ formatDate(event.endAt) }}</span
-                    >
+                    <ClientOnly>
+                      <span
+                        >{{ formatDateToLocal(event.startAt) }} -
+                        {{ formatDateToLocal(event.endAt) }}</span
+                      >
+                    </ClientOnly>
                   </div>
                 </div>
 
@@ -221,7 +300,9 @@ const joinEvent = (slug: string) => {
                   </h3>
                   <div class="flex items-center gap-2 text-xs text-zinc-500">
                     <Calendar class="w-3 h-3" />
-                    <span>Starts {{ formatDate(event.startAt) }}</span>
+                    <ClientOnly>
+                      <span>Starts {{ formatDateToLocal(event.startAt) }}</span>
+                    </ClientOnly>
                   </div>
                 </div>
 
@@ -264,100 +345,24 @@ const joinEvent = (slug: string) => {
         </div>
       </div>
     </main>
-
-    <!-- Event Detail Modal -->
-    <Dialog v-model:open="isModalOpen">
-      <DialogContent
-        class="sm:max-w-[425px] p-0 overflow-y-scroll no-scrollbar max-h-screen border-none bg-white dark:bg-zinc-900 shadow-2xl"
-      >
-        <div v-if="selectedEvent" class="flex flex-col">
-          <!-- Banner/Header -->
-          <div
-            class="relative h-48 bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center overflow-hidden"
-          >
-            <template v-if="selectedEvent.bannerPath">
-              <NuxtImg
-                :src="selectedEvent.bannerPath"
-                provider="imagekit"
-                class="w-full h-full object-cover object-center"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
-              ></div>
-            </template>
-            <Ticket v-else class="w-16 h-16 text-zinc-300" />
-
-            <DialogHeader class="absolute bottom-4 left-6 text-left">
-              <DialogTitle class="text-2xl font-bold text-white leading-tight">
-                {{ selectedEvent.title }}
-              </DialogTitle>
-            </DialogHeader>
-          </div>
-
-          <!-- Body -->
-          <div class="p-6 space-y-6">
-            <div class="space-y-4">
-              <div
-                class="flex items-center gap-4 text-sm text-zinc-600 dark:text-zinc-400"
-              >
-                <div class="flex flex-col">
-                  <span
-                    class="text-[10px] uppercase tracking-widest font-bold text-zinc-400"
-                    >Start Date</span
-                  >
-                  <span class="font-medium text-zinc-900 dark:text-zinc-50">{{
-                    formatDate(selectedEvent.startAt)
-                  }}</span>
-                </div>
-                <div class="h-8 w-[1px] bg-zinc-200 dark:bg-zinc-800"></div>
-                <div class="flex flex-col">
-                  <span
-                    class="text-[10px] uppercase tracking-widest font-bold text-zinc-400"
-                    >End Date</span
-                  >
-                  <span class="font-medium text-zinc-900 dark:text-zinc-50">{{
-                    formatDate(selectedEvent.endAt)
-                  }}</span>
-                </div>
-              </div>
-
-              <div class="space-y-2">
-                <span
-                  class="text-[10px] uppercase tracking-widest font-bold text-zinc-400"
-                  >Description</span
-                >
-                <ExpandableText
-                  :content="
-                    selectedEvent.description ||
-                    'No description availabe for this event.'
-                  "
-                  :limit="150"
-                />
-              </div>
-            </div>
-
-            <DialogFooter class="sm:justify-start">
-              <Button
-                class="w-full h-12 text-md font-bold transition-all active:scale-95 shadow-lg shadow-zinc-900/10"
-                @click="joinEvent(selectedEvent.slug)"
-              >
-                Join Event & Claim Coupons
-              </Button>
-            </DialogFooter>
-          </div>
-
-          <div
-            class="px-6 py-4 bg-zinc-50 dark:bg-zinc-800/50 border-t border-zinc-100 dark:border-zinc-800 text-center"
-          >
-            <p
-              class="text-[10px] text-zinc-400 uppercase tracking-widest font-semibold flex items-center justify-center gap-2"
-            >
-              <Ticket class="w-3 h-3" /> Powered by UnitProject
-            </p>
-          </div>
-        </div>
-      </DialogContent>
-    </Dialog>
+    <EventDetailModal
+      v-model:open="isEventDetailOpen"
+      :event="selectedEvent"
+      @continue="joinEvent(selectedEvent.slug)"
+    />
+    <AccountConfirmationModal
+      v-model:open="isAccountConfirmationOpen"
+      :user="user"
+      :loading="loading"
+      @confirm="handleAccountConfirm"
+      @switch-account="handleSwitchAccount"
+      @close="isAccountConfirmationOpen = false"
+    />
+    <GroupLockWarningModal
+      v-model:open="isGroupLockWarningOpen"
+      :registeredEventName="conflictingEventName"
+      @continue="handleRedirectToRegisteredEvent"
+    />
   </div>
 </template>
 

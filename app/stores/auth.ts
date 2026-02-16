@@ -7,12 +7,6 @@ import { defineStore } from 'pinia'
  */
 export const useAuthStore = defineStore('auth', {
   state: () => ({
-    // Using Nuxt cookies for persistence that works across SSR and Client
-    // eventId: useCookie<string | null>('auth_event_id', { default: () => null }),
-    // customerId: useCookie<string | null>('auth_customer_id', { default: () => null }),
-    // eventSlug: useCookie<string | null>('auth_event_slug', { default: () => null }),
-    // customer: useCookie<any | null>('auth_customer', { default: () => null }),
-    // currentEvent: useCookie<any | null>('auth_current_event', { default: () => null }),
     eventId: null as string | null,
     customerId: null as string | null,
     eventSlug: null as string | null,

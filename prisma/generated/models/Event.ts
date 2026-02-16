@@ -49,6 +49,7 @@ export type EventMinAggregateOutputType = {
   successPrimaryBtnUrl: string | null
   isActive: boolean | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type EventMaxAggregateOutputType = {
@@ -66,6 +67,7 @@ export type EventMaxAggregateOutputType = {
   successPrimaryBtnUrl: string | null
   isActive: boolean | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type EventCountAggregateOutputType = {
@@ -83,6 +85,7 @@ export type EventCountAggregateOutputType = {
   successPrimaryBtnUrl: number
   isActive: number
   createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -110,6 +113,7 @@ export type EventMinAggregateInputType = {
   successPrimaryBtnUrl?: true
   isActive?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type EventMaxAggregateInputType = {
@@ -127,6 +131,7 @@ export type EventMaxAggregateInputType = {
   successPrimaryBtnUrl?: true
   isActive?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type EventCountAggregateInputType = {
@@ -144,6 +149,7 @@ export type EventCountAggregateInputType = {
   successPrimaryBtnUrl?: true
   isActive?: true
   createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -248,6 +254,7 @@ export type EventGroupByOutputType = {
   successPrimaryBtnUrl: string | null
   isActive: boolean | null
   createdAt: Date | null
+  updatedAt: Date | null
   _count: EventCountAggregateOutputType | null
   _avg: EventAvgAggregateOutputType | null
   _sum: EventSumAggregateOutputType | null
@@ -288,11 +295,13 @@ export type EventWhereInput = {
   successPrimaryBtnUrl?: Prisma.StringNullableFilter<"Event"> | string | null
   isActive?: Prisma.BoolNullableFilter<"Event"> | boolean | null
   createdAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
+  updatedAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   group?: Prisma.XOR<Prisma.EventGroupNullableScalarRelationFilter, Prisma.EventGroupWhereInput> | null
   steps?: Prisma.RegistrationStepListRelationFilter
   registrations?: Prisma.EventRegistrationListRelationFilter
   claimSeatErrors?: Prisma.ClaimSeatErrorListRelationFilter
   eventAdmins?: Prisma.EventAdministratorListRelationFilter
+  coupons?: Prisma.EventCouponListRelationFilter
 }
 
 export type EventOrderByWithRelationInput = {
@@ -310,11 +319,13 @@ export type EventOrderByWithRelationInput = {
   successPrimaryBtnUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   group?: Prisma.EventGroupOrderByWithRelationInput
   steps?: Prisma.RegistrationStepOrderByRelationAggregateInput
   registrations?: Prisma.EventRegistrationOrderByRelationAggregateInput
   claimSeatErrors?: Prisma.ClaimSeatErrorOrderByRelationAggregateInput
   eventAdmins?: Prisma.EventAdministratorOrderByRelationAggregateInput
+  coupons?: Prisma.EventCouponOrderByRelationAggregateInput
 }
 
 export type EventWhereUniqueInput = Prisma.AtLeast<{
@@ -335,11 +346,13 @@ export type EventWhereUniqueInput = Prisma.AtLeast<{
   successPrimaryBtnUrl?: Prisma.StringNullableFilter<"Event"> | string | null
   isActive?: Prisma.BoolNullableFilter<"Event"> | boolean | null
   createdAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
+  updatedAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
   group?: Prisma.XOR<Prisma.EventGroupNullableScalarRelationFilter, Prisma.EventGroupWhereInput> | null
   steps?: Prisma.RegistrationStepListRelationFilter
   registrations?: Prisma.EventRegistrationListRelationFilter
   claimSeatErrors?: Prisma.ClaimSeatErrorListRelationFilter
   eventAdmins?: Prisma.EventAdministratorListRelationFilter
+  coupons?: Prisma.EventCouponListRelationFilter
 }, "id" | "slug">
 
 export type EventOrderByWithAggregationInput = {
@@ -357,6 +370,7 @@ export type EventOrderByWithAggregationInput = {
   successPrimaryBtnUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   isActive?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.EventCountOrderByAggregateInput
   _avg?: Prisma.EventAvgOrderByAggregateInput
   _max?: Prisma.EventMaxOrderByAggregateInput
@@ -382,6 +396,7 @@ export type EventScalarWhereWithAggregatesInput = {
   successPrimaryBtnUrl?: Prisma.StringNullableWithAggregatesFilter<"Event"> | string | null
   isActive?: Prisma.BoolNullableWithAggregatesFilter<"Event"> | boolean | null
   createdAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Event"> | Date | string | null
+  updatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Event"> | Date | string | null
 }
 
 export type EventCreateInput = {
@@ -398,11 +413,13 @@ export type EventCreateInput = {
   successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
+  updatedAt?: Date | string | null
   group?: Prisma.EventGroupCreateNestedOneWithoutEventsInput
   steps?: Prisma.RegistrationStepCreateNestedManyWithoutEventInput
   registrations?: Prisma.EventRegistrationCreateNestedManyWithoutEventInput
   claimSeatErrors?: Prisma.ClaimSeatErrorCreateNestedManyWithoutEventInput
   eventAdmins?: Prisma.EventAdministratorCreateNestedManyWithoutEventInput
+  coupons?: Prisma.EventCouponCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateInput = {
@@ -420,10 +437,12 @@ export type EventUncheckedCreateInput = {
   successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
+  updatedAt?: Date | string | null
   steps?: Prisma.RegistrationStepUncheckedCreateNestedManyWithoutEventInput
   registrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutEventInput
   claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedCreateNestedManyWithoutEventInput
   eventAdmins?: Prisma.EventAdministratorUncheckedCreateNestedManyWithoutEventInput
+  coupons?: Prisma.EventCouponUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventUpdateInput = {
@@ -440,11 +459,13 @@ export type EventUpdateInput = {
   successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   group?: Prisma.EventGroupUpdateOneWithoutEventsNestedInput
   steps?: Prisma.RegistrationStepUpdateManyWithoutEventNestedInput
   registrations?: Prisma.EventRegistrationUpdateManyWithoutEventNestedInput
   claimSeatErrors?: Prisma.ClaimSeatErrorUpdateManyWithoutEventNestedInput
   eventAdmins?: Prisma.EventAdministratorUpdateManyWithoutEventNestedInput
+  coupons?: Prisma.EventCouponUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateInput = {
@@ -462,10 +483,12 @@ export type EventUncheckedUpdateInput = {
   successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   steps?: Prisma.RegistrationStepUncheckedUpdateManyWithoutEventNestedInput
   registrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutEventNestedInput
   claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedUpdateManyWithoutEventNestedInput
   eventAdmins?: Prisma.EventAdministratorUncheckedUpdateManyWithoutEventNestedInput
+  coupons?: Prisma.EventCouponUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventCreateManyInput = {
@@ -483,6 +506,7 @@ export type EventCreateManyInput = {
   successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
+  updatedAt?: Date | string | null
 }
 
 export type EventUpdateManyMutationInput = {
@@ -499,6 +523,7 @@ export type EventUpdateManyMutationInput = {
   successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EventUncheckedUpdateManyInput = {
@@ -516,6 +541,7 @@ export type EventUncheckedUpdateManyInput = {
   successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type EventListRelationFilter = {
@@ -543,6 +569,7 @@ export type EventCountOrderByAggregateInput = {
   successPrimaryBtnUrl?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type EventAvgOrderByAggregateInput = {
@@ -564,6 +591,7 @@ export type EventMaxOrderByAggregateInput = {
   successPrimaryBtnUrl?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type EventMinOrderByAggregateInput = {
@@ -581,6 +609,7 @@ export type EventMinOrderByAggregateInput = {
   successPrimaryBtnUrl?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type EventSumOrderByAggregateInput = {
@@ -709,6 +738,20 @@ export type EventUpdateOneRequiredWithoutEventAdminsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EventUpdateToOneWithWhereWithoutEventAdminsInput, Prisma.EventUpdateWithoutEventAdminsInput>, Prisma.EventUncheckedUpdateWithoutEventAdminsInput>
 }
 
+export type EventCreateNestedOneWithoutCouponsInput = {
+  create?: Prisma.XOR<Prisma.EventCreateWithoutCouponsInput, Prisma.EventUncheckedCreateWithoutCouponsInput>
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutCouponsInput
+  connect?: Prisma.EventWhereUniqueInput
+}
+
+export type EventUpdateOneRequiredWithoutCouponsNestedInput = {
+  create?: Prisma.XOR<Prisma.EventCreateWithoutCouponsInput, Prisma.EventUncheckedCreateWithoutCouponsInput>
+  connectOrCreate?: Prisma.EventCreateOrConnectWithoutCouponsInput
+  upsert?: Prisma.EventUpsertWithoutCouponsInput
+  connect?: Prisma.EventWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.EventUpdateToOneWithWhereWithoutCouponsInput, Prisma.EventUpdateWithoutCouponsInput>, Prisma.EventUncheckedUpdateWithoutCouponsInput>
+}
+
 export type EventCreateWithoutGroupInput = {
   id?: string
   slug: string
@@ -723,10 +766,12 @@ export type EventCreateWithoutGroupInput = {
   successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
+  updatedAt?: Date | string | null
   steps?: Prisma.RegistrationStepCreateNestedManyWithoutEventInput
   registrations?: Prisma.EventRegistrationCreateNestedManyWithoutEventInput
   claimSeatErrors?: Prisma.ClaimSeatErrorCreateNestedManyWithoutEventInput
   eventAdmins?: Prisma.EventAdministratorCreateNestedManyWithoutEventInput
+  coupons?: Prisma.EventCouponCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateWithoutGroupInput = {
@@ -743,10 +788,12 @@ export type EventUncheckedCreateWithoutGroupInput = {
   successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
+  updatedAt?: Date | string | null
   steps?: Prisma.RegistrationStepUncheckedCreateNestedManyWithoutEventInput
   registrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutEventInput
   claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedCreateNestedManyWithoutEventInput
   eventAdmins?: Prisma.EventAdministratorUncheckedCreateNestedManyWithoutEventInput
+  coupons?: Prisma.EventCouponUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutGroupInput = {
@@ -793,6 +840,7 @@ export type EventScalarWhereInput = {
   successPrimaryBtnUrl?: Prisma.StringNullableFilter<"Event"> | string | null
   isActive?: Prisma.BoolNullableFilter<"Event"> | boolean | null
   createdAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
+  updatedAt?: Prisma.DateTimeNullableFilter<"Event"> | Date | string | null
 }
 
 export type EventCreateWithoutStepsInput = {
@@ -809,10 +857,12 @@ export type EventCreateWithoutStepsInput = {
   successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
+  updatedAt?: Date | string | null
   group?: Prisma.EventGroupCreateNestedOneWithoutEventsInput
   registrations?: Prisma.EventRegistrationCreateNestedManyWithoutEventInput
   claimSeatErrors?: Prisma.ClaimSeatErrorCreateNestedManyWithoutEventInput
   eventAdmins?: Prisma.EventAdministratorCreateNestedManyWithoutEventInput
+  coupons?: Prisma.EventCouponCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateWithoutStepsInput = {
@@ -830,9 +880,11 @@ export type EventUncheckedCreateWithoutStepsInput = {
   successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
+  updatedAt?: Date | string | null
   registrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutEventInput
   claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedCreateNestedManyWithoutEventInput
   eventAdmins?: Prisma.EventAdministratorUncheckedCreateNestedManyWithoutEventInput
+  coupons?: Prisma.EventCouponUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutStepsInput = {
@@ -865,10 +917,12 @@ export type EventUpdateWithoutStepsInput = {
   successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   group?: Prisma.EventGroupUpdateOneWithoutEventsNestedInput
   registrations?: Prisma.EventRegistrationUpdateManyWithoutEventNestedInput
   claimSeatErrors?: Prisma.ClaimSeatErrorUpdateManyWithoutEventNestedInput
   eventAdmins?: Prisma.EventAdministratorUpdateManyWithoutEventNestedInput
+  coupons?: Prisma.EventCouponUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutStepsInput = {
@@ -886,9 +940,11 @@ export type EventUncheckedUpdateWithoutStepsInput = {
   successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   registrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutEventNestedInput
   claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedUpdateManyWithoutEventNestedInput
   eventAdmins?: Prisma.EventAdministratorUncheckedUpdateManyWithoutEventNestedInput
+  coupons?: Prisma.EventCouponUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventCreateWithoutRegistrationsInput = {
@@ -905,10 +961,12 @@ export type EventCreateWithoutRegistrationsInput = {
   successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
+  updatedAt?: Date | string | null
   group?: Prisma.EventGroupCreateNestedOneWithoutEventsInput
   steps?: Prisma.RegistrationStepCreateNestedManyWithoutEventInput
   claimSeatErrors?: Prisma.ClaimSeatErrorCreateNestedManyWithoutEventInput
   eventAdmins?: Prisma.EventAdministratorCreateNestedManyWithoutEventInput
+  coupons?: Prisma.EventCouponCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateWithoutRegistrationsInput = {
@@ -926,9 +984,11 @@ export type EventUncheckedCreateWithoutRegistrationsInput = {
   successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
+  updatedAt?: Date | string | null
   steps?: Prisma.RegistrationStepUncheckedCreateNestedManyWithoutEventInput
   claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedCreateNestedManyWithoutEventInput
   eventAdmins?: Prisma.EventAdministratorUncheckedCreateNestedManyWithoutEventInput
+  coupons?: Prisma.EventCouponUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutRegistrationsInput = {
@@ -961,10 +1021,12 @@ export type EventUpdateWithoutRegistrationsInput = {
   successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   group?: Prisma.EventGroupUpdateOneWithoutEventsNestedInput
   steps?: Prisma.RegistrationStepUpdateManyWithoutEventNestedInput
   claimSeatErrors?: Prisma.ClaimSeatErrorUpdateManyWithoutEventNestedInput
   eventAdmins?: Prisma.EventAdministratorUpdateManyWithoutEventNestedInput
+  coupons?: Prisma.EventCouponUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutRegistrationsInput = {
@@ -982,9 +1044,11 @@ export type EventUncheckedUpdateWithoutRegistrationsInput = {
   successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   steps?: Prisma.RegistrationStepUncheckedUpdateManyWithoutEventNestedInput
   claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedUpdateManyWithoutEventNestedInput
   eventAdmins?: Prisma.EventAdministratorUncheckedUpdateManyWithoutEventNestedInput
+  coupons?: Prisma.EventCouponUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventCreateWithoutClaimSeatErrorsInput = {
@@ -1001,10 +1065,12 @@ export type EventCreateWithoutClaimSeatErrorsInput = {
   successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
+  updatedAt?: Date | string | null
   group?: Prisma.EventGroupCreateNestedOneWithoutEventsInput
   steps?: Prisma.RegistrationStepCreateNestedManyWithoutEventInput
   registrations?: Prisma.EventRegistrationCreateNestedManyWithoutEventInput
   eventAdmins?: Prisma.EventAdministratorCreateNestedManyWithoutEventInput
+  coupons?: Prisma.EventCouponCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateWithoutClaimSeatErrorsInput = {
@@ -1022,9 +1088,11 @@ export type EventUncheckedCreateWithoutClaimSeatErrorsInput = {
   successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
+  updatedAt?: Date | string | null
   steps?: Prisma.RegistrationStepUncheckedCreateNestedManyWithoutEventInput
   registrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutEventInput
   eventAdmins?: Prisma.EventAdministratorUncheckedCreateNestedManyWithoutEventInput
+  coupons?: Prisma.EventCouponUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutClaimSeatErrorsInput = {
@@ -1057,10 +1125,12 @@ export type EventUpdateWithoutClaimSeatErrorsInput = {
   successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   group?: Prisma.EventGroupUpdateOneWithoutEventsNestedInput
   steps?: Prisma.RegistrationStepUpdateManyWithoutEventNestedInput
   registrations?: Prisma.EventRegistrationUpdateManyWithoutEventNestedInput
   eventAdmins?: Prisma.EventAdministratorUpdateManyWithoutEventNestedInput
+  coupons?: Prisma.EventCouponUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutClaimSeatErrorsInput = {
@@ -1078,9 +1148,11 @@ export type EventUncheckedUpdateWithoutClaimSeatErrorsInput = {
   successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   steps?: Prisma.RegistrationStepUncheckedUpdateManyWithoutEventNestedInput
   registrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutEventNestedInput
   eventAdmins?: Prisma.EventAdministratorUncheckedUpdateManyWithoutEventNestedInput
+  coupons?: Prisma.EventCouponUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventCreateWithoutEventAdminsInput = {
@@ -1097,10 +1169,12 @@ export type EventCreateWithoutEventAdminsInput = {
   successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
+  updatedAt?: Date | string | null
   group?: Prisma.EventGroupCreateNestedOneWithoutEventsInput
   steps?: Prisma.RegistrationStepCreateNestedManyWithoutEventInput
   registrations?: Prisma.EventRegistrationCreateNestedManyWithoutEventInput
   claimSeatErrors?: Prisma.ClaimSeatErrorCreateNestedManyWithoutEventInput
+  coupons?: Prisma.EventCouponCreateNestedManyWithoutEventInput
 }
 
 export type EventUncheckedCreateWithoutEventAdminsInput = {
@@ -1118,9 +1192,11 @@ export type EventUncheckedCreateWithoutEventAdminsInput = {
   successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
+  updatedAt?: Date | string | null
   steps?: Prisma.RegistrationStepUncheckedCreateNestedManyWithoutEventInput
   registrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutEventInput
   claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedCreateNestedManyWithoutEventInput
+  coupons?: Prisma.EventCouponUncheckedCreateNestedManyWithoutEventInput
 }
 
 export type EventCreateOrConnectWithoutEventAdminsInput = {
@@ -1153,10 +1229,12 @@ export type EventUpdateWithoutEventAdminsInput = {
   successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   group?: Prisma.EventGroupUpdateOneWithoutEventsNestedInput
   steps?: Prisma.RegistrationStepUpdateManyWithoutEventNestedInput
   registrations?: Prisma.EventRegistrationUpdateManyWithoutEventNestedInput
   claimSeatErrors?: Prisma.ClaimSeatErrorUpdateManyWithoutEventNestedInput
+  coupons?: Prisma.EventCouponUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutEventAdminsInput = {
@@ -1174,9 +1252,115 @@ export type EventUncheckedUpdateWithoutEventAdminsInput = {
   successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   steps?: Prisma.RegistrationStepUncheckedUpdateManyWithoutEventNestedInput
   registrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutEventNestedInput
   claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedUpdateManyWithoutEventNestedInput
+  coupons?: Prisma.EventCouponUncheckedUpdateManyWithoutEventNestedInput
+}
+
+export type EventCreateWithoutCouponsInput = {
+  id?: string
+  slug: string
+  title: string
+  description?: string | null
+  bannerPath?: string | null
+  startAt?: Date | string | null
+  endAt?: Date | string | null
+  successGreeting?: string | null
+  successDescription?: string | null
+  successPrimaryBtnText?: string | null
+  successPrimaryBtnUrl?: string | null
+  isActive?: boolean | null
+  createdAt?: Date | string | null
+  updatedAt?: Date | string | null
+  group?: Prisma.EventGroupCreateNestedOneWithoutEventsInput
+  steps?: Prisma.RegistrationStepCreateNestedManyWithoutEventInput
+  registrations?: Prisma.EventRegistrationCreateNestedManyWithoutEventInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorCreateNestedManyWithoutEventInput
+  eventAdmins?: Prisma.EventAdministratorCreateNestedManyWithoutEventInput
+}
+
+export type EventUncheckedCreateWithoutCouponsInput = {
+  id?: string
+  groupId?: number | null
+  slug: string
+  title: string
+  description?: string | null
+  bannerPath?: string | null
+  startAt?: Date | string | null
+  endAt?: Date | string | null
+  successGreeting?: string | null
+  successDescription?: string | null
+  successPrimaryBtnText?: string | null
+  successPrimaryBtnUrl?: string | null
+  isActive?: boolean | null
+  createdAt?: Date | string | null
+  updatedAt?: Date | string | null
+  steps?: Prisma.RegistrationStepUncheckedCreateNestedManyWithoutEventInput
+  registrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutEventInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedCreateNestedManyWithoutEventInput
+  eventAdmins?: Prisma.EventAdministratorUncheckedCreateNestedManyWithoutEventInput
+}
+
+export type EventCreateOrConnectWithoutCouponsInput = {
+  where: Prisma.EventWhereUniqueInput
+  create: Prisma.XOR<Prisma.EventCreateWithoutCouponsInput, Prisma.EventUncheckedCreateWithoutCouponsInput>
+}
+
+export type EventUpsertWithoutCouponsInput = {
+  update: Prisma.XOR<Prisma.EventUpdateWithoutCouponsInput, Prisma.EventUncheckedUpdateWithoutCouponsInput>
+  create: Prisma.XOR<Prisma.EventCreateWithoutCouponsInput, Prisma.EventUncheckedCreateWithoutCouponsInput>
+  where?: Prisma.EventWhereInput
+}
+
+export type EventUpdateToOneWithWhereWithoutCouponsInput = {
+  where?: Prisma.EventWhereInput
+  data: Prisma.XOR<Prisma.EventUpdateWithoutCouponsInput, Prisma.EventUncheckedUpdateWithoutCouponsInput>
+}
+
+export type EventUpdateWithoutCouponsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bannerPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  successGreeting?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  group?: Prisma.EventGroupUpdateOneWithoutEventsNestedInput
+  steps?: Prisma.RegistrationStepUpdateManyWithoutEventNestedInput
+  registrations?: Prisma.EventRegistrationUpdateManyWithoutEventNestedInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorUpdateManyWithoutEventNestedInput
+  eventAdmins?: Prisma.EventAdministratorUpdateManyWithoutEventNestedInput
+}
+
+export type EventUncheckedUpdateWithoutCouponsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  groupId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bannerPath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  startAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  endAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  successGreeting?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnText?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  steps?: Prisma.RegistrationStepUncheckedUpdateManyWithoutEventNestedInput
+  registrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutEventNestedInput
+  claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedUpdateManyWithoutEventNestedInput
+  eventAdmins?: Prisma.EventAdministratorUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventCreateManyGroupInput = {
@@ -1193,6 +1377,7 @@ export type EventCreateManyGroupInput = {
   successPrimaryBtnUrl?: string | null
   isActive?: boolean | null
   createdAt?: Date | string | null
+  updatedAt?: Date | string | null
 }
 
 export type EventUpdateWithoutGroupInput = {
@@ -1209,10 +1394,12 @@ export type EventUpdateWithoutGroupInput = {
   successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   steps?: Prisma.RegistrationStepUpdateManyWithoutEventNestedInput
   registrations?: Prisma.EventRegistrationUpdateManyWithoutEventNestedInput
   claimSeatErrors?: Prisma.ClaimSeatErrorUpdateManyWithoutEventNestedInput
   eventAdmins?: Prisma.EventAdministratorUpdateManyWithoutEventNestedInput
+  coupons?: Prisma.EventCouponUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateWithoutGroupInput = {
@@ -1229,10 +1416,12 @@ export type EventUncheckedUpdateWithoutGroupInput = {
   successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   steps?: Prisma.RegistrationStepUncheckedUpdateManyWithoutEventNestedInput
   registrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutEventNestedInput
   claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedUpdateManyWithoutEventNestedInput
   eventAdmins?: Prisma.EventAdministratorUncheckedUpdateManyWithoutEventNestedInput
+  coupons?: Prisma.EventCouponUncheckedUpdateManyWithoutEventNestedInput
 }
 
 export type EventUncheckedUpdateManyWithoutGroupInput = {
@@ -1249,6 +1438,7 @@ export type EventUncheckedUpdateManyWithoutGroupInput = {
   successPrimaryBtnUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isActive?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -1261,6 +1451,7 @@ export type EventCountOutputType = {
   registrations: number
   claimSeatErrors: number
   eventAdmins: number
+  coupons: number
 }
 
 export type EventCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1268,6 +1459,7 @@ export type EventCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.
   registrations?: boolean | EventCountOutputTypeCountRegistrationsArgs
   claimSeatErrors?: boolean | EventCountOutputTypeCountClaimSeatErrorsArgs
   eventAdmins?: boolean | EventCountOutputTypeCountEventAdminsArgs
+  coupons?: boolean | EventCountOutputTypeCountCouponsArgs
 }
 
 /**
@@ -1308,6 +1500,13 @@ export type EventCountOutputTypeCountEventAdminsArgs<ExtArgs extends runtime.Typ
   where?: Prisma.EventAdministratorWhereInput
 }
 
+/**
+ * EventCountOutputType without action
+ */
+export type EventCountOutputTypeCountCouponsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EventCouponWhereInput
+}
+
 
 export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1324,11 +1523,13 @@ export type EventSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   successPrimaryBtnUrl?: boolean
   isActive?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   group?: boolean | Prisma.Event$groupArgs<ExtArgs>
   steps?: boolean | Prisma.Event$stepsArgs<ExtArgs>
   registrations?: boolean | Prisma.Event$registrationsArgs<ExtArgs>
   claimSeatErrors?: boolean | Prisma.Event$claimSeatErrorsArgs<ExtArgs>
   eventAdmins?: boolean | Prisma.Event$eventAdminsArgs<ExtArgs>
+  coupons?: boolean | Prisma.Event$couponsArgs<ExtArgs>
   _count?: boolean | Prisma.EventCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["event"]>
 
@@ -1347,6 +1548,7 @@ export type EventSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   successPrimaryBtnUrl?: boolean
   isActive?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   group?: boolean | Prisma.Event$groupArgs<ExtArgs>
 }, ExtArgs["result"]["event"]>
 
@@ -1365,6 +1567,7 @@ export type EventSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   successPrimaryBtnUrl?: boolean
   isActive?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   group?: boolean | Prisma.Event$groupArgs<ExtArgs>
 }, ExtArgs["result"]["event"]>
 
@@ -1383,15 +1586,17 @@ export type EventSelectScalar = {
   successPrimaryBtnUrl?: boolean
   isActive?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "groupId" | "slug" | "title" | "description" | "bannerPath" | "startAt" | "endAt" | "successGreeting" | "successDescription" | "successPrimaryBtnText" | "successPrimaryBtnUrl" | "isActive" | "createdAt", ExtArgs["result"]["event"]>
+export type EventOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "groupId" | "slug" | "title" | "description" | "bannerPath" | "startAt" | "endAt" | "successGreeting" | "successDescription" | "successPrimaryBtnText" | "successPrimaryBtnUrl" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["event"]>
 export type EventInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   group?: boolean | Prisma.Event$groupArgs<ExtArgs>
   steps?: boolean | Prisma.Event$stepsArgs<ExtArgs>
   registrations?: boolean | Prisma.Event$registrationsArgs<ExtArgs>
   claimSeatErrors?: boolean | Prisma.Event$claimSeatErrorsArgs<ExtArgs>
   eventAdmins?: boolean | Prisma.Event$eventAdminsArgs<ExtArgs>
+  coupons?: boolean | Prisma.Event$couponsArgs<ExtArgs>
   _count?: boolean | Prisma.EventCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EventIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1409,6 +1614,7 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     registrations: Prisma.$EventRegistrationPayload<ExtArgs>[]
     claimSeatErrors: Prisma.$ClaimSeatErrorPayload<ExtArgs>[]
     eventAdmins: Prisma.$EventAdministratorPayload<ExtArgs>[]
+    coupons: Prisma.$EventCouponPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1425,6 +1631,7 @@ export type $EventPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     successPrimaryBtnUrl: string | null
     isActive: boolean | null
     createdAt: Date | null
+    updatedAt: Date | null
   }, ExtArgs["result"]["event"]>
   composites: {}
 }
@@ -1824,6 +2031,7 @@ export interface Prisma__EventClient<T, Null = never, ExtArgs extends runtime.Ty
   registrations<T extends Prisma.Event$registrationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$registrationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   claimSeatErrors<T extends Prisma.Event$claimSeatErrorsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$claimSeatErrorsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClaimSeatErrorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   eventAdmins<T extends Prisma.Event$eventAdminsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$eventAdminsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventAdministratorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  coupons<T extends Prisma.Event$couponsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Event$couponsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventCouponPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1867,6 +2075,7 @@ export interface EventFieldRefs {
   readonly successPrimaryBtnUrl: Prisma.FieldRef<"Event", 'String'>
   readonly isActive: Prisma.FieldRef<"Event", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Event", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Event", 'DateTime'>
 }
     
 
@@ -2375,6 +2584,30 @@ export type Event$eventAdminsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.EventAdministratorScalarFieldEnum | Prisma.EventAdministratorScalarFieldEnum[]
+}
+
+/**
+ * Event.coupons
+ */
+export type Event$couponsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EventCoupon
+   */
+  select?: Prisma.EventCouponSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EventCoupon
+   */
+  omit?: Prisma.EventCouponOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EventCouponInclude<ExtArgs> | null
+  where?: Prisma.EventCouponWhereInput
+  orderBy?: Prisma.EventCouponOrderByWithRelationInput | Prisma.EventCouponOrderByWithRelationInput[]
+  cursor?: Prisma.EventCouponWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EventCouponScalarFieldEnum | Prisma.EventCouponScalarFieldEnum[]
 }
 
 /**

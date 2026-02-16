@@ -61,7 +61,9 @@ export const ModelName = {
   QuestionnaireAnswer: 'QuestionnaireAnswer',
   ClaimSeatError: 'ClaimSeatError',
   Administrator: 'Administrator',
-  EventAdministrator: 'EventAdministrator'
+  EventAdministrator: 'EventAdministrator',
+  EventCoupon: 'EventCoupon',
+  CustomerCoupon: 'CustomerCoupon'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -118,7 +120,8 @@ export const EventScalarFieldEnum = {
   successPrimaryBtnText: 'successPrimaryBtnText',
   successPrimaryBtnUrl: 'successPrimaryBtnUrl',
   isActive: 'isActive',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
@@ -180,7 +183,8 @@ export const EventRegistrationScalarFieldEnum = {
   claimSeatValue: 'claimSeatValue',
   qrCodeData: 'qrCodeData',
   status: 'status',
-  registeredAt: 'registeredAt'
+  registeredAt: 'registeredAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type EventRegistrationScalarFieldEnum = (typeof EventRegistrationScalarFieldEnum)[keyof typeof EventRegistrationScalarFieldEnum]
@@ -204,7 +208,8 @@ export const ClaimSeatErrorScalarFieldEnum = {
   triedValue: 'triedValue',
   errorMessage: 'errorMessage',
   status: 'status',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type ClaimSeatErrorScalarFieldEnum = (typeof ClaimSeatErrorScalarFieldEnum)[keyof typeof ClaimSeatErrorScalarFieldEnum]
@@ -230,6 +235,41 @@ export const EventAdministratorScalarFieldEnum = {
 } as const
 
 export type EventAdministratorScalarFieldEnum = (typeof EventAdministratorScalarFieldEnum)[keyof typeof EventAdministratorScalarFieldEnum]
+
+
+export const EventCouponScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  name: 'name',
+  code: 'code',
+  slug: 'slug',
+  description: 'description',
+  allowGenerateFrom: 'allowGenerateFrom',
+  allowGenerateUntil: 'allowGenerateUntil',
+  redeemFrom: 'redeemFrom',
+  redeemUntil: 'redeemUntil',
+  maxQuota: 'maxQuota',
+  isActive: 'isActive',
+  totalGenerated: 'totalGenerated',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EventCouponScalarFieldEnum = (typeof EventCouponScalarFieldEnum)[keyof typeof EventCouponScalarFieldEnum]
+
+
+export const CustomerCouponScalarFieldEnum = {
+  id: 'id',
+  registrationId: 'registrationId',
+  eventCouponId: 'eventCouponId',
+  qrData: 'qrData',
+  isRedeemed: 'isRedeemed',
+  generatedAt: 'generatedAt',
+  redeemedAt: 'redeemedAt',
+  scannedById: 'scannedById'
+} as const
+
+export type CustomerCouponScalarFieldEnum = (typeof CustomerCouponScalarFieldEnum)[keyof typeof CustomerCouponScalarFieldEnum]
 
 
 export const SortOrder = {

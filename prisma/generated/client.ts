@@ -94,3 +94,13 @@ export type Administrator = Prisma.AdministratorModel
  * 
  */
 export type EventAdministrator = Prisma.EventAdministratorModel
+/**
+ * Model EventCoupon
+ * 
+ */
+export type EventCoupon = Prisma.EventCouponModel
+/**
+ * Model CustomerCoupon
+ * 
+ */
+export type CustomerCoupon = Prisma.CustomerCouponModel

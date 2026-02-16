@@ -394,7 +394,9 @@ export const ModelName = {
   QuestionnaireAnswer: 'QuestionnaireAnswer',
   ClaimSeatError: 'ClaimSeatError',
   Administrator: 'Administrator',
-  EventAdministrator: 'EventAdministrator'
+  EventAdministrator: 'EventAdministrator',
+  EventCoupon: 'EventCoupon',
+  CustomerCoupon: 'CustomerCoupon'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -410,7 +412,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "customer" | "eventGroup" | "event" | "registrationStep" | "questionnaireQuestion" | "claimSeatConfig" | "eventRegistration" | "questionnaireAnswer" | "claimSeatError" | "administrator" | "eventAdministrator"
+    modelProps: "customer" | "eventGroup" | "event" | "registrationStep" | "questionnaireQuestion" | "claimSeatConfig" | "eventRegistration" | "questionnaireAnswer" | "claimSeatError" | "administrator" | "eventAdministrator" | "eventCoupon" | "customerCoupon"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1228,6 +1230,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    EventCoupon: {
+      payload: Prisma.$EventCouponPayload<ExtArgs>
+      fields: Prisma.EventCouponFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.EventCouponFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventCouponPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.EventCouponFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventCouponPayload>
+        }
+        findFirst: {
+          args: Prisma.EventCouponFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventCouponPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.EventCouponFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventCouponPayload>
+        }
+        findMany: {
+          args: Prisma.EventCouponFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventCouponPayload>[]
+        }
+        create: {
+          args: Prisma.EventCouponCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventCouponPayload>
+        }
+        createMany: {
+          args: Prisma.EventCouponCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.EventCouponCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventCouponPayload>[]
+        }
+        delete: {
+          args: Prisma.EventCouponDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventCouponPayload>
+        }
+        update: {
+          args: Prisma.EventCouponUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventCouponPayload>
+        }
+        deleteMany: {
+          args: Prisma.EventCouponDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.EventCouponUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.EventCouponUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventCouponPayload>[]
+        }
+        upsert: {
+          args: Prisma.EventCouponUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$EventCouponPayload>
+        }
+        aggregate: {
+          args: Prisma.EventCouponAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateEventCoupon>
+        }
+        groupBy: {
+          args: Prisma.EventCouponGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EventCouponGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.EventCouponCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.EventCouponCountAggregateOutputType> | number
+        }
+      }
+    }
+    CustomerCoupon: {
+      payload: Prisma.$CustomerCouponPayload<ExtArgs>
+      fields: Prisma.CustomerCouponFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CustomerCouponFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerCouponPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CustomerCouponFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerCouponPayload>
+        }
+        findFirst: {
+          args: Prisma.CustomerCouponFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerCouponPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CustomerCouponFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerCouponPayload>
+        }
+        findMany: {
+          args: Prisma.CustomerCouponFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerCouponPayload>[]
+        }
+        create: {
+          args: Prisma.CustomerCouponCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerCouponPayload>
+        }
+        createMany: {
+          args: Prisma.CustomerCouponCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CustomerCouponCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerCouponPayload>[]
+        }
+        delete: {
+          args: Prisma.CustomerCouponDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerCouponPayload>
+        }
+        update: {
+          args: Prisma.CustomerCouponUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerCouponPayload>
+        }
+        deleteMany: {
+          args: Prisma.CustomerCouponDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CustomerCouponUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CustomerCouponUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerCouponPayload>[]
+        }
+        upsert: {
+          args: Prisma.CustomerCouponUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CustomerCouponPayload>
+        }
+        aggregate: {
+          args: Prisma.CustomerCouponAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCustomerCoupon>
+        }
+        groupBy: {
+          args: Prisma.CustomerCouponGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CustomerCouponGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CustomerCouponCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CustomerCouponCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1305,7 +1455,8 @@ export const EventScalarFieldEnum = {
   successPrimaryBtnText: 'successPrimaryBtnText',
   successPrimaryBtnUrl: 'successPrimaryBtnUrl',
   isActive: 'isActive',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
@@ -1367,7 +1518,8 @@ export const EventRegistrationScalarFieldEnum = {
   claimSeatValue: 'claimSeatValue',
   qrCodeData: 'qrCodeData',
   status: 'status',
-  registeredAt: 'registeredAt'
+  registeredAt: 'registeredAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type EventRegistrationScalarFieldEnum = (typeof EventRegistrationScalarFieldEnum)[keyof typeof EventRegistrationScalarFieldEnum]
@@ -1391,7 +1543,8 @@ export const ClaimSeatErrorScalarFieldEnum = {
   triedValue: 'triedValue',
   errorMessage: 'errorMessage',
   status: 'status',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type ClaimSeatErrorScalarFieldEnum = (typeof ClaimSeatErrorScalarFieldEnum)[keyof typeof ClaimSeatErrorScalarFieldEnum]
@@ -1417,6 +1570,41 @@ export const EventAdministratorScalarFieldEnum = {
 } as const
 
 export type EventAdministratorScalarFieldEnum = (typeof EventAdministratorScalarFieldEnum)[keyof typeof EventAdministratorScalarFieldEnum]
+
+
+export const EventCouponScalarFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  name: 'name',
+  code: 'code',
+  slug: 'slug',
+  description: 'description',
+  allowGenerateFrom: 'allowGenerateFrom',
+  allowGenerateUntil: 'allowGenerateUntil',
+  redeemFrom: 'redeemFrom',
+  redeemUntil: 'redeemUntil',
+  maxQuota: 'maxQuota',
+  isActive: 'isActive',
+  totalGenerated: 'totalGenerated',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EventCouponScalarFieldEnum = (typeof EventCouponScalarFieldEnum)[keyof typeof EventCouponScalarFieldEnum]
+
+
+export const CustomerCouponScalarFieldEnum = {
+  id: 'id',
+  registrationId: 'registrationId',
+  eventCouponId: 'eventCouponId',
+  qrData: 'qrData',
+  isRedeemed: 'isRedeemed',
+  generatedAt: 'generatedAt',
+  redeemedAt: 'redeemedAt',
+  scannedById: 'scannedById'
+} as const
+
+export type CustomerCouponScalarFieldEnum = (typeof CustomerCouponScalarFieldEnum)[keyof typeof CustomerCouponScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1718,6 +1906,8 @@ export type GlobalOmitConfig = {
   claimSeatError?: Prisma.ClaimSeatErrorOmit
   administrator?: Prisma.AdministratorOmit
   eventAdministrator?: Prisma.EventAdministratorOmit
+  eventCoupon?: Prisma.EventCouponOmit
+  customerCoupon?: Prisma.CustomerCouponOmit
 }
 
 /* Types for Logging */
