@@ -13,8 +13,6 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   }
 
   if (to.path == '/registration') {
-    console.log(authStore.currentEventId)
-    console.log('registration')
     try {
       const { data: loginCheck, error: loginError } = await useFetch(
         "/api/auth/login-check",
@@ -49,14 +47,14 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
       // active -> /dashboard
 
       if (!status.status || status.status === 'pending') {
-        if (to.path !== '/registration') return navigateTo("/registration");
+        return navigateTo("/registration");
       } else if (status.status === 'completed') {
-        if (to.path !== '/registration-success') return navigateTo("/registration-success");
+        return navigateTo("/registration-success");
       } else if (status.status === 'active') {
-        if (to.path !== '/dashboard') return navigateTo("/dashboard");
+        return navigateTo("/dashboard");
       } else {
         // Fallback for unknown status or if status is missing but isRegistered is true
-        if (status.isRegistered && to.path !== '/registration-success') {
+        if (status.isRegistered) {
           return navigateTo("/registration-success");
         }
       }
@@ -64,7 +62,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
       // If error, maybe clear auth or redirect to home?
       // For now, let's just log and maybe redirect home if critical
       console.error(err);
-      if (to.path !== '/') return navigateTo("/");
+      return navigateTo("/");
     }
   }
 })

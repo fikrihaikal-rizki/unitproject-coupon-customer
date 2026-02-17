@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
       statusMessage: "Unauthorized",
     })
   }
-  const customerId = user.id
+  const customerId = user.sub
 
   // 2. Payload Extraction
   const body = await readBody(event)

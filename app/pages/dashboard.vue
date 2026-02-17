@@ -143,6 +143,32 @@ const formatTime = (date: string | Date | null | undefined) => {
   }
 };
 
+// Countdown Logic
+const now = ref(new Date());
+let countdownInterval: any = null;
+
+const getCountdown = (date: string | Date | null | undefined) => {
+  if (!date) return "-";
+  try {
+    const target = new Date(date);
+    const diff = target.getTime() - now.value.getTime();
+
+    if (diff <= 0) return "0 hours 0 minutes";
+
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+    if (d > 0) {
+      return `${d} ${d === 1 ? "day" : "days"} ${h} ${h === 1 ? "hour" : "hours"} ${m} ${m === 1 ? "minute" : "minutes"}`;
+    } else {
+      return `${h} ${h === 1 ? "hour" : "hours"} ${m} ${m === 1 ? "minute" : "minutes"}`;
+    }
+  } catch (e) {
+    return "-";
+  }
+};
+
 // Scroll Interaction - Month Indicator
 // We will track the visibility of coupons and update the current month based on the top-most visible one.
 const currentVisibleMonth = ref(format(new Date(), "MMMM yyyy"));
@@ -151,6 +177,10 @@ let observer: IntersectionObserver | null = null;
 const dateMap = new Map<Element, string | Date>();
 
 onMounted(() => {
+  countdownInterval = setInterval(() => {
+    now.value = new Date();
+  }, 10000); // Update every 10 seconds
+
   observer = new IntersectionObserver(
     (entries) => {
       // Find the first intersecting entry (or the one most congruent with top)
@@ -171,6 +201,9 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
+  if (countdownInterval) {
+    clearInterval(countdownInterval);
+  }
   if (observer) {
     observer.disconnect();
     observer = null;
@@ -273,11 +306,7 @@ const registerCouponRef = (el: any, coupon: any) => {
                         Expires in
                       </p>
                       <p class="text-xl font-mono font-bold">
-                        {{
-                          formatDistanceToNow(
-                            new Date(coupon.allowGenerateUntil),
-                          )
-                        }}
+                        {{ getCountdown(coupon.allowGenerateUntil) }}
                       </p>
                     </div>
                     <div v-else class="text-right">
@@ -287,11 +316,7 @@ const registerCouponRef = (el: any, coupon: any) => {
                         Starts in
                       </p>
                       <p class="text-xl font-mono font-bold">
-                        {{
-                          formatDistanceToNow(
-                            new Date(coupon.allowGenerateFrom),
-                          )
-                        }}
+                        {{ getCountdown(coupon.allowGenerateFrom) }}
                       </p>
                     </div>
 
