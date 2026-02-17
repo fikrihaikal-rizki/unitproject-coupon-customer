@@ -9,9 +9,12 @@ interface Props {
     email: string;
     phoneNumber?: string | null;
   };
+  readonly?: boolean;
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  readonly: false,
+});
 const emit = defineEmits(["next"]);
 
 const schema = zod.object({
@@ -76,9 +79,11 @@ const onSubmit = handleSubmit(async (values) => {
           Complete Your Profile
         </h2>
       </slot>
-      <p class="text-sm text-zinc-500">
-        We need a few details to get you started.
-      </p>
+      <slot name="sub-title">
+        <p class="text-sm text-zinc-500">
+          We need a few details to get you started.
+        </p>
+      </slot>
     </div>
 
     <form @submit.prevent="onSubmit" class="space-y-4">
@@ -90,8 +95,11 @@ const onSubmit = handleSubmit(async (values) => {
           v-bind="emailProps"
           readonly
           class="bg-zinc-50 dark:bg-zinc-800/50"
+          :disabled="readonly"
         />
-        <p class="text-[10px] text-zinc-400">Email cannot be changed.</p>
+        <p v-if="!readonly" class="text-[10px] text-zinc-400">
+          Email cannot be changed.
+        </p>
       </div>
 
       <div class="space-y-2">
@@ -102,8 +110,9 @@ const onSubmit = handleSubmit(async (values) => {
           v-bind="fullNameProps"
           placeholder="e.g. John Doe"
           :class="{ 'border-red-500': errors.fullName }"
+          :disabled="readonly"
         />
-        <p v-if="errors.fullName" class="text-xs text-red-500">
+        <p v-if="errors.fullName && !readonly" class="text-xs text-red-500">
           {{ errors.fullName }}
         </p>
       </div>
@@ -116,13 +125,14 @@ const onSubmit = handleSubmit(async (values) => {
           v-bind="phoneNumberProps"
           placeholder="e.g. +62812345678"
           :class="{ 'border-red-500': errors.phoneNumber }"
+          :disabled="readonly"
         />
-        <p v-if="errors.phoneNumber" class="text-xs text-red-500">
+        <p v-if="errors.phoneNumber && !readonly" class="text-xs text-red-500">
           {{ errors.phoneNumber }}
         </p>
       </div>
 
-      <div class="pt-4">
+      <div class="pt-4" v-if="!readonly">
         <slot name="action">
           <Button type="submit" class="w-full" :disabled="isSubmitting">
             <span v-if="isSubmitting">Saving...</span>

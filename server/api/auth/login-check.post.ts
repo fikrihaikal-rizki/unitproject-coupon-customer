@@ -69,8 +69,8 @@ export default defineEventHandler(async (event) => {
     registrationStatus: {
       isRegistered: isRegistered,
       isStarted,
-      isEnded,
       isActive,
+      status: registration ? registration.status : null,
     },
   }
 })
