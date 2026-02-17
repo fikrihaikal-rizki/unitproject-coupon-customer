@@ -38,11 +38,11 @@ const profileData = computed(() => {
 });
 
 const handleLogout = async () => {
-  toast.loading("Logging out...");
+  const toastLoading = toast.loading("Logging out...");
   await supabase.auth.signOut();
   authStore.clearAuth();
   navigateTo("/");
-  toast.success("Logged out successfully");
+  toast.success("Logged out successfully", { id: toastLoading });
 };
 
 // Date Formatters
