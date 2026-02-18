@@ -102,11 +102,19 @@ const syncUserAndRedirect = async () => {
 
     const status = loginCheckResult.registrationStatus;
 
-    if (!status.status || status.status === 'pending') {
+    if (!status.isRegistered) {
       return navigateTo("/registration");
-    } else if (status.status === 'completed') {
+    } 
+    
+    if (!status.isStarted && status.status === 'completed') {
       return navigateTo("/registration-success");
-    } else if (status.status === 'active') {
+    } else if (status.isStarted && status.status === 'completed') {
+      return navigateTo("/registration-success");
+    }
+    
+    if (!status.isStarted && status.status === 'active') {
+      return navigateTo("/registration-success");
+    } else if (status.isStarted && status.status === 'active') {
       return navigateTo("/dashboard");
     } else {
       // Fallback

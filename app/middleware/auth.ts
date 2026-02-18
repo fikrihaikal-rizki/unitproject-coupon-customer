@@ -4,7 +4,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   const user = useSupabaseUser()
   const authStore = useAuthStore()
 
-  if (!user.value) {
+  if (!user.value || !authStore.customerId) {
     return navigateTo('/')
   }
 
@@ -12,7 +12,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     return navigateTo('/')
   }
 
-  if (to.path == '/registration') {
+  if (from.path != '/login/' + authStore.currentEventSlug && (to.path == '/registration' || to.path == '/dashboard')) {
     try {
       const { data: loginCheck, error: loginError } = await useFetch(
         "/api/auth/login-check",
@@ -45,18 +45,29 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
       // pending -> /registration
       // completed -> /registration-success
       // active -> /dashboard
+      if (!status.isRegistered && to.path == '/registration') {
+        return;
+      }
 
-      if (!status.status || status.status === 'pending') {
+      if (!status.isRegistered && to.path == '/dashboard') {
         return navigateTo("/registration");
-      } else if (status.status === 'completed') {
+      }
+
+      if (!status.isStarted && status.status === 'completed') {
         return navigateTo("/registration-success");
-      } else if (status.status === 'active') {
+      } else if (status.isStarted && status.status === 'completed') {
+        return navigateTo("/registration-success");
+      }
+
+      if (!status.isStarted && status.status === 'active') {
+        return navigateTo("/registration-success");
+      } else if (status.isStarted && status.status === 'active' && to.path == '/registration') {
         return navigateTo("/dashboard");
+      } else if (status.isStarted && status.status === 'active' && to.path == '/dashboard') {
+        return;
       } else {
-        // Fallback for unknown status or if status is missing but isRegistered is true
-        if (status.isRegistered) {
-          return navigateTo("/registration-success");
-        }
+        // Fallback
+        return navigateTo("/registration-success");
       }
     } catch (err: any) {
       // If error, maybe clear auth or redirect to home?
