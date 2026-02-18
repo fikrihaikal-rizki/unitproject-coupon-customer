@@ -397,12 +397,29 @@ export type BoolFilter<$PrismaModel = never> = {
   not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean
 }
 
+export type EnumAdminRolesNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.AdminRoles | Prisma.EnumAdminRolesFieldRefInput<$PrismaModel> | null
+  in?: $Enums.AdminRoles[] | Prisma.ListEnumAdminRolesFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.AdminRoles[] | Prisma.ListEnumAdminRolesFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumAdminRolesNullableFilter<$PrismaModel> | $Enums.AdminRoles | null
+}
+
 export type BoolWithAggregatesFilter<$PrismaModel = never> = {
   equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>
   not?: Prisma.NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedBoolFilter<$PrismaModel>
   _max?: Prisma.NestedBoolFilter<$PrismaModel>
+}
+
+export type EnumAdminRolesNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AdminRoles | Prisma.EnumAdminRolesFieldRefInput<$PrismaModel> | null
+  in?: $Enums.AdminRoles[] | Prisma.ListEnumAdminRolesFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.AdminRoles[] | Prisma.ListEnumAdminRolesFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumAdminRolesNullableWithAggregatesFilter<$PrismaModel> | $Enums.AdminRoles | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAdminRolesNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAdminRolesNullableFilter<$PrismaModel>
 }
 
 export type NestedUuidFilter<$PrismaModel = never> = {
@@ -770,12 +787,29 @@ export type NestedBoolFilter<$PrismaModel = never> = {
   not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean
 }
 
+export type NestedEnumAdminRolesNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.AdminRoles | Prisma.EnumAdminRolesFieldRefInput<$PrismaModel> | null
+  in?: $Enums.AdminRoles[] | Prisma.ListEnumAdminRolesFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.AdminRoles[] | Prisma.ListEnumAdminRolesFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumAdminRolesNullableFilter<$PrismaModel> | $Enums.AdminRoles | null
+}
+
 export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
   equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>
   not?: Prisma.NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedBoolFilter<$PrismaModel>
   _max?: Prisma.NestedBoolFilter<$PrismaModel>
+}
+
+export type NestedEnumAdminRolesNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AdminRoles | Prisma.EnumAdminRolesFieldRefInput<$PrismaModel> | null
+  in?: $Enums.AdminRoles[] | Prisma.ListEnumAdminRolesFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.AdminRoles[] | Prisma.ListEnumAdminRolesFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumAdminRolesNullableWithAggregatesFilter<$PrismaModel> | $Enums.AdminRoles | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAdminRolesNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAdminRolesNullableFilter<$PrismaModel>
 }
 
 

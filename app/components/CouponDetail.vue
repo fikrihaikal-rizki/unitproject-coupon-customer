@@ -22,17 +22,17 @@ const downloadTicket = async () => {
   try {
     const el = document.getElementById("coupon-card");
     if (el) {
-      const dataUrl = await domToJpeg(el, { quality: 0.95 });
+      const dataUrl = await domToJpeg(el, { quality: 1, scale: 2 });
       const link = document.createElement("a");
       link.download = `${props.eventName}-${props.couponName}-ticket.jpg`;
       link.href = dataUrl;
       link.click();
 
-      toast.success("Ticket downloaded successfully!");
+      toast.success("Coupon downloaded successfully!");
     }
   } catch (error) {
     console.error("Download failed:", error);
-    toast.error("Failed to download ticket.");
+    toast.error("Failed to download Coupon.");
   } finally {
     isDownloading.value = false;
   }
@@ -99,15 +99,19 @@ const formatDate = (date?: string | Date) => {
           <div class="flex flex-col gap-2 text-center w-full px-4">
             <div class="flex flex-col items-center justify-between text-sm">
               <span class="text-zinc-500">Valid From</span>
-              <span class="font-medium text-zinc-900 dark:text-zinc-50">{{
-                formatDate(redeemFrom)
-              }}</span>
+              <ClientOnly>
+                <span class="font-medium text-zinc-900 dark:text-zinc-50">{{
+                  formatDate(redeemFrom)
+                }}</span>
+              </ClientOnly>
             </div>
             <div class="flex flex-col items-center justify-between text-sm">
               <span class="text-zinc-500">Expires On</span>
-              <span class="font-medium text-red-600 dark:text-red-400">{{
-                formatDate(expiryDate)
-              }}</span>
+              <ClientOnly>
+                <span class="font-medium text-red-600 dark:text-red-400">{{
+                  formatDate(expiryDate)
+                }}</span>
+              </ClientOnly>
             </div>
           </div>
         </CardContent>

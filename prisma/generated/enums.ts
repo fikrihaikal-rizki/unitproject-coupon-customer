@@ -57,3 +57,11 @@ export const ClaimSeatErrorStatus = {
 } as const
 
 export type ClaimSeatErrorStatus = (typeof ClaimSeatErrorStatus)[keyof typeof ClaimSeatErrorStatus]
+
+
+export const AdminRoles = {
+  admin: 'admin',
+  operator: 'operator'
+} as const
+
+export type AdminRoles = (typeof AdminRoles)[keyof typeof AdminRoles]

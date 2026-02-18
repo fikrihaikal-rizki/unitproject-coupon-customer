@@ -1556,6 +1556,7 @@ export const AdministratorScalarFieldEnum = {
   fullname: 'fullname',
   password: 'password',
   isActive: 'isActive',
+  role: 'role',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1586,6 +1587,7 @@ export const EventCouponScalarFieldEnum = {
   maxQuota: 'maxQuota',
   isActive: 'isActive',
   totalGenerated: 'totalGenerated',
+  totalRedeemed: 'totalRedeemed',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1784,6 +1786,20 @@ export type EnumClaimSeatErrorStatusFieldRefInput<$PrismaModel> = FieldRefInputT
  * Reference to a field of type 'ClaimSeatErrorStatus[]'
  */
 export type ListEnumClaimSeatErrorStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ClaimSeatErrorStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'AdminRoles'
+ */
+export type EnumAdminRolesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AdminRoles'>
+    
+
+
+/**
+ * Reference to a field of type 'AdminRoles[]'
+ */
+export type ListEnumAdminRolesFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AdminRoles[]'>
     
 
 
