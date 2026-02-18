@@ -7,10 +7,8 @@ import {
   Filter,
   X,
 } from "lucide-vue-next";
-import { format, formatDistanceToNow, isSameDay } from "date-fns";
-import { toast } from "vue-sonner";
+import { format, isSameDay } from "date-fns";
 import { useAuthStore } from "~/stores/auth";
-import { useIntersectionObserver } from "@vueuse/core";
 import CustomerSidebar from "~/components/CustomerSidebar.vue";
 import {
   SidebarProvider,
@@ -24,7 +22,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
-import { cn } from "@/lib/utils";
 
 const authStore = useAuthStore();
 

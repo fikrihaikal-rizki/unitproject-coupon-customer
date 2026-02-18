@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) => {
   }
 
   // 3. Validation & Guard Logic (Pre-Transaction)
-  
+
   // Fetch everything needed for validation
   const eventCoupon = await prisma.eventCoupon.findUnique({
     where: { slug: couponSlug },
@@ -105,25 +105,29 @@ export default defineEventHandler(async (event) => {
         throw new Error("QUOTA_FULL")
       }
 
-      // Increment totalGenerated
-      await tx.eventCoupon.update({
-        where: { id: coupon.id },
-        data: {
-          totalGenerated: { increment: 1 }
-        }
-      })
-
       // QR Data Logic: qrData = EventRegistration.qrCodeData + EventCoupon.slug
       const qrData = registration.qrCodeData + coupon.slug
 
       // Create new CustomerCoupon
-      return await tx.customerCoupon.create({
+      await tx.customerCoupon.create({
         data: {
           registrationId: registration.id,
           eventCouponId: coupon.id,
           qrData,
           isRedeemed: false,
         },
+      })
+
+      const totalGenerated = await tx.customerCoupon.count({
+        where: { eventCouponId: coupon.id }
+      })
+
+      // Increment totalGenerated
+      return await tx.eventCoupon.update({
+        where: { id: coupon.id },
+        data: {
+          totalGenerated: totalGenerated
+        }
       })
     })
 
@@ -135,21 +139,21 @@ export default defineEventHandler(async (event) => {
         statusMessage: "Quota Full", // Requirement: "Quota Full"
       })
     }
-    
+
     // Handle Prisma P2002 (Unique constraint) - should be rare but possible in race condition
     if (error.code === 'P2002') {
-       const retryExisting = await prisma.customerCoupon.findFirst({
-         where: {
-           registrationId: registration.id,
-           eventCouponId: eventCoupon.id,
-         },
-       })
-       if (retryExisting) return retryExisting
-       
-       throw createError({
-         statusCode: 409,
-         statusMessage: "Already Generated", // Requirement: "Already Generated"
-       })
+      const retryExisting = await prisma.customerCoupon.findFirst({
+        where: {
+          registrationId: registration.id,
+          eventCouponId: eventCoupon.id,
+        },
+      })
+      if (retryExisting) return retryExisting
+
+      throw createError({
+        statusCode: 409,
+        statusMessage: "Already Generated", // Requirement: "Already Generated"
+      })
     }
 
     throw createError({

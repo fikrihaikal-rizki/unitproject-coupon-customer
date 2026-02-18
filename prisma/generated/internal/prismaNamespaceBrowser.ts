@@ -221,6 +221,7 @@ export const AdministratorScalarFieldEnum = {
   fullname: 'fullname',
   password: 'password',
   isActive: 'isActive',
+  role: 'role',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -251,6 +252,7 @@ export const EventCouponScalarFieldEnum = {
   maxQuota: 'maxQuota',
   isActive: 'isActive',
   totalGenerated: 'totalGenerated',
+  totalRedeemed: 'totalRedeemed',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
