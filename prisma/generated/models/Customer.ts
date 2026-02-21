@@ -29,7 +29,6 @@ export type CustomerMinAggregateOutputType = {
   email: string | null
   fullName: string | null
   phoneNumber: string | null
-  blacklistedUntil: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -39,7 +38,6 @@ export type CustomerMaxAggregateOutputType = {
   email: string | null
   fullName: string | null
   phoneNumber: string | null
-  blacklistedUntil: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -49,7 +47,6 @@ export type CustomerCountAggregateOutputType = {
   email: number
   fullName: number
   phoneNumber: number
-  blacklistedUntil: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -61,7 +58,6 @@ export type CustomerMinAggregateInputType = {
   email?: true
   fullName?: true
   phoneNumber?: true
-  blacklistedUntil?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -71,7 +67,6 @@ export type CustomerMaxAggregateInputType = {
   email?: true
   fullName?: true
   phoneNumber?: true
-  blacklistedUntil?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -81,7 +76,6 @@ export type CustomerCountAggregateInputType = {
   email?: true
   fullName?: true
   phoneNumber?: true
-  blacklistedUntil?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -164,7 +158,6 @@ export type CustomerGroupByOutputType = {
   email: string
   fullName: string | null
   phoneNumber: string | null
-  blacklistedUntil: Date | null
   createdAt: Date | null
   updatedAt: Date | null
   _count: CustomerCountAggregateOutputType | null
@@ -195,7 +188,6 @@ export type CustomerWhereInput = {
   email?: Prisma.StringFilter<"Customer"> | string
   fullName?: Prisma.StringNullableFilter<"Customer"> | string | null
   phoneNumber?: Prisma.StringNullableFilter<"Customer"> | string | null
-  blacklistedUntil?: Prisma.DateTimeNullableFilter<"Customer"> | Date | string | null
   createdAt?: Prisma.DateTimeNullableFilter<"Customer"> | Date | string | null
   updatedAt?: Prisma.DateTimeNullableFilter<"Customer"> | Date | string | null
   registrations?: Prisma.EventRegistrationListRelationFilter
@@ -207,7 +199,6 @@ export type CustomerOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   fullName?: Prisma.SortOrderInput | Prisma.SortOrder
   phoneNumber?: Prisma.SortOrderInput | Prisma.SortOrder
-  blacklistedUntil?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrderInput | Prisma.SortOrder
   updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   registrations?: Prisma.EventRegistrationOrderByRelationAggregateInput
@@ -222,7 +213,6 @@ export type CustomerWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.CustomerWhereInput | Prisma.CustomerWhereInput[]
   fullName?: Prisma.StringNullableFilter<"Customer"> | string | null
   phoneNumber?: Prisma.StringNullableFilter<"Customer"> | string | null
-  blacklistedUntil?: Prisma.DateTimeNullableFilter<"Customer"> | Date | string | null
   createdAt?: Prisma.DateTimeNullableFilter<"Customer"> | Date | string | null
   updatedAt?: Prisma.DateTimeNullableFilter<"Customer"> | Date | string | null
   registrations?: Prisma.EventRegistrationListRelationFilter
@@ -234,7 +224,6 @@ export type CustomerOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   fullName?: Prisma.SortOrderInput | Prisma.SortOrder
   phoneNumber?: Prisma.SortOrderInput | Prisma.SortOrder
-  blacklistedUntil?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrderInput | Prisma.SortOrder
   updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.CustomerCountOrderByAggregateInput
@@ -250,7 +239,6 @@ export type CustomerScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"Customer"> | string
   fullName?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
   phoneNumber?: Prisma.StringNullableWithAggregatesFilter<"Customer"> | string | null
-  blacklistedUntil?: Prisma.DateTimeNullableWithAggregatesFilter<"Customer"> | Date | string | null
   createdAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Customer"> | Date | string | null
   updatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Customer"> | Date | string | null
 }
@@ -260,7 +248,6 @@ export type CustomerCreateInput = {
   email: string
   fullName?: string | null
   phoneNumber?: string | null
-  blacklistedUntil?: Date | string | null
   createdAt?: Date | string | null
   updatedAt?: Date | string | null
   registrations?: Prisma.EventRegistrationCreateNestedManyWithoutCustomerInput
@@ -272,7 +259,6 @@ export type CustomerUncheckedCreateInput = {
   email: string
   fullName?: string | null
   phoneNumber?: string | null
-  blacklistedUntil?: Date | string | null
   createdAt?: Date | string | null
   updatedAt?: Date | string | null
   registrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutCustomerInput
@@ -284,7 +270,6 @@ export type CustomerUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   registrations?: Prisma.EventRegistrationUpdateManyWithoutCustomerNestedInput
@@ -296,7 +281,6 @@ export type CustomerUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   registrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutCustomerNestedInput
@@ -308,7 +292,6 @@ export type CustomerCreateManyInput = {
   email: string
   fullName?: string | null
   phoneNumber?: string | null
-  blacklistedUntil?: Date | string | null
   createdAt?: Date | string | null
   updatedAt?: Date | string | null
 }
@@ -318,7 +301,6 @@ export type CustomerUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -328,7 +310,6 @@ export type CustomerUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -338,7 +319,6 @@ export type CustomerCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   fullName?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrder
-  blacklistedUntil?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -348,7 +328,6 @@ export type CustomerMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   fullName?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrder
-  blacklistedUntil?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -358,7 +337,6 @@ export type CustomerMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   fullName?: Prisma.SortOrder
   phoneNumber?: Prisma.SortOrder
-  blacklistedUntil?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -417,7 +395,6 @@ export type CustomerCreateWithoutRegistrationsInput = {
   email: string
   fullName?: string | null
   phoneNumber?: string | null
-  blacklistedUntil?: Date | string | null
   createdAt?: Date | string | null
   updatedAt?: Date | string | null
   claimSeatErrors?: Prisma.ClaimSeatErrorCreateNestedManyWithoutCustomerInput
@@ -428,7 +405,6 @@ export type CustomerUncheckedCreateWithoutRegistrationsInput = {
   email: string
   fullName?: string | null
   phoneNumber?: string | null
-  blacklistedUntil?: Date | string | null
   createdAt?: Date | string | null
   updatedAt?: Date | string | null
   claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedCreateNestedManyWithoutCustomerInput
@@ -455,7 +431,6 @@ export type CustomerUpdateWithoutRegistrationsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   claimSeatErrors?: Prisma.ClaimSeatErrorUpdateManyWithoutCustomerNestedInput
@@ -466,7 +441,6 @@ export type CustomerUncheckedUpdateWithoutRegistrationsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   claimSeatErrors?: Prisma.ClaimSeatErrorUncheckedUpdateManyWithoutCustomerNestedInput
@@ -477,7 +451,6 @@ export type CustomerCreateWithoutClaimSeatErrorsInput = {
   email: string
   fullName?: string | null
   phoneNumber?: string | null
-  blacklistedUntil?: Date | string | null
   createdAt?: Date | string | null
   updatedAt?: Date | string | null
   registrations?: Prisma.EventRegistrationCreateNestedManyWithoutCustomerInput
@@ -488,7 +461,6 @@ export type CustomerUncheckedCreateWithoutClaimSeatErrorsInput = {
   email: string
   fullName?: string | null
   phoneNumber?: string | null
-  blacklistedUntil?: Date | string | null
   createdAt?: Date | string | null
   updatedAt?: Date | string | null
   registrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutCustomerInput
@@ -515,7 +487,6 @@ export type CustomerUpdateWithoutClaimSeatErrorsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   registrations?: Prisma.EventRegistrationUpdateManyWithoutCustomerNestedInput
@@ -526,7 +497,6 @@ export type CustomerUncheckedUpdateWithoutClaimSeatErrorsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phoneNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   registrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutCustomerNestedInput
@@ -577,7 +547,6 @@ export type CustomerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   email?: boolean
   fullName?: boolean
   phoneNumber?: boolean
-  blacklistedUntil?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   registrations?: boolean | Prisma.Customer$registrationsArgs<ExtArgs>
@@ -590,7 +559,6 @@ export type CustomerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   email?: boolean
   fullName?: boolean
   phoneNumber?: boolean
-  blacklistedUntil?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["customer"]>
@@ -600,7 +568,6 @@ export type CustomerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   email?: boolean
   fullName?: boolean
   phoneNumber?: boolean
-  blacklistedUntil?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["customer"]>
@@ -610,12 +577,11 @@ export type CustomerSelectScalar = {
   email?: boolean
   fullName?: boolean
   phoneNumber?: boolean
-  blacklistedUntil?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type CustomerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "fullName" | "phoneNumber" | "blacklistedUntil" | "createdAt" | "updatedAt", ExtArgs["result"]["customer"]>
+export type CustomerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "fullName" | "phoneNumber" | "createdAt" | "updatedAt", ExtArgs["result"]["customer"]>
 export type CustomerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   registrations?: boolean | Prisma.Customer$registrationsArgs<ExtArgs>
   claimSeatErrors?: boolean | Prisma.Customer$claimSeatErrorsArgs<ExtArgs>
@@ -635,7 +601,6 @@ export type $CustomerPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     email: string
     fullName: string | null
     phoneNumber: string | null
-    blacklistedUntil: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }, ExtArgs["result"]["customer"]>
@@ -1067,7 +1032,6 @@ export interface CustomerFieldRefs {
   readonly email: Prisma.FieldRef<"Customer", 'String'>
   readonly fullName: Prisma.FieldRef<"Customer", 'String'>
   readonly phoneNumber: Prisma.FieldRef<"Customer", 'String'>
-  readonly blacklistedUntil: Prisma.FieldRef<"Customer", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Customer", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Customer", 'DateTime'>
 }

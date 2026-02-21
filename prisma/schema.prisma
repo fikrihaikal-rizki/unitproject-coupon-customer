@@ -43,6 +43,7 @@ enum EventRegistrationStatus {
   pending
   completed
   cancelled
+  blacklisted
 }
 
 enum ClaimSeatErrorStatus {
@@ -56,13 +57,12 @@ enum AdminRoles {
 }
 
 model Customer {
-  id               String    @id @db.Uuid // References auth.users(id) 
-  email            String    @unique
-  fullName         String?   @map("full_name")
-  phoneNumber      String?   @map("phone_number") @db.VarChar(20)
-  blacklistedUntil DateTime? @map("blacklisted_until") @db.Timestamptz
-  createdAt        DateTime? @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt        DateTime? @updatedAt @map("updated_at") @db.Timestamptz
+  id          String    @id @db.Uuid // References auth.users(id) 
+  email       String    @unique
+  fullName    String?   @map("full_name")
+  phoneNumber String?   @map("phone_number") @db.VarChar(20)
+  createdAt   DateTime? @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt   DateTime? @updatedAt @map("updated_at") @db.Timestamptz
 
   registrations   EventRegistration[]
   claimSeatErrors ClaimSeatError[]
@@ -166,14 +166,15 @@ model ClaimSeatConfig {
 }
 
 model EventRegistration {
-  id             Int                      @id @default(autoincrement())
-  eventId        String?                  @map("event_id") @db.Uuid
-  customerId     String?                  @map("customer_id") @db.Uuid
-  claimSeatValue String?                  @map("claim_seat_value") @db.VarChar(255)
-  qrCodeData     String                   @unique @map("qr_code_data")
-  status         EventRegistrationStatus? @default(active)
-  registeredAt   DateTime?                @default(now()) @map("registered_at") @db.Timestamptz
-  updatedAt      DateTime?                @updatedAt @map("updated_at") @db.Timestamptz
+  id               Int                      @id @default(autoincrement())
+  eventId          String?                  @map("event_id") @db.Uuid
+  customerId       String?                  @map("customer_id") @db.Uuid
+  claimSeatValue   String?                  @map("claim_seat_value") @db.VarChar(255)
+  qrCodeData       String                   @unique @map("qr_code_data")
+  blacklistedUntil DateTime?                @map("blacklisted_until") @db.Timestamptz
+  status           EventRegistrationStatus? @default(active)
+  registeredAt     DateTime?                @default(now()) @map("registered_at") @db.Timestamptz
+  updatedAt        DateTime?                @updatedAt @map("updated_at") @db.Timestamptz
 
   event    Event?                @relation(fields: [eventId], references: [id], onDelete: Cascade)
   customer Customer?             @relation(fields: [customerId], references: [id], onDelete: Cascade)
@@ -223,7 +224,7 @@ model Administrator {
   fullname  String
   password  String
   isActive  Boolean     @default(true) @map("is_active")
-  role      AdminRoles? @map("role") @default(admin)
+  role      AdminRoles? @default(admin) @map("role")
   createdAt DateTime?   @default(now()) @map("created_at") @db.Timestamptz
   updatedAt DateTime?   @updatedAt @map("updated_at") @db.Timestamptz
 

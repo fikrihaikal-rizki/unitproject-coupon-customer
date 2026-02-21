@@ -7,7 +7,7 @@ definePageMeta({
 
 const authStore = useAuthStore();
 const customer = computed(() => authStore.customer);
-const eventId = computed(() => authStore.eventId);
+const eventId = computed(() => authStore.currentEventId);
 
 // Redirect to home if no event id or customer id is found (invalid session)
 onMounted(() => {

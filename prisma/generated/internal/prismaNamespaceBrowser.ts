@@ -87,7 +87,6 @@ export const CustomerScalarFieldEnum = {
   email: 'email',
   fullName: 'fullName',
   phoneNumber: 'phoneNumber',
-  blacklistedUntil: 'blacklistedUntil',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -182,6 +181,7 @@ export const EventRegistrationScalarFieldEnum = {
   customerId: 'customerId',
   claimSeatValue: 'claimSeatValue',
   qrCodeData: 'qrCodeData',
+  blacklistedUntil: 'blacklistedUntil',
   status: 'status',
   registeredAt: 'registeredAt',
   updatedAt: 'updatedAt'

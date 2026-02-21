@@ -40,6 +40,7 @@ export type EventRegistrationMinAggregateOutputType = {
   customerId: string | null
   claimSeatValue: string | null
   qrCodeData: string | null
+  blacklistedUntil: Date | null
   status: $Enums.EventRegistrationStatus | null
   registeredAt: Date | null
   updatedAt: Date | null
@@ -51,6 +52,7 @@ export type EventRegistrationMaxAggregateOutputType = {
   customerId: string | null
   claimSeatValue: string | null
   qrCodeData: string | null
+  blacklistedUntil: Date | null
   status: $Enums.EventRegistrationStatus | null
   registeredAt: Date | null
   updatedAt: Date | null
@@ -62,6 +64,7 @@ export type EventRegistrationCountAggregateOutputType = {
   customerId: number
   claimSeatValue: number
   qrCodeData: number
+  blacklistedUntil: number
   status: number
   registeredAt: number
   updatedAt: number
@@ -83,6 +86,7 @@ export type EventRegistrationMinAggregateInputType = {
   customerId?: true
   claimSeatValue?: true
   qrCodeData?: true
+  blacklistedUntil?: true
   status?: true
   registeredAt?: true
   updatedAt?: true
@@ -94,6 +98,7 @@ export type EventRegistrationMaxAggregateInputType = {
   customerId?: true
   claimSeatValue?: true
   qrCodeData?: true
+  blacklistedUntil?: true
   status?: true
   registeredAt?: true
   updatedAt?: true
@@ -105,6 +110,7 @@ export type EventRegistrationCountAggregateInputType = {
   customerId?: true
   claimSeatValue?: true
   qrCodeData?: true
+  blacklistedUntil?: true
   status?: true
   registeredAt?: true
   updatedAt?: true
@@ -203,6 +209,7 @@ export type EventRegistrationGroupByOutputType = {
   customerId: string | null
   claimSeatValue: string | null
   qrCodeData: string
+  blacklistedUntil: Date | null
   status: $Enums.EventRegistrationStatus | null
   registeredAt: Date | null
   updatedAt: Date | null
@@ -237,6 +244,7 @@ export type EventRegistrationWhereInput = {
   customerId?: Prisma.UuidNullableFilter<"EventRegistration"> | string | null
   claimSeatValue?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   qrCodeData?: Prisma.StringFilter<"EventRegistration"> | string
+  blacklistedUntil?: Prisma.DateTimeNullableFilter<"EventRegistration"> | Date | string | null
   status?: Prisma.EnumEventRegistrationStatusNullableFilter<"EventRegistration"> | $Enums.EventRegistrationStatus | null
   registeredAt?: Prisma.DateTimeNullableFilter<"EventRegistration"> | Date | string | null
   updatedAt?: Prisma.DateTimeNullableFilter<"EventRegistration"> | Date | string | null
@@ -252,6 +260,7 @@ export type EventRegistrationOrderByWithRelationInput = {
   customerId?: Prisma.SortOrderInput | Prisma.SortOrder
   claimSeatValue?: Prisma.SortOrderInput | Prisma.SortOrder
   qrCodeData?: Prisma.SortOrder
+  blacklistedUntil?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrderInput | Prisma.SortOrder
   registeredAt?: Prisma.SortOrderInput | Prisma.SortOrder
   updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -272,6 +281,7 @@ export type EventRegistrationWhereUniqueInput = Prisma.AtLeast<{
   eventId?: Prisma.UuidNullableFilter<"EventRegistration"> | string | null
   customerId?: Prisma.UuidNullableFilter<"EventRegistration"> | string | null
   claimSeatValue?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
+  blacklistedUntil?: Prisma.DateTimeNullableFilter<"EventRegistration"> | Date | string | null
   status?: Prisma.EnumEventRegistrationStatusNullableFilter<"EventRegistration"> | $Enums.EventRegistrationStatus | null
   registeredAt?: Prisma.DateTimeNullableFilter<"EventRegistration"> | Date | string | null
   updatedAt?: Prisma.DateTimeNullableFilter<"EventRegistration"> | Date | string | null
@@ -287,6 +297,7 @@ export type EventRegistrationOrderByWithAggregationInput = {
   customerId?: Prisma.SortOrderInput | Prisma.SortOrder
   claimSeatValue?: Prisma.SortOrderInput | Prisma.SortOrder
   qrCodeData?: Prisma.SortOrder
+  blacklistedUntil?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrderInput | Prisma.SortOrder
   registeredAt?: Prisma.SortOrderInput | Prisma.SortOrder
   updatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -306,6 +317,7 @@ export type EventRegistrationScalarWhereWithAggregatesInput = {
   customerId?: Prisma.UuidNullableWithAggregatesFilter<"EventRegistration"> | string | null
   claimSeatValue?: Prisma.StringNullableWithAggregatesFilter<"EventRegistration"> | string | null
   qrCodeData?: Prisma.StringWithAggregatesFilter<"EventRegistration"> | string
+  blacklistedUntil?: Prisma.DateTimeNullableWithAggregatesFilter<"EventRegistration"> | Date | string | null
   status?: Prisma.EnumEventRegistrationStatusNullableWithAggregatesFilter<"EventRegistration"> | $Enums.EventRegistrationStatus | null
   registeredAt?: Prisma.DateTimeNullableWithAggregatesFilter<"EventRegistration"> | Date | string | null
   updatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"EventRegistration"> | Date | string | null
@@ -314,6 +326,7 @@ export type EventRegistrationScalarWhereWithAggregatesInput = {
 export type EventRegistrationCreateInput = {
   claimSeatValue?: string | null
   qrCodeData: string
+  blacklistedUntil?: Date | string | null
   status?: $Enums.EventRegistrationStatus | null
   registeredAt?: Date | string | null
   updatedAt?: Date | string | null
@@ -329,6 +342,7 @@ export type EventRegistrationUncheckedCreateInput = {
   customerId?: string | null
   claimSeatValue?: string | null
   qrCodeData: string
+  blacklistedUntil?: Date | string | null
   status?: $Enums.EventRegistrationStatus | null
   registeredAt?: Date | string | null
   updatedAt?: Date | string | null
@@ -339,6 +353,7 @@ export type EventRegistrationUncheckedCreateInput = {
 export type EventRegistrationUpdateInput = {
   claimSeatValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qrCodeData?: Prisma.StringFieldUpdateOperationsInput | string
+  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableEnumEventRegistrationStatusFieldUpdateOperationsInput | $Enums.EventRegistrationStatus | null
   registeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -354,6 +369,7 @@ export type EventRegistrationUncheckedUpdateInput = {
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   claimSeatValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qrCodeData?: Prisma.StringFieldUpdateOperationsInput | string
+  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableEnumEventRegistrationStatusFieldUpdateOperationsInput | $Enums.EventRegistrationStatus | null
   registeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -367,6 +383,7 @@ export type EventRegistrationCreateManyInput = {
   customerId?: string | null
   claimSeatValue?: string | null
   qrCodeData: string
+  blacklistedUntil?: Date | string | null
   status?: $Enums.EventRegistrationStatus | null
   registeredAt?: Date | string | null
   updatedAt?: Date | string | null
@@ -375,6 +392,7 @@ export type EventRegistrationCreateManyInput = {
 export type EventRegistrationUpdateManyMutationInput = {
   claimSeatValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qrCodeData?: Prisma.StringFieldUpdateOperationsInput | string
+  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableEnumEventRegistrationStatusFieldUpdateOperationsInput | $Enums.EventRegistrationStatus | null
   registeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -386,6 +404,7 @@ export type EventRegistrationUncheckedUpdateManyInput = {
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   claimSeatValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qrCodeData?: Prisma.StringFieldUpdateOperationsInput | string
+  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableEnumEventRegistrationStatusFieldUpdateOperationsInput | $Enums.EventRegistrationStatus | null
   registeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -417,6 +436,7 @@ export type EventRegistrationCountOrderByAggregateInput = {
   customerId?: Prisma.SortOrder
   claimSeatValue?: Prisma.SortOrder
   qrCodeData?: Prisma.SortOrder
+  blacklistedUntil?: Prisma.SortOrder
   status?: Prisma.SortOrder
   registeredAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -432,6 +452,7 @@ export type EventRegistrationMaxOrderByAggregateInput = {
   customerId?: Prisma.SortOrder
   claimSeatValue?: Prisma.SortOrder
   qrCodeData?: Prisma.SortOrder
+  blacklistedUntil?: Prisma.SortOrder
   status?: Prisma.SortOrder
   registeredAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -443,6 +464,7 @@ export type EventRegistrationMinOrderByAggregateInput = {
   customerId?: Prisma.SortOrder
   claimSeatValue?: Prisma.SortOrder
   qrCodeData?: Prisma.SortOrder
+  blacklistedUntil?: Prisma.SortOrder
   status?: Prisma.SortOrder
   registeredAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -583,6 +605,7 @@ export type EventRegistrationUpdateOneRequiredWithoutCouponNestedInput = {
 export type EventRegistrationCreateWithoutCustomerInput = {
   claimSeatValue?: string | null
   qrCodeData: string
+  blacklistedUntil?: Date | string | null
   status?: $Enums.EventRegistrationStatus | null
   registeredAt?: Date | string | null
   updatedAt?: Date | string | null
@@ -596,6 +619,7 @@ export type EventRegistrationUncheckedCreateWithoutCustomerInput = {
   eventId?: string | null
   claimSeatValue?: string | null
   qrCodeData: string
+  blacklistedUntil?: Date | string | null
   status?: $Enums.EventRegistrationStatus | null
   registeredAt?: Date | string | null
   updatedAt?: Date | string | null
@@ -638,6 +662,7 @@ export type EventRegistrationScalarWhereInput = {
   customerId?: Prisma.UuidNullableFilter<"EventRegistration"> | string | null
   claimSeatValue?: Prisma.StringNullableFilter<"EventRegistration"> | string | null
   qrCodeData?: Prisma.StringFilter<"EventRegistration"> | string
+  blacklistedUntil?: Prisma.DateTimeNullableFilter<"EventRegistration"> | Date | string | null
   status?: Prisma.EnumEventRegistrationStatusNullableFilter<"EventRegistration"> | $Enums.EventRegistrationStatus | null
   registeredAt?: Prisma.DateTimeNullableFilter<"EventRegistration"> | Date | string | null
   updatedAt?: Prisma.DateTimeNullableFilter<"EventRegistration"> | Date | string | null
@@ -646,6 +671,7 @@ export type EventRegistrationScalarWhereInput = {
 export type EventRegistrationCreateWithoutEventInput = {
   claimSeatValue?: string | null
   qrCodeData: string
+  blacklistedUntil?: Date | string | null
   status?: $Enums.EventRegistrationStatus | null
   registeredAt?: Date | string | null
   updatedAt?: Date | string | null
@@ -659,6 +685,7 @@ export type EventRegistrationUncheckedCreateWithoutEventInput = {
   customerId?: string | null
   claimSeatValue?: string | null
   qrCodeData: string
+  blacklistedUntil?: Date | string | null
   status?: $Enums.EventRegistrationStatus | null
   registeredAt?: Date | string | null
   updatedAt?: Date | string | null
@@ -695,6 +722,7 @@ export type EventRegistrationUpdateManyWithWhereWithoutEventInput = {
 export type EventRegistrationCreateWithoutAnswersInput = {
   claimSeatValue?: string | null
   qrCodeData: string
+  blacklistedUntil?: Date | string | null
   status?: $Enums.EventRegistrationStatus | null
   registeredAt?: Date | string | null
   updatedAt?: Date | string | null
@@ -709,6 +737,7 @@ export type EventRegistrationUncheckedCreateWithoutAnswersInput = {
   customerId?: string | null
   claimSeatValue?: string | null
   qrCodeData: string
+  blacklistedUntil?: Date | string | null
   status?: $Enums.EventRegistrationStatus | null
   registeredAt?: Date | string | null
   updatedAt?: Date | string | null
@@ -734,6 +763,7 @@ export type EventRegistrationUpdateToOneWithWhereWithoutAnswersInput = {
 export type EventRegistrationUpdateWithoutAnswersInput = {
   claimSeatValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qrCodeData?: Prisma.StringFieldUpdateOperationsInput | string
+  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableEnumEventRegistrationStatusFieldUpdateOperationsInput | $Enums.EventRegistrationStatus | null
   registeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -748,6 +778,7 @@ export type EventRegistrationUncheckedUpdateWithoutAnswersInput = {
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   claimSeatValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qrCodeData?: Prisma.StringFieldUpdateOperationsInput | string
+  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableEnumEventRegistrationStatusFieldUpdateOperationsInput | $Enums.EventRegistrationStatus | null
   registeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -757,6 +788,7 @@ export type EventRegistrationUncheckedUpdateWithoutAnswersInput = {
 export type EventRegistrationCreateWithoutCouponInput = {
   claimSeatValue?: string | null
   qrCodeData: string
+  blacklistedUntil?: Date | string | null
   status?: $Enums.EventRegistrationStatus | null
   registeredAt?: Date | string | null
   updatedAt?: Date | string | null
@@ -771,6 +803,7 @@ export type EventRegistrationUncheckedCreateWithoutCouponInput = {
   customerId?: string | null
   claimSeatValue?: string | null
   qrCodeData: string
+  blacklistedUntil?: Date | string | null
   status?: $Enums.EventRegistrationStatus | null
   registeredAt?: Date | string | null
   updatedAt?: Date | string | null
@@ -796,6 +829,7 @@ export type EventRegistrationUpdateToOneWithWhereWithoutCouponInput = {
 export type EventRegistrationUpdateWithoutCouponInput = {
   claimSeatValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qrCodeData?: Prisma.StringFieldUpdateOperationsInput | string
+  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableEnumEventRegistrationStatusFieldUpdateOperationsInput | $Enums.EventRegistrationStatus | null
   registeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -810,6 +844,7 @@ export type EventRegistrationUncheckedUpdateWithoutCouponInput = {
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   claimSeatValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qrCodeData?: Prisma.StringFieldUpdateOperationsInput | string
+  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableEnumEventRegistrationStatusFieldUpdateOperationsInput | $Enums.EventRegistrationStatus | null
   registeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -821,6 +856,7 @@ export type EventRegistrationCreateManyCustomerInput = {
   eventId?: string | null
   claimSeatValue?: string | null
   qrCodeData: string
+  blacklistedUntil?: Date | string | null
   status?: $Enums.EventRegistrationStatus | null
   registeredAt?: Date | string | null
   updatedAt?: Date | string | null
@@ -829,6 +865,7 @@ export type EventRegistrationCreateManyCustomerInput = {
 export type EventRegistrationUpdateWithoutCustomerInput = {
   claimSeatValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qrCodeData?: Prisma.StringFieldUpdateOperationsInput | string
+  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableEnumEventRegistrationStatusFieldUpdateOperationsInput | $Enums.EventRegistrationStatus | null
   registeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -842,6 +879,7 @@ export type EventRegistrationUncheckedUpdateWithoutCustomerInput = {
   eventId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   claimSeatValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qrCodeData?: Prisma.StringFieldUpdateOperationsInput | string
+  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableEnumEventRegistrationStatusFieldUpdateOperationsInput | $Enums.EventRegistrationStatus | null
   registeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -854,6 +892,7 @@ export type EventRegistrationUncheckedUpdateManyWithoutCustomerInput = {
   eventId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   claimSeatValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qrCodeData?: Prisma.StringFieldUpdateOperationsInput | string
+  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableEnumEventRegistrationStatusFieldUpdateOperationsInput | $Enums.EventRegistrationStatus | null
   registeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -864,6 +903,7 @@ export type EventRegistrationCreateManyEventInput = {
   customerId?: string | null
   claimSeatValue?: string | null
   qrCodeData: string
+  blacklistedUntil?: Date | string | null
   status?: $Enums.EventRegistrationStatus | null
   registeredAt?: Date | string | null
   updatedAt?: Date | string | null
@@ -872,6 +912,7 @@ export type EventRegistrationCreateManyEventInput = {
 export type EventRegistrationUpdateWithoutEventInput = {
   claimSeatValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qrCodeData?: Prisma.StringFieldUpdateOperationsInput | string
+  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableEnumEventRegistrationStatusFieldUpdateOperationsInput | $Enums.EventRegistrationStatus | null
   registeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -885,6 +926,7 @@ export type EventRegistrationUncheckedUpdateWithoutEventInput = {
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   claimSeatValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qrCodeData?: Prisma.StringFieldUpdateOperationsInput | string
+  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableEnumEventRegistrationStatusFieldUpdateOperationsInput | $Enums.EventRegistrationStatus | null
   registeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -897,6 +939,7 @@ export type EventRegistrationUncheckedUpdateManyWithoutEventInput = {
   customerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   claimSeatValue?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qrCodeData?: Prisma.StringFieldUpdateOperationsInput | string
+  blacklistedUntil?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   status?: Prisma.NullableEnumEventRegistrationStatusFieldUpdateOperationsInput | $Enums.EventRegistrationStatus | null
   registeredAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -948,6 +991,7 @@ export type EventRegistrationSelect<ExtArgs extends runtime.Types.Extensions.Int
   customerId?: boolean
   claimSeatValue?: boolean
   qrCodeData?: boolean
+  blacklistedUntil?: boolean
   status?: boolean
   registeredAt?: boolean
   updatedAt?: boolean
@@ -964,6 +1008,7 @@ export type EventRegistrationSelectCreateManyAndReturn<ExtArgs extends runtime.T
   customerId?: boolean
   claimSeatValue?: boolean
   qrCodeData?: boolean
+  blacklistedUntil?: boolean
   status?: boolean
   registeredAt?: boolean
   updatedAt?: boolean
@@ -977,6 +1022,7 @@ export type EventRegistrationSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   customerId?: boolean
   claimSeatValue?: boolean
   qrCodeData?: boolean
+  blacklistedUntil?: boolean
   status?: boolean
   registeredAt?: boolean
   updatedAt?: boolean
@@ -990,12 +1036,13 @@ export type EventRegistrationSelectScalar = {
   customerId?: boolean
   claimSeatValue?: boolean
   qrCodeData?: boolean
+  blacklistedUntil?: boolean
   status?: boolean
   registeredAt?: boolean
   updatedAt?: boolean
 }
 
-export type EventRegistrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "eventId" | "customerId" | "claimSeatValue" | "qrCodeData" | "status" | "registeredAt" | "updatedAt", ExtArgs["result"]["eventRegistration"]>
+export type EventRegistrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "eventId" | "customerId" | "claimSeatValue" | "qrCodeData" | "blacklistedUntil" | "status" | "registeredAt" | "updatedAt", ExtArgs["result"]["eventRegistration"]>
 export type EventRegistrationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   event?: boolean | Prisma.EventRegistration$eventArgs<ExtArgs>
   customer?: boolean | Prisma.EventRegistration$customerArgs<ExtArgs>
@@ -1026,6 +1073,7 @@ export type $EventRegistrationPayload<ExtArgs extends runtime.Types.Extensions.I
     customerId: string | null
     claimSeatValue: string | null
     qrCodeData: string
+    blacklistedUntil: Date | null
     status: $Enums.EventRegistrationStatus | null
     registeredAt: Date | null
     updatedAt: Date | null
@@ -1461,6 +1509,7 @@ export interface EventRegistrationFieldRefs {
   readonly customerId: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly claimSeatValue: Prisma.FieldRef<"EventRegistration", 'String'>
   readonly qrCodeData: Prisma.FieldRef<"EventRegistration", 'String'>
+  readonly blacklistedUntil: Prisma.FieldRef<"EventRegistration", 'DateTime'>
   readonly status: Prisma.FieldRef<"EventRegistration", 'EventRegistrationStatus'>
   readonly registeredAt: Prisma.FieldRef<"EventRegistration", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"EventRegistration", 'DateTime'>

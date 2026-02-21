@@ -45,7 +45,8 @@ export const EventRegistrationStatus = {
   active: 'active',
   pending: 'pending',
   completed: 'completed',
-  cancelled: 'cancelled'
+  cancelled: 'cancelled',
+  blacklisted: 'blacklisted'
 } as const
 
 export type EventRegistrationStatus = (typeof EventRegistrationStatus)[keyof typeof EventRegistrationStatus]

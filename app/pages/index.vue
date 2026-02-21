@@ -54,8 +54,7 @@ const groupedEvents = computed(() => {
 const setEventAuthData = (event: any) => {
   if (event) {
     authStore.setAuthData({
-      eventId: event.id,
-      eventSlug: event.slug,
+      currentEvent: event,
     });
   }
 };

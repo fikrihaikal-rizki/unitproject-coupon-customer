@@ -23,6 +23,10 @@ import {
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
 
+definePageMeta({
+  middleware: "auth",
+});
+
 const authStore = useAuthStore();
 
 // Derived state
@@ -337,9 +341,10 @@ const registerCouponRef = (el: any, coupon: any) => {
             <Card
               class="p-4 flex flex-col items-center justify-center text-center space-y-1 bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800"
             >
-              <span class="text-3xl font-bold text-zinc-900 dark:text-zinc-50">{{
-                stats?.generated || 0
-              }}</span>
+              <span
+                class="text-3xl font-bold text-zinc-900 dark:text-zinc-50"
+                >{{ stats?.generated || 0 }}</span
+              >
               <span
                 class="text-xs text-zinc-500 font-medium uppercase tracking-wider"
                 >Generated</span

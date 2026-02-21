@@ -1,4 +1,5 @@
 import prisma from "~~/server/utils/prisma"
+import { setCookie } from 'h3'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
@@ -28,8 +29,13 @@ export default defineEventHandler(async (event) => {
   // 2. Fetch Event
   const eventDetails = await prisma.event.findUnique({
     where: { slug },
-    include: {
-      group: true
+    select: {
+      id: true,
+      slug: true,
+      title: true,
+      startAt: true,
+      endAt: true,
+      isActive: true,
     }
   })
 
@@ -40,37 +46,31 @@ export default defineEventHandler(async (event) => {
     })
   }
 
+  if (!eventDetails.isActive) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Event is not active',
+    })
+  }
+
   // 3. Check Registration Status
   const registration = await prisma.eventRegistration.findUnique({
+    select: {
+      claimSeatValue: true,
+      status: true,
+      blacklistedUntil: true
+    },
     where: {
       customerId_eventId: {
         customerId: customer.id,
         eventId: eventDetails.id,
       },
-    },
-  })
-
-  let isRegistered = false;
-  if (registration) {
-    isRegistered = true;
-    if (registration.status == 'pending') {
-      isRegistered = false;
     }
-  }
-
-  const now = new Date()
-  const isStarted = eventDetails.startAt ? now >= new Date(eventDetails.startAt) : true
-  const isEnded = eventDetails.endAt ? now > new Date(eventDetails.endAt) : false
-  const isActive = eventDetails.isActive && isStarted && !isEnded
+  })
 
   return {
     customer,
     event: eventDetails,
-    registrationStatus: {
-      isRegistered: isRegistered,
-      isStarted,
-      isActive,
-      status: registration ? registration.status : null,
-    },
+    eventRegistration: registration,
   }
 })

@@ -2,14 +2,13 @@
 import { ArrowLeft } from "lucide-vue-next";
 import CouponDetail from "~/components/CouponDetail.vue";
 
+definePageMeta({
+  middleware: "auth",
+});
+
 const route = useRoute();
 const authStore = useAuthStore();
 const couponSlug = route.params.slug as string;
-
-// Redirect if no auth context
-if (!authStore.customerId || !authStore.currentEventSlug) {
-  navigateTo("/");
-}
 
 const { data, pending, error } = await useFetch("/api/customer/coupons/detail", {
   params: {

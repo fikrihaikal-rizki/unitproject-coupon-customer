@@ -21,7 +21,7 @@ if (authStore.customer) {
 
 // Fetch Steps
 const { data: rawSteps, refresh } = await useFetch<any[]>(
-  `/api/registration-steps/${authStore.eventId}`,
+  `/api/registration-steps/${authStore.currentEventId}`,
 );
 
 // Initialize Store
@@ -34,8 +34,8 @@ watchEffect(() => {
     }));
     registrationStore.setSteps(stepsData);
     registrationStore.setEventInfo(
-      authStore.eventSlug || "",
-      authStore.eventId || "",
+      authStore.currentEventSlug || "",
+      authStore.currentEventId || "",
     );
 
     // Initialize profile data from auth store
@@ -93,7 +93,7 @@ const handleStepNext = async (stepId: number, stepAnswers: any) => {
       const { data, error } = await useFetch("/api/events/claim-seat", {
         method: "POST",
         body: {
-          eventId: authStore.eventId,
+          eventId: authStore.currentEventId,
           claimSeatValue,
         },
       });
@@ -243,7 +243,7 @@ const submitRegistration = async () => {
       method: "POST",
       body: {
         registrationId: registrationStore.registrationId,
-        eventId: authStore.eventId,
+        eventId: authStore.currentEventId,
         questionnaireAnswers,
       },
     });

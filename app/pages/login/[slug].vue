@@ -42,83 +42,30 @@ const syncUserAndRedirect = async () => {
 
   loading.value = true;
   try {
-    const { data: loginCheck, error: loginError } = await useFetch(
-      "/api/auth/login-check",
-      {
-        method: "POST",
-        body: {
-          slug,
-          email: user.value.email,
-          fullName: user.value.user_metadata?.full_name,
-          customerId: user.value.sub,
-        },
-      },
+    await checkAuthData(
+      slug,
+      user.value.email ?? "",
+      user.value.user_metadata?.full_name,
+      user.value.sub,
     );
 
-    if (loginError.value) {
-      throw new Error(
-        loginError.value.statusMessage || "Failed to sync user data",
-      );
+    const checkLockResult = (await checkLockEvent(
+      authStore.currentEventId ?? "",
+    )) as any;
+
+    if (checkLockResult && checkLockResult.status == "conflict") {
+      conflictingEventName.value = checkLockResult.registeredEventName;
+      conflictingEventSlug.value = checkLockResult.registeredEventSlug;
+      isGroupLockWarningOpen.value = true;
+
+      loading.value = false;
+      return;
     }
 
-    if (!loginCheck.value) {
-      throw new Error("Data not found, Failed to sync user data");
-    }
+    const navigateToUrl = checkAuthStoreAndRedirectUrl();
 
-    const loginCheckResult = loginCheck.value as any;
-
-    const { data: checkLock, error: checkError } = await useFetch(
-      "/api/customer/events/check-lock",
-      {
-        params: { eventId: loginCheckResult.event.id },
-      },
-    );
-
-    if (checkError.value) {
-      throw new Error(
-        checkError.value.statusMessage || "Failed to sync user data",
-      );
-    }
-
-    if (checkLock.value) {
-      const checkLockResult = checkLock.value as any;
-
-      if (checkLockResult.status == "conflict") {
-        conflictingEventName.value = checkLockResult.registeredEventName;
-        conflictingEventSlug.value = checkLockResult.registeredEventSlug;
-        isGroupLockWarningOpen.value = true;
-
-        loading.value = false;
-        return;
-      }
-    }
-
-    authStore.setAuthData({
-      eventId: loginCheckResult.event.id,
-      customerId: loginCheckResult.customer.id,
-      eventSlug: slug,
-      customer: loginCheckResult.customer,
-    });
-
-    const status = loginCheckResult.registrationStatus;
-
-    if (!status.isRegistered) {
-      return navigateTo("/registration");
-    } 
-    
-    if (!status.isStarted && status.status === 'completed') {
-      return navigateTo("/registration-success");
-    } else if (status.isStarted && status.status === 'completed') {
-      return navigateTo("/registration-success");
-    }
-    
-    if (!status.isStarted && status.status === 'active') {
-      return navigateTo("/registration-success");
-    } else if (status.isStarted && status.status === 'active') {
-      return navigateTo("/dashboard");
-    } else {
-      // Fallback
-      return navigateTo("/registration-success");
+    if (navigateToUrl) {
+      return navigateTo(navigateToUrl);
     }
   } catch (err: any) {
     toast.error(err.message || "An error occurred during synchronization");
@@ -168,7 +115,7 @@ watch(
       <div class="p-8 flex flex-col items-center space-y-8">
         <!-- Event Logo / Banner -->
         <div
-          v-if="event.bannerPath"
+          v-if="event.bannerPath !== null"
           class="relative w-full h-full flex items-center justify-center text-center"
         >
           <NuxtImg
